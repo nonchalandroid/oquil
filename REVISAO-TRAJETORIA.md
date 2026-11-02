@@ -90,3 +90,11 @@ Lost Tracks, Vol. 0 (747×740) e Sombras do Subconsciente (812×787) agora usam 
 - URL do CSS versionada para evitar reutilização da versão anterior em cache.
 - A main remota já continha os oito arquivos locais de capas. A leitura do domínio de produção foi bloqueada pela rede; não foi possível determinar se o print corresponde a cache, deploy anterior ou outro problema da publicação.
 - Validação local com redimensionamento contínuo de 1440 a 320 px, incluindo 940 px para janela dividida, com e sem JavaScript: imagens decodificadas, ausência de transbordamento horizontal, mídia contida e conteúdo abaixo da navegação.
+
+## Hero com capa e acordeões de plataformas
+
+- Capa oficial de Quase Indo em destaque na abertura, inteira, sem corte ou filtro adicional.
+- Fonte original Unbounded, peso 600 e espaçamento original do título preservados. Arquivo variável WOFF2 hospedado localmente, derivado da fonte oficial Google Fonts (ofl/unbounded/Unbounded[wght].ttf), com licença OFL em assets/unbounded-OFL.txt. Sem dependência externa para renderizar o título.
+- Cinco acordeões nativos details/summary, um por plataforma: Spotify, Apple Music, Amazon Music, YouTube Music e YouTube. Grupo exclusivo, utilizável por teclado e sem JavaScript. Spotify começa aberto, com CTA direto.
+- Spotify usa o endereço da faixa já fornecido; Apple Music, Amazon Music e YouTube Music usam buscas explicitamente identificadas; YouTube abre o canal. Esses destinos não foram apresentados como URLs individuais confirmadas de streaming.
+- Testado carregamento real da fonte local e da capa, expansão/recolhimento por teclado, exclusividade dos acordeões e ajuste do título em nove larguras entre 320 e 1440 px, com e sem JavaScript e requisições externas bloqueadas. Sem erros de JavaScript.

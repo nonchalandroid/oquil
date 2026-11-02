@@ -24,7 +24,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Unbounded:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
     :root{
       --ink:#05090a;
@@ -701,7 +701,8 @@
 }
 
 </style>
-<link rel="stylesheet" href="assets/refinamentos.css?v=20261102-2"/>
+<link rel="stylesheet" href="assets/refinamentos.css?v=20261102-3"/>
+<link rel="preload" href="assets/unbounded-variable.woff2" as="font" type="font/woff2" crossorigin/>
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -719,10 +720,7 @@
 <main id="conteudo">
 <section aria-label="o Quil | Quase Indo" class="hero">
 <div class="hero-media">
-<picture>
-<source media="(max-width: 800px)" srcset="assets/o-quil-retrato.webp"/>
-<img alt="Retrato de o Quil em atmosfera cinematográfica escura, com estética Dark R&amp;B" decoding="async" fetchpriority="high" height="899" loading="eager" src="assets/o-quil-retrato.webp" width="1600"/>
-</picture>
+<picture><img alt="Capa oficial de Quase Indo, single de o Quil" decoding="async" fetchpriority="high" width="900" height="900" loading="eager" src="assets/quase-indo-capa.webp"/></picture>
 </div>
 <div aria-hidden="true" class="hero-glow"></div>
 <div aria-hidden="true" class="light-leak"></div>
@@ -732,10 +730,15 @@
 <h1>Quase <span class="outline">Indo</span></h1>
 <p class="hero-sub">o Quil / Dark R&amp;B<br/>Ouça o single Quase Indo.</p>
 <img alt="Assinatura manuscrita original de o Quil" class="signature" decoding="async" height="810" loading="eager" src="assets/o-quil-assinatura-clara.png" width="1805"/>
-<div class="hero-actions">
-<a aria-label="Ouvir diretamente Quase Indo de o Quil no Spotify" class="button primary" href="https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr" rel="noopener noreferrer" target="_blank" title="Ouvir diretamente Quase Indo no Spotify">Ouvir no Spotify <svg class="icon icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
-<a class="button" href="#catalogo">Explorar catálogo <span class="arrow"><svg class="icon icon-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></span></a>
+<div class="hero-streaming" aria-labelledby="streaming-title">
+<h2 id="streaming-title">Escolha onde ouvir</h2>
+<details class="stream-accordion" name="quase-indo-streaming" open><summary><span>Spotify</span><svg class="icon stream-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="stream-content"><p>Ouça Quase Indo diretamente no Spotify.</p><a class="stream-link" href="https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr" target="_blank" rel="noopener noreferrer">Ouvir no Spotify<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></details>
+<details class="stream-accordion" name="quase-indo-streaming"><summary><span>Apple Music</span><svg class="icon stream-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="stream-content"><p>Encontre Quase Indo de o Quil na busca do Apple Music.</p><a class="stream-link" href="https://music.apple.com/br/search?term=o%20Quil%20Quase%20Indo" target="_blank" rel="noopener noreferrer">Buscar no Apple Music<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></details>
+<details class="stream-accordion" name="quase-indo-streaming"><summary><span>Amazon Music</span><svg class="icon stream-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="stream-content"><p>Encontre Quase Indo de o Quil na busca do Amazon Music.</p><a class="stream-link" href="https://music.amazon.com/search/o%20Quil%20Quase%20Indo" target="_blank" rel="noopener noreferrer">Buscar no Amazon Music<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></details>
+<details class="stream-accordion" name="quase-indo-streaming"><summary><span>YouTube Music</span><svg class="icon stream-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="stream-content"><p>Encontre Quase Indo de o Quil na busca do YouTube Music.</p><a class="stream-link" href="https://music.youtube.com/search?q=o%20Quil%20Quase%20Indo" target="_blank" rel="noopener noreferrer">Buscar no YouTube Music<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></details>
+<details class="stream-accordion" name="quase-indo-streaming"><summary><span>YouTube</span><svg class="icon stream-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="stream-content"><p>Explore os vídeos publicados no canal de o Quil.</p><a class="stream-link" href="https://www.youtube.com/@oquil/videos" target="_blank" rel="noopener noreferrer">Abrir canal no YouTube<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></details>
 </div>
+<a class="hero-catalog-link" href="#catalogo">Explorar catálogo<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
 </div>
 <div class="hero-side"><b>O QUIL</b> / DARK R&amp;B</div>
 <div class="scroll-cue">Deslize para entrar <i></i></div>

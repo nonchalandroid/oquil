@@ -6,7 +6,7 @@ export function StreamingBanner() {
   return <nav className="streaming-banner" aria-label="Plataformas de música" tabIndex={0} onFocus={event => {
     if (event.target.tagName === 'A') event.target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
   }}>
-    {platforms.map(platform => <a key={platform.id} href={platform.id === 'spotify' ? spotifyArtistUrl : platform.href} target="_blank" rel="noopener noreferrer" aria-label={platform.id === 'spotify' ? 'Abrir o perfil de o Quil no Spotify' : platform.label} title={platform.id === 'spotify' ? 'Abrir o perfil de o Quil no Spotify' : platform.label}><BrandIcon name={platform.id} /><span>{platform.name}</span></a>)}
+    {platforms.map(platform => <a key={platform.id} href={platform.id === 'spotify' ? spotifyArtistUrl : (platform.profileHref || platform.href)} target="_blank" rel="noopener noreferrer" aria-label={`Abrir o perfil de o Quil no ${platform.name}`} title={`Abrir o perfil de o Quil no ${platform.name}`}><BrandIcon name={platform.id} /><span>{platform.name}</span></a>)}
   </nav>;
 }
 

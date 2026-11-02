@@ -36,14 +36,14 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 .archive-row{position:relative;padding-left:18px}
 .archive-row:before{content:'';position:absolute;left:0;top:0;bottom:0;border-left:1px solid var(--line)}
 .archive-row:after{content:'';position:absolute;left:-2px;top:33px;width:5px;height:5px;border-radius:50%;background:var(--mist)}
-.streaming-banner{display:flex;gap:16px;margin-top:64px;padding:20px 4px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:4px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--mist) transparent}
-.streaming-banner a{flex:0 0 200px;min-width:0;display:flex;align-items:center;justify-content:center;gap:14px;min-height:96px;padding:20px 16px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(145deg,rgba(131,217,203,.08),rgba(13,25,25,.6));font-size:16px;white-space:nowrap;scroll-snap-align:start;transition:background .2s,border-color .2s}
-.streaming-banner .brand-icon{width:32px;height:32px}
+.streaming-banner{display:flex;gap:12px;margin-top:64px;padding:12px 4px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:4px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--mist) transparent}
+.streaming-banner a{flex:0 0 168px;min-width:0;display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:12px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(145deg,rgba(131,217,203,.08),rgba(13,25,25,.6));font-size:13px;white-space:nowrap;scroll-snap-align:start;transition:background .2s,border-color .2s}
+.streaming-banner .brand-icon{width:24px;height:24px}
 .streaming-banner a:hover{border-color:var(--mist);background:rgba(131,217,203,.12)}
 .streaming-banner:focus-within{scroll-snap-type:none}
 .streaming-banner:focus-visible{outline:2px solid var(--mist);outline-offset:4px}
 .streaming-banner a:focus-visible{outline-offset:-4px}
-@media(max-width:600px){.streaming-banner{margin-top:40px;gap:12px}.streaming-banner a{flex-basis:190px}.archive-row{padding-left:14px}}
+@media(max-width:600px){.streaming-banner{margin-top:40px;gap:12px}.streaming-banner a{flex-basis:164px}.archive-row{padding-left:14px}}
 /* Controles de ouvir: superfícies de vidro e áreas de clique explícitas. */
 .release{padding:20px 0;border-bottom:1px solid var(--line)}
 .release-platforms summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px;padding:10px 0;list-style:none}

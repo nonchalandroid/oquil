@@ -10,12 +10,11 @@ export default function Story() {
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let timer;
-    let steps = createTypingSteps();
+    const steps = createTypingSteps();
     let index = 0;
     let shown = '';
     let target = biography.length;
     let direction = 'forward';
-    let recovering = false;
     let previousY = window.scrollY;
     let visible = false;
     let disposed = false;
@@ -27,17 +26,9 @@ export default function Story() {
       if (direction === 'backward') {
         if (shown.length <= target) return;
         publish(shown.slice(0, -1));
-        if (!shown.length) { steps = createTypingSteps(); index = 0; }
+        if (!shown.length) index = 0;
         timer = window.setTimeout(advance, 32);
-      } else if (visible && index < steps.length) {
-        // Um erro ainda visível é apagado antes de retomar o prefixo correto.
-        if (recovering) {
-          publish(shown.slice(0, -1));
-          index = shown ? steps.findIndex(step => step.text === shown) + 1 : 0;
-          recovering = !biography.startsWith(shown);
-          timer = window.setTimeout(advance, 80);
-          return;
-        }
+      } else if (visible && index < Math.min(steps.length, target)) {
         const step = steps[index++];
         publish(step.text);
         timer = window.setTimeout(advance, step.delay);
@@ -45,6 +36,12 @@ export default function Story() {
     };
     const schedule = (delay = 100) => {
       if (enabled() && timer === undefined) timer = window.setTimeout(advance, delay);
+    };
+    const scrollTarget = () => {
+      const rect = article.current.getBoundingClientRect();
+      const distance = Math.min(rect.height + window.innerHeight * .2, window.innerHeight * .65);
+      const progress = Math.max(0, Math.min(1, (window.innerHeight * .9 - rect.top) / distance));
+      return Math.round(progress * biography.length);
     };
     const onScroll = () => {
       const y = window.scrollY;
@@ -58,11 +55,11 @@ export default function Story() {
         target = Math.max(0, target + delta * biography.length / Math.max(window.innerHeight * .85, rect.height));
         if (rect.top >= window.innerHeight * .9) target = 0;
         schedule(0);
-      } else if (delta > 0 && direction !== 'forward') {
+      } else if (delta > 0) {
+        if (direction !== 'forward') index = shown.length;
         direction = 'forward';
-        recovering = !biography.startsWith(shown);
-        index = shown ? steps.findIndex(step => step.text === shown) + 1 : 0;
-        schedule();
+        target = Math.max(shown.length, scrollTarget());
+        schedule(0);
       }
     };
     const configure = () => {
@@ -70,12 +67,15 @@ export default function Story() {
       timer = undefined;
       setTyping(enabled());
       setText(enabled() ? shown : biography);
-      if (enabled() && visible) schedule(400);
+      if (enabled() && visible) { target = scrollTarget(); schedule(120); }
     };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (!visible && direction === 'forward') { clearTimeout(timer); timer = undefined; }
-      else schedule(400);
+      else {
+        if (direction === 'forward') target = scrollTarget();
+        schedule(120);
+      }
     }, { threshold: .15 });
     configure();
     observer.observe(article.current);

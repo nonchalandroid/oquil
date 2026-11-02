@@ -62,6 +62,6 @@ O diagnóstico de JavaScript não usado inclui partes de React/React DOM que nã
 
 ### Digitação da biografia
 
-A bio usa fontes nativas do sistema (`-apple-system`, BlinkMacSystemFont e equivalentes), sem download adicional. A escrita continua lentamente por tempo enquanto está visível. Ao subir, um alvo proporcional à distância rolada faz o texto apagar letra por letra; ao descer, a escrita retoma do prefixo existente. Ao voltar acima da bio, o texto é apagado por completo.
+A bio usa fontes nativas do sistema (`-apple-system`, BlinkMacSystemFont e equivalentes), sem download adicional. A descida da página libera progressivamente o texto, digitado sem erros simulados a 18 ms por letra, com pausas curtas na pontuação. Ao subir, o texto apaga com backspace proporcional à distância rolada; ao descer novamente, retoma do prefixo existente.
 
-`src/storyTyping.js` sorteia até três pequenos erros, distribuídos pelo texto. Cada erro troca uma letra intermediária por outra, pausa, apaga apenas a letra errada e digita a correta. Uma nova sequência é sorteada depois do apagamento completo. “Ler sem animação” e a preferência por movimento reduzido apresentam imediatamente a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.
+`src/storyTyping.js` mantém apenas passos do texto correto. “Ler sem animação” e a preferência por movimento reduzido apresentam imediatamente a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.

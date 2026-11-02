@@ -74,4 +74,9 @@ Integradas seis artes locais: Quase Indo, Se Move, TAG, Consequência de Estar A
 
 Se Move, TAG e Consequência de Estar Acordado deixam de depender do CDN Spotify. Lost Tracks também passa a usar arquivo local; Platônico ganha sua capa no arquivo de lançamentos. Quase Indo usa a versão final enviada. Corrigida a inicialização do estado de imagens já carregadas do cache para evitar que o fallback cubra uma imagem válida.
 
-Não foram fornecidas capas de Lost Tracks, Vol. 0 e Sombras do Subconsciente. Essas duas referências externas permanecem, sem reutilizar indevidamente outra arte. MAPA-CAPAS-E-LINKS.json atualizado com os caminhos locais.
+As duas capas restantes foram fornecidas posteriormente no arquivo capaz 2.zip e integradas conforme o registro abaixo. MAPA-CAPAS-E-LINKS.json atualizado com todos os caminhos locais.
+
+
+## Capas restantes recebidas em capaz 2.zip
+
+Lost Tracks, Vol. 0 (747×740) e Sombras do Subconsciente (812×787) agora usam WebP local derivado das capturas enviadas. Sem ampliação artificial, recriação ou retoque; a qualidade fica limitada às capturas fornecidas. Todas as capas exibidas no HTML agora são locais, sem dependência do CDN Spotify.

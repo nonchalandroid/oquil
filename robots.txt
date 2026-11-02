@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-# Inserir Sitemap após definição do domínio oficial.
+
+Sitemap: https://oquil.com.br/sitemap.xml

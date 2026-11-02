@@ -124,171 +124,35 @@
   "archive": [
     {
       "title": "Sinergia",
-      "year": "2014",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20Sinergia",
-          "title": "Buscar Sinergia no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20Sinergia",
-          "title": "Buscar Sinergia de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/results?search_query=o%20Quil%20Sinergia",
-          "title": "Buscar Sinergia de o Quil no YouTube"
-        }
-      ]
+      "year": "2014"
     },
     {
       "title": "Por Via das Dúvidas",
-      "year": "2015",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20Por%20Via%20das%20D%C3%BAvidas",
-          "title": "Buscar Por Via das Dúvidas no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20Por%20Via%20das%20D%C3%BAvidas",
-          "title": "Buscar Por Via das Dúvidas de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/results?search_query=o%20Quil%20Por%20Via%20das%20D%C3%BAvidas",
-          "title": "Buscar Por Via das Dúvidas de o Quil no YouTube"
-        }
-      ]
+      "year": "2015"
     },
     {
       "title": "Lost Tracks, Vol. 0",
-      "year": "2016",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/intl-pt/album/3xSWh7XY82tHXBglXPjpTU",
-          "title": "Ouvir Lost Tracks, Vol. 0 no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20Lost%20Tracks%2C%20Vol.%200",
-          "title": "Buscar Lost Tracks, Vol. 0 de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/channel/UCeTA2gjyoT1KcqiyHSOZrrg",
-          "title": "Buscar Lost Tracks, Vol. 0 de o Quil no YouTube"
-        }
-      ]
+      "year": "2016"
     },
     {
       "title": "Lost Tracks",
-      "year": "2019",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/intl-pt/album/3IOaChHUNRTl6r9zASHf8c",
-          "title": "Ouvir Lost Tracks no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20Lost%20Tracks",
-          "title": "Buscar Lost Tracks de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
-          "title": "Buscar Lost Tracks de o Quil no YouTube"
-        }
-      ]
+      "year": "2019"
     },
     {
       "title": "Platônico",
-      "year": "2020",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/intl-pt/track/4sV1wMarlXQLniRastfWvf",
-          "title": "Ouvir Platônico no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20Plat%C3%B4nico",
-          "title": "Buscar Platônico de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
-          "title": "Buscar Platônico de o Quil no YouTube"
-        }
-      ]
+      "year": "2020"
     },
     {
       "title": "Noites Online",
-      "year": "2021",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/album/4nmcr7HFStKqzbghDyQRlA",
-          "title": "Ouvir Noites Online no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU",
-          "title": "Ouvir o EP Noites Online no YouTube"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU",
-          "title": "Ouvir o EP Noites Online no YouTube"
-        }
-      ]
+      "year": "2021"
     },
     {
       "title": "Não Importa",
-      "year": "2022",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/intl-pt/track/4lnOFJ5Lj8gJBlDoJugAA7",
-          "title": "Ouvir Não Importa no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20N%C3%A3o%20Importa",
-          "title": "Buscar Não Importa de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
-          "title": "Buscar Não Importa de o Quil no YouTube"
-        }
-      ]
+      "year": "2022"
     },
     {
       "title": "Sombras do Subconsciente",
-      "year": "2023",
-      "links": [
-        {
-          "label": "Spotify",
-          "href": "https://open.spotify.com/intl-pt/album/4ZOv17UHwKVNILm0FGoau9",
-          "title": "Ouvir Sombras do Subconsciente no Spotify"
-        },
-        {
-          "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20Sombras%20do%20Subconsciente",
-          "title": "Buscar Sombras do Subconsciente de o Quil no YouTube Music"
-        },
-        {
-          "label": "YouTube",
-          "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
-          "title": "Buscar Sombras do Subconsciente de o Quil no YouTube"
-        }
-      ]
+      "year": "2023"
     }
   ],
   "press": [

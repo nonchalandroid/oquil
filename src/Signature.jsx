@@ -21,6 +21,6 @@ export default function Signature() {
         </g>
       </mask>
     </defs>
-    <image href="assets/o-quil-assinatura-clara.png" width="700" height="314" mask="url(#signature-writing-mask)" />
+    <image href="assets/o-quil-assinatura-360.webp" width="700" height="314" mask="url(#signature-writing-mask)" />
   </svg>;
 }

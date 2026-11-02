@@ -14,31 +14,63 @@ export function StreamingBanner() {
 }
 
 export function HeroStreaming() {
-  const tree = useRef(null);
+  const dialog = useRef(null);
+  const scrollLock = useRef(null);
   const entrance = useRef(null);
-  useEffect(() => () => entrance.current?.cancel(), []);
-  const onToggle = event => {
-    if (event.target !== event.currentTarget) return;
+  const unlock = () => {
+    if (!scrollLock.current) return;
+    const { top, position, width, scrollY, overflow } = scrollLock.current;
+    Object.assign(document.body.style, { top, position, width });
+    document.documentElement.style.overflow = overflow;
+    scrollLock.current = null;
+    window.scrollTo({ top: scrollY, behavior: 'instant' });
+  };
+  useEffect(() => () => {
     entrance.current?.cancel();
-    if (event.currentTarget.open && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && tree.current?.animate) {
-      entrance.current = tree.current.animate([{ opacity: 0, transform: 'translateY(-10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 320, easing: 'ease-out' });
+    unlock();
+  }, []);
+  const open = () => {
+    if (dialog.current.open) return;
+    scrollLock.current = {
+      top: document.body.style.top, position: document.body.style.position,
+      width: document.body.style.width, scrollY: window.scrollY,
+      overflow: document.documentElement.style.overflow
+    };
+    Object.assign(document.body.style, { position: 'fixed', top: `-${window.scrollY}px`, width: '100%' });
+    document.documentElement.style.overflow = 'hidden';
+    dialog.current.showModal();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      entrance.current = dialog.current.animate([
+        { opacity: 0, transform: 'translateY(16px) scale(.98)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)' }
+      ], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
     }
   };
-  return <details className="hero-streaming release-object" onToggle={onToggle}>
-    <summary className="album-trigger" aria-label="Plataformas de Quase Indo" aria-controls="hero-platform-tree">
+  const close = () => dialog.current.close();
+  const closeOutside = event => {
+    if (event.target !== dialog.current) return;
+    const rect = dialog.current.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) close();
+  };
+  return <div className="hero-streaming release-object">
+    <button className="album-trigger" type="button" aria-label="Abrir plataformas de Quase Indo" aria-haspopup="dialog" aria-controls="hero-platform-window" onClick={open}>
       <span className="album-object"><span className="album-art"><img src="assets/quase-indo-original.png" alt="Capa oficial do single Quase Indo" width="3000" height="3000" fetchPriority="high" decoding="async" /></span></span>
-      <span className="object-cue"><span className="cue-closed">Abrir plataformas</span><span className="cue-open">Recolher plataformas</span><Icon name="plus" className="stream-toggle" /></span>
-    </summary>
-    <div className="platform-diagram" id="hero-platform-tree" ref={tree}>
-      <h2>Escolha onde ouvir</h2>
-      <nav className="diagram-branches" aria-label="Ouvir Quase Indo">
-        {[platforms.slice(0, 3), platforms.slice(3)].map((branch, i) => <div className="diagram-column" key={i}>
-          {branch.map(platform => <details className="stream-accordion platform-node" key={platform.id} name="hero-platform-node" open={platform.id === 'spotify'}>
-            <summary><span className="platform-name"><BrandIcon name={platform.id} />{platform.name}</span><Icon name="plus" className="stream-toggle" /></summary>
-            <div className="stream-content"><p>{platform.description}</p><a className={`stream-link ${platform.id === 'spotify' ? 'primary' : ''}`} href={platform.href} target="_blank" rel="noopener noreferrer">{platform.label}<Icon /></a></div>
-          </details>)}
-        </div>)}
+      <span className="object-cue">Abrir plataformas<Icon name="play" /></span>
+    </button>
+    <dialog className="music-window" id="hero-platform-window" ref={dialog} aria-labelledby="music-window-title" onClose={unlock} onClick={closeOutside}>
+      <div className="music-window-hero">
+        <img className="music-window-backdrop" src="assets/quase-indo-capa.webp" alt="" width="1200" height="1200" />
+        <button className="music-window-close" type="button" onClick={close} aria-label="Fechar plataformas" autoFocus><span aria-hidden="true">×</span></button>
+        <div className="music-window-release">
+          <img className="music-window-cover" src="assets/quase-indo-capa.webp" alt="" width="1200" height="1200" />
+          <div><p className="section-kicker">o Quil · Single</p><h2 id="music-window-title">Quase Indo</h2><p>Escolha onde ouvir</p></div>
+        </div>
+      </div>
+      <nav className="music-window-links" aria-label="Ouvir Quase Indo">
+        {platforms.map(platform => <a key={platform.id} href={platform.href} target="_blank" rel="noopener noreferrer" title={platform.description}>
+          <BrandIcon name={platform.id} /><span><strong>{platform.name}</strong><small>{platform.label}</small></span><Icon />
+        </a>)}
       </nav>
-    </div>
-  </details>;
+    </dialog>
+  </div>;
 }

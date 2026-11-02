@@ -51,14 +51,14 @@ export function HeroStreaming() {
   };
   return <div className="hero-streaming release-object">
     <button className="album-trigger" type="button" aria-label="Abrir plataformas de Quase Indo" aria-haspopup="dialog" aria-controls="hero-platform-window" onClick={open}>
-      <span className="album-object"><span className="album-art"><img src="assets/quase-indo-capa.webp" alt="Capa oficial do single Quase Indo" width="900" height="900" fetchPriority="high" decoding="async" /></span></span>
+      <span className="album-object"><span className="album-art"><img src="assets/quase-indo-600.webp" alt="Capa oficial do single Quase Indo" width="600" height="600" fetchPriority="high" decoding="async" /></span></span>
     </button>
     <dialog className="music-window" id="hero-platform-window" ref={dialog} aria-labelledby="music-window-title" onClose={unlock} onClick={closeOutside}>
       <div className="music-window-hero">
-        <img className="music-window-backdrop" src="assets/quase-indo-capa.webp" alt="" width="900" height="900" />
+        <img className="music-window-backdrop" src="assets/quase-indo-600.webp" alt="" width="600" height="600" />
         <button className="music-window-close" type="button" onClick={close} aria-label="Fechar plataformas" autoFocus><span aria-hidden="true">×</span></button>
         <div className="music-window-release">
-          <img className="music-window-cover" src="assets/quase-indo-capa.webp" alt="" width="900" height="900" />
+          <img className="music-window-cover" src="assets/quase-indo-600.webp" alt="" width="600" height="600" />
           <div><p className="section-kicker">o Quil · Single</p><h2 id="music-window-title">Quase Indo</h2><p>Escolha onde ouvir</p></div>
         </div>
       </div>

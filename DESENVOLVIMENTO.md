@@ -36,3 +36,20 @@ O Q foi adaptado da assinatura do artista para manter legibilidade em tamanho pe
 São gerados PNGs de 16 a 1024 px, ICO com sete resoluções, Apple Touch e variantes maskable com margem de segurança. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. As URLs de ícone têm versão por conteúdo; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
 
 Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. Ao descer, a digitação avança; ao subir, apaga em ordem inversa. Apenas um parágrafo fica parcialmente digitado por vez, sem interceptar a roda do mouse. O controle “Ler sem animação” revela todo o texto.
+
+## Desempenho mobile
+
+O build incorpora o CSS no HTML para remover uma requisição bloqueante. O arquivo `assets/site.css` também é gerado para inspeção. Ao incorporar, o build ajusta os caminhos das fontes para `assets/`. DM Sans é local, da distribuição `@fontsource-variable/dm-sans@5.3.0` (SIL OFL em `assets/dm-sans-OFL.txt`). Unbounded usa uma versão WOFF2 reduzida para Latin-1 e pontuação geral, preservando os pesos variáveis e a licença original.
+
+As capas de lista usam `assets/thumbs/` (160×160), a capa da abertura usa `quase-indo-600.webp` (600×600), a assinatura usa WebP sem perdas com largura de 360 px e o retrato usa `o-quil-retrato-optimized.webp`. Os originais continuam disponíveis. Essas versões são arquivos versionados: não é necessário instalar ferramentas de imagem ou fontes para executar `npm ci`, build ou publicação. Ao substituir uma capa, atualize também sua miniatura.
+
+A assinatura continua entrando depois do título e da capa, com traços mais rápidos. Em dispositivos touch, a moldura usa variação de opacidade para evitar repintar seu gradiente continuamente.
+
+### Ajustes na Cloudflare (fora do código)
+
+O relatório de 02/11/2026 mostrou cache de 4 horas e scripts injetados pela Cloudflare. Não há configuração desses serviços neste checkout.
+
+- Criar uma Cache Rule para `/assets/`: respeitar a query string na chave do cache (o JavaScript usa `?v=`), com Edge TTL de 30 dias e Browser TTL de 1 dia. Não aplicar esse TTL ao HTML. Invalidar os caminhos de imagens/fontes ao substituí-los mantendo o mesmo nome.
+- Se a medição de visitas não for necessária, desativar a injeção do Web Analytics/Browser Insights no painel para remover `beacon.min.js`, seus polyfills e chamadas RUM. Não existe alteração no bundle local que remova um script injetado pela CDN.
+- A ofuscação de e-mail também injeta `email-decode.min.js`. Sua desativação é uma escolha de configuração da hospedagem.
+- Após publicar, medir novamente no PageSpeed mobile. O servidor Python de desenvolvimento não fornece compressão ou cache de produção; avisos locais desses cabeçalhos não comprovam problemas na CDN.

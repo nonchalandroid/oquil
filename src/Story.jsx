@@ -1,83 +1,70 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const paragraphs = [
-  'Fillipe Queiroz começou na música usando o próprio nome. Foi assim que seus primeiros trabalhos chegaram ao público, entre o rap e a produção musical.',
-  'Mais tarde, passou a assinar como o Quil. O artista e produtor do Rio de Janeiro apresenta hoje seu trabalho com esse nome, construindo uma trajetória que atravessa o rap e o R&B.',
-  'o Quil é um artista independente. Ele mesmo grava, produz suas músicas e cuida de cada etapa do próprio trabalho.',
-  'Na fase atual, o Dark R&B ganha espaço nessa história. o Quil apresenta uma sonoridade marcada por produções que privilegiam espaço e emoção, com atmosferas noturnas e ambiência densa. Suas músicas exploram os conflitos de quem segue em frente, mesmo contra todas as probabilidades.'
-];
+const biography = 'o Quil começou na música usando seu nome de batismo, fillipe queiroz. do rio de janeiro, veio do rap e da produção musical.\n\nmais tarde, passou a assinar como o Quil. independente, ele mesmo grava, produz suas músicas e cuida de cada etapa do trabalho.\n\nhoje, o dark r&b faz parte dessa história. músicas sobre conflitos e seguir em frente, entre atmosferas noturnas, espaço e emoção.';
+
+// Pequenos enganos são escritos, apagados e corrigidos antes de continuar.
+const mistakes = new Map([
+  [biography.indexOf('música'), 'muscia'],
+  [biography.indexOf('independente'), 'indepedente'],
+  [biography.indexOf('atmosferas'), 'atmoferas']
+]);
+const steps = [];
+for (let i = 0; i < biography.length; i++) {
+  const typo = mistakes.get(i);
+  if (typo) {
+    for (let n = 1; n <= typo.length; n++) steps.push({ text: biography.slice(0, i) + typo.slice(0, n), delay: 110 });
+    steps.push({ text: biography.slice(0, i) + typo, delay: 650 });
+    for (let n = typo.length - 1; n >= 0; n--) steps.push({ text: biography.slice(0, i) + typo.slice(0, n), delay: 65 });
+  }
+  const char = biography[i];
+  steps.push({ text: biography.slice(0, i + 1), delay: char === '\n' ? 550 : /[.,]/.test(char) ? 420 : 85 + (i % 5) * 16 });
+}
 
 export default function Story() {
   const article = useRef(null);
   const [typing, setTyping] = useState(false);
-  const [counts, setCounts] = useState(() => paragraphs.map(text => text.length));
+  const [text, setText] = useState(biography);
+  const [readAll, setReadAll] = useState(false);
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let frame = 0;
+    let timer;
+    let index = 0;
+    let visible = false;
     let disposed = false;
-    let lastTick = 0;
-    let shown = paragraphs.map(() => 0);
-    let targets = [...shown];
-    const tick = time => {
-      frame = 0;
-      if (time - lastTick >= 24) {
-        // Apaga de trás para frente; digita do primeiro parágrafo em diante.
-        let active = shown.length - 1;
-        while (active >= 0 && shown[active] <= targets[active]) active--;
-        if (active === -1) active = shown.findIndex((count, i) => count < targets[i]);
-        if (active !== -1) {
-          const delta = targets[active] - shown[active];
-          const step = Math.min(Math.abs(delta), Math.max(1, Math.ceil(Math.abs(delta) * .16)));
-          shown[active] += Math.sign(delta) * step;
-          setCounts([...shown]);
-        }
-        lastTick = time;
-      }
-      if (shown.some((count, i) => count !== targets[i])) frame = requestAnimationFrame(tick);
-    };
-    const update = () => {
-      if (motion.matches || disposed) return;
-      const viewport = window.innerHeight;
-      article.current.querySelectorAll('[data-paragraph]').forEach((p, i) => {
-        const rect = p.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (viewport * .88 - rect.top) / Math.min(rect.height + viewport * .2, viewport * .65)));
-        targets[i] = Math.round(progress * paragraphs[i].length);
-      });
-      // Os alvos formam um único prefixo, mantendo só um cursor ativo.
-      for (let i = targets.length - 2; i >= 0; i--) {
-        if (targets[i + 1] > 0) targets[i] = paragraphs[i].length;
-      }
-      if (!frame && shown.some((count, i) => count !== targets[i])) frame = requestAnimationFrame(tick);
+    const advance = () => {
+      timer = undefined;
+      if (disposed || !visible || motion.matches || readAll || index >= steps.length) return;
+      const step = steps[index++];
+      setText(step.text);
+      timer = window.setTimeout(advance, step.delay);
     };
     const configure = () => {
-      cancelAnimationFrame(frame);
-      frame = 0;
-      setTyping(!motion.matches);
-      if (motion.matches) { setCounts(paragraphs.map(text => text.length)); return; }
-      shown = paragraphs.map(() => 0);
-      targets = [...shown];
-      setCounts([...shown]);
-      update();
+      clearTimeout(timer);
+      timer = undefined;
+      const animate = !motion.matches && !readAll;
+      setTyping(animate);
+      setText(animate ? (index ? steps[index - 1].text : '') : biography);
+      if (animate && visible) timer = window.setTimeout(advance, 400);
     };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (!visible) { clearTimeout(timer); timer = undefined; }
+      else if (timer === undefined) timer = window.setTimeout(advance, 400);
+    }, { threshold: .15 });
     configure();
-    document.fonts?.ready.then(() => { if (!disposed) update(); });
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    observer.observe(article.current);
     motion.addEventListener('change', configure);
     return () => {
       disposed = true;
-      cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
+      clearTimeout(timer);
+      observer.disconnect();
       motion.removeEventListener('change', configure);
     };
-  }, []);
+  }, [readAll]);
 
   return <article className="narrative-copy" aria-label="A história de o Quil" ref={article} data-typing={typing || undefined}>
-    {paragraphs.map((text, index) => <p key={index} data-paragraph={index} className={index === 0 ? 'narrative-lead' : undefined}>
-      <span className="story-full">{text}</span>
-      {typing && <span className="story-typed" aria-hidden="true">{text.slice(0, counts[index])}{counts[index] > 0 && counts[index] < text.length && <span className="typing-caret" />}</span>}
-    </p>)}
+    <p className="narrative-lead"><span className="story-full">{biography}</span>{typing && <span className="story-typed" aria-hidden="true">{text}{text !== biography && <span className="typing-caret" />}</span>}</p>
+    {typing && !readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>ler sem animação</button>}
   </article>;
 }

@@ -15,7 +15,7 @@ for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
   assert.equal(new URL(href).protocol, 'https:', `Link externo inválido: ${href}`);
 }
 assert.equal((html.match(/<h1\b/g) || []).length, 1, 'A página deve ter um h1');
-assert.ok(html.includes('Fillipe Queiroz começou'), 'Narrativa ausente no HTML pré-renderizado');
+assert.ok(html.includes('o Quil começou na música usando seu nome de batismo'), 'Narrativa ausente no HTML pré-renderizado');
 for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(json);
 console.log(`${local.size} arquivos locais, IDs, âncoras, URLs HTTPS e conteúdo SEO conferidos.`);
 
@@ -42,7 +42,7 @@ assert.ok(!html.includes('Alguns links abrem buscas'), 'Aviso removido voltou à
 const originalCover = await readFile(path.join(root, 'assets/quase-indo-original.png'));
 assert.equal(originalCover.readUInt32BE(16), 3000);
 assert.equal(originalCover.readUInt32BE(20), 3000);
-assert.ok(html.includes('Ele mesmo grava, produz suas músicas'), 'Independência artística ausente');
+assert.ok(html.includes('ele mesmo grava, produz suas músicas'), 'Independência artística ausente');
 console.log('Arquivo sem imagens, texto independente e capa original 3000×3000 conferidos.');
 
 const catalog = html.split('id="catalogo"')[1]?.split('</section>')[0];
@@ -54,7 +54,7 @@ for (const release of releases) {
   await stat(path.join(root, release.cover.src));
 }
 assert.ok(!/0[1-4](Spotify|YouTube|Apple|Amazon)/.test(html), 'Nome de plataforma com numeração colada');
-assert.equal((html.match(/Dark R(?:&amp;|&)B/g) || []).length, 1, 'Dark R&B deve aparecer apenas na bio');
+assert.equal((html.match(/dark r(?:&amp;|&)b/g) || []).length, 1, 'Dark R&B deve aparecer apenas na bio');
 console.log('Capas dos singles, nomes de plataformas e gênero somente na bio conferidos.');
 
 let spotifyEntities = 0;
@@ -76,3 +76,14 @@ for (const platform of platforms) {
   assert.ok(platform.href, `Plataforma sem URL: ${platform.name}`);
   assert.equal(new URL(platform.href).protocol, 'https:', `URL de plataforma inválida: ${platform.name}`);
 }
+
+assert.ok(!html.includes('__SITE_CSS__'), 'CSS de produção não foi incorporado');
+assert.ok(!html.includes('fonts.googleapis.com'), 'Fonte externa voltou ao caminho crítico');
+for (const [, file] of html.matchAll(/url\(assets\/([^\s)]+)\)/g)) {
+  await stat(path.join(root, 'assets', file));
+}
+for (const release of releases) {
+  await stat(path.join(root, release.cover.src.replace('assets/', 'assets/thumbs/')));
+}
+assert.ok(html.includes('class="hero-backdrop" fetchPriority="high" loading="eager"') || html.includes('class="hero-backdrop" fetchpriority="high" loading="eager"'), 'Retrato LCP sem prioridade alta');
+console.log('CSS incorporado, fontes locais, miniaturas e prioridade do retrato LCP conferidos.');

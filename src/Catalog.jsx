@@ -18,14 +18,14 @@ function ReleaseDisclosure({ release }) {
     }
   };
   return <details className="release-platforms" name="catalog-platforms" onToggle={onToggle}>
-    <summary><img className="release-cover" src={release.cover.src} alt={`Capa de ${release.title}`} width={release.cover.width} height={release.cover.height} loading="lazy" decoding="async" /><span className="release-title">{release.title}</span><span className="release-action">Ouvir<Icon name="plus" className="stream-toggle" /></span></summary>
+    <summary><img className="release-cover" src={release.cover.src.replace('assets/', 'assets/thumbs/')} alt={`Capa de ${release.title}`} width={release.cover.width} height={release.cover.height} loading="lazy" decoding="async" /><span className="release-title">{release.title}</span><span className="release-action">Ouvir<Icon name="plus" className="stream-toggle" /></span></summary>
     <nav className="release-links" ref={panel} aria-label={`Ouvir ${release.title}`}><PlatformLinks links={release.links} /></nav>
   </details>;
 }
 
 export default function Catalog() {
-  return <section className="section catalog" id="catalogo" aria-labelledby="catalogo-titulo">
-    <div className="section-inner">
+  return <section className="section catalog" aria-labelledby="catalogo-titulo">
+    <div className="section-inner" id="catalogo">
       <header className="catalog-head" data-enter=""><div><p className="section-kicker">02 / Música</p><h2 className="section-title" id="catalogo-titulo">Últimos lançamentos</h2></div></header>
       <div className="release-list">{releases.map(release => <article className="release" key={release.title} data-enter=""><ReleaseDisclosure release={release} /></article>)}</div>
       <div className="archive"><header data-enter=""><p className="section-kicker">Arquivo</p><h3>linha do tempo</h3></header>

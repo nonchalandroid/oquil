@@ -11,21 +11,22 @@ function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Q
 
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
-    <img className="hero-backdrop" src="assets/o-quil-retrato.webp" alt="" width="1600" height="899" decoding="async" />
-    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span></p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
-    <div className="hero-media"><HeroStreaming /></div>
+    <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-optimized.webp" alt="" width="1600" height="899" decoding="async" />
+    <div className="hero-copy"><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
+    <div className="hero-media"><p className="hero-latest"><span>Último lançamento</span></p><HeroStreaming /></div>
+    <a className="hero-scroll" href="#sobre" aria-label="Deslizar para a história de o Quil"><Icon name="down" /></a>
   </section>;
 }
 
 function ArtistStory() {
-  return <section className="section intro" id="sobre" aria-labelledby="sobre-titulo"><div className="section-inner">
-    <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2><p className="narrative-caption">Fillipe Queiroz. Artista independente.<br />Rio de Janeiro.</p></header><div id="artist-story"><Story /></div></div>
+  return <section className="section intro" aria-labelledby="sobre-titulo"><div className="section-inner" id="sobre">
+    <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2><p className="narrative-caption">o Quil. Artista independente.<br />Rio de Janeiro.</p></header><div id="artist-story"><Story /></div></div>
     <StreamingBanner />
   </div></section>;
 }
 
 function Press() {
-  return <section className="section press" id="press" aria-labelledby="press-titulo"><div className="section-inner press-layout"><header data-enter=""><p className="section-kicker">03 / Arquivo</p><h2 className="section-title" id="press-titulo">Na <em>imprensa.</em></h2><p className="press-intro">Matérias e referências sobre os lançamentos e a trajetória do artista.</p></header><div className="press-list">{press.map(item => <article className="press-item" key={item.href} data-enter="">{item.datetime ? <time className="press-date" dateTime={item.datetime}>{item.date}</time> : <span className="press-date">{item.date}</span>}<div><p className="press-outlet">{item.outlet}</p><h3><a href={item.href} target="_blank" rel="noopener noreferrer">{item.title}<Icon /></a></h3><p className="press-description">{item.description}</p></div></article>)}</div></div></section>;
+  return <section className="section press" aria-labelledby="press-titulo"><div className="section-inner press-layout" id="press"><header data-enter=""><p className="section-kicker">03 / Arquivo</p><h2 className="section-title" id="press-titulo">Na <em>imprensa.</em></h2><p className="press-intro">Matérias e referências sobre os lançamentos e a trajetória do artista.</p></header><div className="press-list">{press.map(item => <article className="press-item" key={item.href} data-enter="">{item.datetime ? <time className="press-date" dateTime={item.datetime}>{item.date}</time> : <span className="press-date">{item.date}</span>}<div><p className="press-outlet">{item.outlet}</p><h3><a href={item.href} target="_blank" rel="noopener noreferrer">{item.title}<Icon /></a></h3><p className="press-description">{item.description}</p></div></article>)}</div></div></section>;
 }
 
 export default function App() {
@@ -35,8 +36,8 @@ export default function App() {
     <BrandSymbols /><a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <header className="nav"><Wordmark /><nav className="nav-links" aria-label="Navegação principal"><a href="#sobre">This Is o Quil</a><a href="#catalogo">Últimos lançamentos</a><a href="#press">Press</a></nav><span className="nav-index">RJ · 2026</span><div className="reading-progress" aria-hidden="true" /></header>
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
-      <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato.webp" alt="" width="1600" height="899" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><a className="button" href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Acompanhar no Instagram<Icon /></a></div></section>
+      <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-optimized.webp" alt="" width="1600" height="899" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><a className="button" href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Acompanhar no Instagram<Icon /></a></div></section>
     </main>
-    <footer><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-clara.png" alt="Assinatura de o Quil" width="1805" height="810" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@oquil" target="_blank" rel="noopener noreferrer">YouTube</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><span>Rio de Janeiro · Brasil</span></div></footer>
+    <footer><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-360.webp" alt="Assinatura de o Quil" width="1805" height="810" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@oquil" target="_blank" rel="noopener noreferrer">YouTube</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><span>Rio de Janeiro · Brasil</span></div></footer>
   </div>;
 }

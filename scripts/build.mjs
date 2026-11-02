@@ -14,7 +14,7 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex').slice(0, 
 await writeFile(path.join(root, 'assets/app.js'), js);
 await writeFile(path.join(root, 'assets/site.css'), css);
 const template = await readFile(path.join(root, 'src/document.html'), 'utf8');
-const page = template.replace('__APP_HTML__', html).replace('__JS_HASH__', hash(js)).replace('__CSS_HASH__', hash(css)).replaceAll('__ICON_HASH__', hash(await readFile(path.join(root, 'favicon.ico'))));
+const page = template.replace('__APP_HTML__', html).replace('__JS_HASH__', hash(js)).replace('__SITE_CSS__', new TextDecoder().decode(css).replaceAll('url(', 'url(assets/')).replaceAll('__ICON_HASH__', hash(await readFile(path.join(root, 'favicon.ico'))));
 await writeFile(path.join(root, 'index.html'), page);
 const dist = path.join(root, 'dist');
 await rm(dist, { recursive: true, force: true });

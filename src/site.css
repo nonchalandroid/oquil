@@ -156,3 +156,6 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 @keyframes signature-frames{from{transform:translateX(0)}to{transform:translateX(-96.875%)}}
 @keyframes signature-settle{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.signature-player{display:none}.signature-still{animation:none}}
+
+/* Centraliza o conjunto no desktop; margens automáticas cedem se houver overflow. */
+@media(min-width:901px){.streaming-banner a:first-child{margin-inline-start:auto}.streaming-banner a:last-child{margin-inline-end:auto}}

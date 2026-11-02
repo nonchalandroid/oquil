@@ -1,0 +1,30 @@
+# Desenvolvimento
+
+Toda a interface é React, pré-renderizada como HTML estático e hidratada no navegador. Sem roteador, servidor de aplicação ou CDN JavaScript. O site continua compatível com GitHub Pages.
+
+Na raiz do checkout, com Node.js 24 e npm:
+
+```sh
+npm ci
+npm run build
+npm run check
+python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
+```
+
+- `src/App.jsx`: estrutura da página, abertura, imprensa, navegação e rodapé.
+- `src/Story.jsx`: narrativa e destaque dos parágrafos durante a leitura.
+- `src/Catalog.jsx`: singles e arquivo do catálogo.
+- `src/Streaming.jsx`: acordeões e faixa de plataformas.
+- `src/content.json`: links, textos, imagens e plataformas existentes. Endereços de busca ou canal não equivalem a links diretos confirmados.
+- `src/Icons.jsx` e `src/brand-paths.json`: ícones SVG locais. Os símbolos de marca são definidos uma única vez.
+- `src/usePageEffects.js`: progresso de leitura, entradas discretas e tecla Escape. Eventos e observadores são removidos ao desmontar; movimento reduzido respeitado.
+- `src/site.css`: único CSS de origem. Subtítulos em Unbounded, peso 400. O h1 mantém Unbounded, peso 600.
+- `src/document.html`: metadados SEO, dados estruturados e documento base.
+
+`npm run build` gera `index.html`, `assets/app.js`, `assets/site.css` e a pasta pública `dist/`. Edite os arquivos de origem, não os gerados. Os bundles têm versão baseada em conteúdo nas URLs para renovação do cache. Os arquivos gerados na raiz permanecem versionados para revisão; `dist/`, `.build/` e `node_modules/` são ignorados.
+
+O workflow `.github/workflows/static.yml` instala com `npm ci`, executa build e verificações e publica somente `dist/`. Código-fonte e node_modules não entram no artefato publicado.
+
+`npm run check` confere arquivos locais, IDs únicos, destinos de âncoras, formato HTTPS dos links externos, h1, narrativa pré-renderizada e JSON estruturado. A verificação não afirma disponibilidade ou conteúdo de serviços externos.
+
+O conteúdo é legível sem JavaScript. Acordeões usam details/summary nativos e funcionam por teclado sem hidratação. Não há ocultação de conteúdo condicionada à rolagem nem interceptação das âncoras. `#top` aponta a um marcador dedicado no início do documento.

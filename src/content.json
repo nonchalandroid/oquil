@@ -210,21 +210,24 @@
       "name": "Apple Music",
       "description": "Encontre Quase Indo de o Quil na busca do Apple Music.",
       "label": "Buscar no Apple Music",
-      "href": "https://music.apple.com/br/search?term=o%20Quil%20Quase%20Indo"
+      "href": "https://music.apple.com/br/search?term=o%20Quil%20Quase%20Indo",
+      "profileHref": "https://music.apple.com/br/artist/o-quil/1519013625"
     },
     {
       "id": "amazonmusic",
       "name": "Amazon Music",
       "description": "Encontre Quase Indo de o Quil na busca do Amazon Music.",
       "label": "Buscar no Amazon Music",
-      "href": "https://music.amazon.com/search/o%20Quil%20Quase%20Indo"
+      "href": "https://music.amazon.com/search/o%20Quil%20Quase%20Indo",
+      "profileHref": "https://music.amazon.com/artists/B08BJ1Z7Y2/o-quil"
     },
     {
       "id": "youtubemusic",
       "name": "YouTube Music",
       "description": "Encontre Quase Indo de o Quil na busca do YouTube Music.",
       "label": "Buscar no YouTube Music",
-      "href": "https://music.youtube.com/search?q=o%20Quil%20Quase%20Indo"
+      "href": "https://music.youtube.com/search?q=o%20Quil%20Quase%20Indo",
+      "profileHref": "https://music.youtube.com/@oquil"
     },
     {
       "id": "deezer",
@@ -238,7 +241,8 @@
       "name": "TIDAL",
       "description": "Ouça os lançamentos no perfil de o Quil no TIDAL.",
       "label": "Abrir o Quil no TIDAL",
-      "href": "https://tidal.com/artist/20087923"
+      "href": "https://tidal.com/artist/20087923",
+      "profileHref": "https://tidal.com/artist/20087923"
     }
   ],
   "spotifyArtistUrl": "https://open.spotify.com/intl-pt/artist/6ESKYkpnw4NtJZKGhnnPi0"

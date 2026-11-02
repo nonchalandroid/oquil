@@ -14,7 +14,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 - `src/App.jsx`: estrutura da página, abertura, imprensa, navegação e rodapé.
 - `src/Story.jsx`: narrativa com digitação visual progressiva conforme a rolagem.
 - `src/Catalog.jsx`: singles e arquivo do catálogo.
-- `src/Streaming.jsx`: acordeões e faixa de plataformas.
+- `src/Streaming.jsx`: objeto de capa clicável, diagrama de acordeões e faixa de plataformas.
 - `src/content.json`: links, textos, imagens e plataformas existentes. Endereços de busca ou canal não equivalem a links diretos confirmados.
 - `src/Icons.jsx` e `src/brand-paths.json`: ícones SVG locais. Os símbolos de marca são definidos uma única vez.
 - `src/usePageEffects.js`: progresso de leitura, entradas discretas e tecla Escape. Eventos e observadores são removidos ao desmontar; movimento reduzido respeitado.

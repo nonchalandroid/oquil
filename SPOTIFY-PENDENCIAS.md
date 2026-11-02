@@ -10,3 +10,5 @@ Os links completos anteriores de Quase Indo, Consequência de Estar Acordado, TA
 Sinergia e Por Via das Dúvidas continuam como buscas, conforme os URLs enviados. Rehab Tape e Platônico e a ordem atual do catálogo foram preservados.
 
 A validação local confere formato e correspondência com os endereços fornecidos. A disponibilidade remota não foi confirmada porque o proxy bloqueia a consulta ao Spotify.
+
+Platônico também recebeu o link direto de faixa enviado pelo artista: https://open.spotify.com/intl-pt/track/4sV1wMarlXQLniRastfWvf. Aplicado ao catálogo e ao mapa de links.

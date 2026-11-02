@@ -24,14 +24,19 @@ export default function Story() {
     const tick = time => {
       frame = 0;
       if (time - lastTick >= 24) {
-        const active = shown.findIndex((count, i) => count < targets[i]);
+        // Apaga de trás para frente; digita do primeiro parágrafo em diante.
+        let active = shown.length - 1;
+        while (active >= 0 && shown[active] <= targets[active]) active--;
+        if (active === -1) active = shown.findIndex((count, i) => count < targets[i]);
         if (active !== -1) {
-          shown[active] = Math.min(targets[active], shown[active] + Math.max(1, Math.ceil((targets[active] - shown[active]) * .16)));
+          const delta = targets[active] - shown[active];
+          const step = Math.min(Math.abs(delta), Math.max(1, Math.ceil(Math.abs(delta) * .16)));
+          shown[active] += Math.sign(delta) * step;
           setCounts([...shown]);
         }
         lastTick = time;
       }
-      if (shown.some((count, i) => count < targets[i])) frame = requestAnimationFrame(tick);
+      if (shown.some((count, i) => count !== targets[i])) frame = requestAnimationFrame(tick);
     };
     const update = () => {
       if (motion.matches || disposed) return;
@@ -39,13 +44,13 @@ export default function Story() {
       article.current.querySelectorAll('[data-paragraph]').forEach((p, i) => {
         const rect = p.getBoundingClientRect();
         const progress = Math.max(0, Math.min(1, (viewport * .88 - rect.top) / Math.min(rect.height + viewport * .2, viewport * .65)));
-        targets[i] = Math.max(targets[i], Math.round(progress * paragraphs[i].length));
+        targets[i] = Math.round(progress * paragraphs[i].length);
       });
-      // Termina o parágrafo anterior antes de iniciar a próxima digitação.
+      // Os alvos formam um único prefixo, mantendo só um cursor ativo.
       for (let i = targets.length - 2; i >= 0; i--) {
         if (targets[i + 1] > 0) targets[i] = paragraphs[i].length;
       }
-      if (!frame && shown.some((count, i) => count < targets[i])) frame = requestAnimationFrame(tick);
+      if (!frame && shown.some((count, i) => count !== targets[i])) frame = requestAnimationFrame(tick);
     };
     const configure = () => {
       cancelAnimationFrame(frame);

@@ -18,14 +18,22 @@ export default function usePageEffects() {
       animations.clear();
       if (motion.matches || !('IntersectionObserver' in window)) return;
       observer = new IntersectionObserver(entries => {
+        let timelineOrder = 0;
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           observer.unobserve(entry.target);
           if (!entry.target.animate) return;
+          const timeline = entry.target.matches('.archive-row');
+          if (timeline && entry.target.contains(document.activeElement)) return;
           const animation = entry.target.animate([
-            { transform: 'translateY(14px)', opacity: .85 },
+            { transform: `translateY(${timeline ? 28 : 14}px)`, opacity: timeline ? 0 : .85 },
             { transform: 'translateY(0)', opacity: 1 }
-          ], { duration: 550, easing: 'cubic-bezier(.2,.7,.2,1)' });
+          ], {
+            duration: timeline ? 650 : 550,
+            delay: timeline ? Math.min(timelineOrder++, 4) * 80 : 0,
+            easing: 'cubic-bezier(.2,.7,.2,1)',
+            fill: 'backwards'
+          });
           animations.add(animation);
           animation.onfinish = () => animations.delete(animation);
         });

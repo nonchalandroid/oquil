@@ -35,4 +35,4 @@ O Q foi adaptado da assinatura do artista para manter legibilidade em tamanho pe
 
 São gerados PNGs de 16 a 1024 px, ICO com sete resoluções, Apple Touch e variantes maskable com margem de segurança. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. As URLs de ícone têm versão por conteúdo; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
 
-Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. O progresso é monotônico, não apaga texto ao voltar e não captura a roda do mouse. O controle “Ler sem animação” revela todo o texto.
+Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. Ao descer, a digitação avança; ao subir, apaga em ordem inversa. Apenas um parágrafo fica parcialmente digitado por vez, sem interceptar a roda do mouse. O controle “Ler sem animação” revela todo o texto.

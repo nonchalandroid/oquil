@@ -62,3 +62,11 @@ Retirado o min-height de uma tela inteira da abertura e reduzido o padding inici
 Testes em oito larguras de 320 a 1440 px, com animação normal, movimento reduzido e JavaScript desativado: capa quadrada, sem transbordamento, original em alta resolução, abertura/fechamento, exclusividade dos nós, teclado e Escape. Build e verificações estáticas passaram. Esta é uma prévia em branch própria, sem publicação na main.
 
 Platônico passou a usar o link direto fornecido: https://open.spotify.com/intl-pt/track/4sV1wMarlXQLniRastfWvf. O parâmetro de compartilhamento foi removido, sem alterar o ID.
+
+## Rolagem reversa e entrada da linha do tempo
+
+A biografia agora recalcula o trecho visível em ambos os sentidos: digita de frente para trás ao descer e apaga do último trecho para o primeiro ao subir. Mantém um único parágrafo parcial e cursor, inclusive nas inversões rápidas. Essa mudança substitui o comportamento anterior de não apagar ao voltar. O conteúdo acessível e os fallbacks não mudaram.
+
+Os oito itens da linha do tempo entram individualmente com fade e deslocamento de 28 px, ao alcançarem a área visível. Entradas simultâneas recebem pequenos atrasos em sequência; os efeitos não capturam a rolagem. Sem JavaScript ou com movimento reduzido, todos os itens permanecem visíveis.
+
+Validação no Chromium: 1.057 quadros em notebook e celular sem dois cursores ou parágrafos parciais simultâneos; digitação, backspace, inversões rápidas e oito entradas da linha do tempo confirmados. Também foram conferidos os modos sem JavaScript e movimento reduzido.

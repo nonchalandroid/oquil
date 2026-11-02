@@ -6,11 +6,13 @@
   },
   "Se Move": {
     "cover": "assets/se-move-capa.webp",
-    "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ"
+    "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
+    "spotify": "https://open.spotify.com/album/5h1TJlWJJiajDwDebn3fLA"
   },
   "TAG": {
     "cover": "assets/tag-capa.webp",
-    "youtube": "https://www.youtube.com/watch?v=t3yqTPVROfw"
+    "youtube": "https://www.youtube.com/watch?v=t3yqTPVROfw",
+    "spotify": "https://open.spotify.com/track/2FV7s1HcALYkcikGgd37MZ"
   },
   "Consequência de Estar Acordado": {
     "cover": "assets/consequencia-capa.webp",
@@ -29,12 +31,26 @@
   },
   "Sombras do Subconsciente": {
     "cover": "assets/sombras-do-subconsciente-capa.webp",
-    "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ"
+    "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
+    "spotify": "https://open.spotify.com/intl-pt/album/4ZOv17UHwKVNILm0FGoau9"
   },
   "Noites Online": {
-    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU"
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU",
+    "spotify": "https://open.spotify.com/album/4nmcr7HFStKqzbghDyQRlA"
   },
   "Platônico": {
     "cover": "assets/platonico-capa.webp"
+  },
+  "Sinergia": {
+    "spotify": "https://open.spotify.com/search/o%20Quil%20Sinergia"
+  },
+  "Por Via das Dúvidas": {
+    "spotify": "https://open.spotify.com/search/o%20Quil%20Por%20Via%20das%20D%C3%BAvidas"
+  },
+  "Não Importa": {
+    "spotify": "https://open.spotify.com/intl-pt/track/4lnOFJ5Lj8gJBlDoJugAA7"
+  },
+  "Motivos": {
+    "spotify": "https://open.spotify.com/intl-pt/track/37Aog4jjbURNfC4z8vg4B4"
   }
 }

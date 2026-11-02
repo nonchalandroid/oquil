@@ -35,7 +35,7 @@ O Q mantém a referência manuscrita, com curvas Bézier e terminais arredondado
 
 São gerados PNGs de 16 a 1024 px com cantos arredondados, ICO com sete resoluções, Apple Touch opacos de 120/152/167/180 px e variantes Android maskable com fundo completo e símbolo dentro do círculo seguro de 80% do diâmetro. iOS e Android aplicam suas próprias máscaras aos atalhos. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. O HTML dá preferência ao SVG nos navegadores compatíveis e mantém ICO/PNG como alternativas. As URLs de ícone têm versão por conteúdo, inclusive dentro de `dist/site.webmanifest` e `dist/browserconfig.xml`; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
 
-Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. Ao descer, a digitação avança; ao subir, apaga em ordem inversa. Apenas um parágrafo fica parcialmente digitado por vez, sem interceptar a roda do mouse. O controle “Ler sem animação” revela todo o texto.
+Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. A rolagem seleciona um dos três parágrafos: o atual digita em destaque, os anteriores ficam concluídos e os próximos aparecem discretos. Ao subir, o destaque retorna ao trecho anterior. Apenas um parágrafo fica parcialmente digitado por vez, sem interceptar a roda do mouse. O controle “Ler sem animação” revela todo o texto.
 
 ## Desempenho mobile
 
@@ -62,6 +62,6 @@ O diagnóstico de JavaScript não usado inclui partes de React/React DOM que nã
 
 ### Digitação da biografia
 
-A bio usa fontes nativas do sistema (`-apple-system`, BlinkMacSystemFont e equivalentes), sem download adicional. A descida da página libera progressivamente o texto, digitado sem erros simulados a 18 ms por letra, com pausas curtas na pontuação. Ao subir, o texto apaga com backspace proporcional à distância rolada; ao descer novamente, retoma do prefixo existente.
+A bio usa DM Sans local, já utilizada no site, com peso 750 e tamanho responsivo de 19 a 26 px, sem download adicional de fonte. A descida da página libera um parágrafo por etapa, digitado a 14 ms por letra, com pausas de 100 ms na pontuação. O destaque acompanha a rolagem como nas letras de música; saltos de âncora concluem os trechos anteriores sem criar uma fila de digitação.
 
-`src/storyTyping.js` mantém apenas passos do texto correto. “Ler sem animação” e a preferência por movimento reduzido apresentam imediatamente a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.
+`src/storyTyping.js` define os limites dos parágrafos, as etapas de rolagem e os intervalos de digitação. O texto completo reserva a altura desde o HTML pré-renderizado, incluindo o espaço do botão. A cauda invisível do trecho ativo mantém as quebras de linha durante a digitação. O scroll é passivo e agrupado por `requestAnimationFrame`; a digitação pausa fora da área visível. “Ler sem animação”, movimento reduzido e ausência de `IntersectionObserver` apresentam a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.

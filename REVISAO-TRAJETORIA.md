@@ -4,7 +4,7 @@
 
 - Página inteira em React, com componentes de narrativa, catálogo, plataformas, imprensa e navegação. HTML pré-renderizado para SEO e leitura sem JavaScript.
 - Hero com a capa oficial de Quase Indo e fonte original Unbounded, hospedada localmente. Acordeões nativos por plataforma; Spotify abre com o link direto. As demais opções indicam busca ou canal quando não há endereço da faixa confirmado.
-- “This Is o Quil” apresenta texto corrido sobre Fillipe Queiroz e o artista o Quil. Sem álbuns repetidos. A rolagem destaca o parágrafo em leitura.
+- “This Is o Quil” apresenta texto corrido sobre Fillipe Queiroz e o artista o Quil. Sem álbuns repetidos. A rolagem libera caracteres na camada visual, como digitação, mantendo o texto completo acessível e disponível sem JavaScript.
 - Faixa estreita em movimento horizontal com Spotify, Apple Music, Amazon Music, YouTube Music, Deezer e TIDAL. Sem YouTube no banner. Os perfis Deezer e TIDAL foram fornecidos pelo usuário; movimento pausável e desativado com a preferência de movimento reduzido.
 - Subtítulos em Unbounded, peso 400; título principal preservado em peso 600. Um único CSS de origem substitui as regras inline e as sobreposições antigas.
 - Efeitos de entrada e progresso de leitura sem capturar a rolagem. Preferência por movimento reduzido respeitada; conteúdo visível sem JavaScript.
@@ -40,3 +40,13 @@ O hero usa assets/quase-indo-original.png, uma cópia byte a byte do PNG de 3000
 Perfis recebidos: https://www.deezer.com/br/artist/10648821 e https://tidal.com/artist/20087923. O banner tem pausa por controle, hover e teclado, com clones fora da ordem de tabulação e da árvore de acessibilidade. Respeita movimento reduzido, com rolagem horizontal manual nessa preferência.
 
 Validação no Chromium com densidade 2×: PNG de 3000 px, hash idêntico ao arquivo fornecido, ausência de filtro, lista sem imagens/aviso, seis plataformas, URLs dos novos perfis, movimento e pausa, leitura sem JavaScript e larguras de 320 a 1440 px. Sem erros de hidratação ou transbordamento horizontal.
+
+## Controles e digitação após revisão do catálogo
+
+Removidas capas também da lista de singles. As duas listas agora apresentam nomes e links, com anos no arquivo histórico. A capa original continua somente no hero. A numeração que havia sido incorporada aos nomes das plataformas foi removida; os links ganharam ícones, rótulos limpos e superfícies visíveis com borda, vidro e sombra. O acordeão usa details/summary nativo, com animação leve de abertura em React, exclusividade e Escape.
+
+“Dark R&B” aparece uma única vez, na biografia. Foi removido da abertura e das repetições em metadados.
+
+A biografia digita caracteres conforme avança a rolagem, sem apagar o texto ao voltar. O conteúdo completo preserva o layout e fica acessível aos leitores de tela; a camada animada é decorativa. Há controle de leitura sem animação. Sem JavaScript ou com movimento reduzido, o texto aparece completo.
+
+Testes no Chromium confirmaram progresso dos caracteres ao descer, persistência ao subir, opção de texto completo, acordeões, controles visíveis, listas sem imagens, tipografia e responsividade entre 320 e 1440 px. Sem erros de hidratação ou JavaScript.

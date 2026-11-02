@@ -4,32 +4,31 @@
       "title": "Quase Indo",
       "meta": "Single · Agosto 2026",
       "latest": true,
-      "cover": "assets/quase-indo-capa.webp",
       "links": [
         {
-          "label": "01Spotify",
+          "label": "Spotify",
           "href": "https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr",
-          "title": ""
+          "title": "Abrir Quase Indo · Spotify"
         },
         {
-          "label": "02YouTube Music",
+          "label": "YouTube Music",
           "href": "https://music.youtube.com/search?q=o%20Quil%20Quase%20Indo",
-          "title": ""
+          "title": "Buscar Quase Indo · YouTube Music"
         },
         {
-          "label": "03Apple Music",
+          "label": "Apple Music",
           "href": "https://music.apple.com/br/search?term=o%20Quil%20Quase%20Indo",
-          "title": ""
+          "title": "Buscar Quase Indo · Apple Music"
         },
         {
-          "label": "04Amazon Music",
+          "label": "Amazon Music",
           "href": "https://music.amazon.com/search/o%20Quil%20Quase%20Indo",
-          "title": ""
+          "title": "Buscar Quase Indo · Amazon Music"
         },
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/@oquil/videos",
-          "title": ""
+          "title": "Abrir Quase Indo · YouTube"
         }
       ]
     },
@@ -37,32 +36,31 @@
       "title": "Se Move",
       "meta": "Single · Julho 2026",
       "latest": false,
-      "cover": "assets/se-move-capa.webp",
       "links": [
         {
-          "label": "01Spotify",
+          "label": "Spotify",
           "href": "https://open.spotify.com/search/o%20Quil%20Se%20Move",
-          "title": ""
+          "title": "Buscar Se Move · Spotify"
         },
         {
-          "label": "02YouTube Music",
+          "label": "YouTube Music",
           "href": "https://music.youtube.com/search?q=o%20Quil%20Se%20Move",
-          "title": ""
+          "title": "Buscar Se Move · YouTube Music"
         },
         {
-          "label": "03Apple Music",
+          "label": "Apple Music",
           "href": "https://music.apple.com/br/search?term=o%20Quil%20Se%20Move",
-          "title": ""
+          "title": "Buscar Se Move · Apple Music"
         },
         {
-          "label": "04Amazon Music",
+          "label": "Amazon Music",
           "href": "https://music.amazon.com/search/o%20Quil%20Se%20Move",
-          "title": ""
+          "title": "Buscar Se Move · Amazon Music"
         },
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
-          "title": ""
+          "title": "Abrir Se Move · YouTube"
         }
       ]
     },
@@ -70,32 +68,31 @@
       "title": "TAG",
       "meta": "Single · Junho 2026",
       "latest": false,
-      "cover": "assets/tag-capa.webp",
       "links": [
         {
-          "label": "01Spotify",
+          "label": "Spotify",
           "href": "https://open.spotify.com/search/o%20Quil%20TAG",
-          "title": ""
+          "title": "Buscar TAG · Spotify"
         },
         {
-          "label": "02YouTube Music",
+          "label": "YouTube Music",
           "href": "https://music.youtube.com/search?q=o%20Quil%20TAG",
-          "title": ""
+          "title": "Buscar TAG · YouTube Music"
         },
         {
-          "label": "03Apple Music",
+          "label": "Apple Music",
           "href": "https://music.apple.com/br/search?term=o%20Quil%20TAG",
-          "title": ""
+          "title": "Buscar TAG · Apple Music"
         },
         {
-          "label": "04Amazon Music",
+          "label": "Amazon Music",
           "href": "https://music.amazon.com/search/o%20Quil%20TAG",
-          "title": ""
+          "title": "Buscar TAG · Amazon Music"
         },
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/watch?v=t3yqTPVROfw",
-          "title": ""
+          "title": "Abrir TAG · YouTube"
         }
       ]
     },
@@ -103,32 +100,31 @@
       "title": "Consequência de Estar Acordado",
       "meta": "Single · Maio 2026",
       "latest": false,
-      "cover": "assets/consequencia-capa.webp",
       "links": [
         {
-          "label": "01Spotify",
+          "label": "Spotify",
           "href": "https://open.spotify.com/track/4GU92DC38pEk1iXG4ciypV",
-          "title": ""
+          "title": "Abrir Consequência de Estar Acordado · Spotify"
         },
         {
-          "label": "02YouTube Music",
+          "label": "YouTube Music",
           "href": "https://music.youtube.com/search?q=o%20Quil%20Consequ%C3%AAncia%20de%20Estar%20Acordado",
-          "title": ""
+          "title": "Buscar Consequência de Estar Acordado · YouTube Music"
         },
         {
-          "label": "03Apple Music",
+          "label": "Apple Music",
           "href": "https://music.apple.com/br/search?term=o%20Quil%20Consequ%C3%AAncia%20de%20Estar%20Acordado",
-          "title": ""
+          "title": "Buscar Consequência de Estar Acordado · Apple Music"
         },
         {
-          "label": "04Amazon Music",
+          "label": "Amazon Music",
           "href": "https://music.amazon.com/search/o%20Quil%20Consequ%C3%AAncia%20de%20Estar%20Acordado",
-          "title": ""
+          "title": "Buscar Consequência de Estar Acordado · Amazon Music"
         },
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/@oquil/videos",
-          "title": ""
+          "title": "Abrir Consequência de Estar Acordado · YouTube"
         }
       ]
     }

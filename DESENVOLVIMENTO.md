@@ -12,7 +12,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 ```
 
 - `src/App.jsx`: estrutura da página, abertura, imprensa, navegação e rodapé.
-- `src/Story.jsx`: narrativa e destaque dos parágrafos durante a leitura.
+- `src/Story.jsx`: narrativa com digitação visual progressiva conforme a rolagem.
 - `src/Catalog.jsx`: singles e arquivo do catálogo.
 - `src/Streaming.jsx`: acordeões e faixa de plataformas.
 - `src/content.json`: links, textos, imagens e plataformas existentes. Endereços de busca ou canal não equivalem a links diretos confirmados.
@@ -34,3 +34,5 @@ O conteúdo é legível sem JavaScript. Acordeões usam details/summary nativos 
 O Q foi adaptado da assinatura do artista para manter legibilidade em tamanho pequeno. O master está em `src/brand/q-assinatura-master.png`. Para regenerar os ícones, execute `python3 scripts/generate-icons.py` com Pillow instalado e depois `npm run build`. Não é uma dependência da aplicação ou da publicação: os ícones finais ficam versionados.
 
 São gerados PNGs de 16 a 1024 px, ICO com sete resoluções, Apple Touch e variantes maskable com margem de segurança. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. As URLs de ícone têm versão por conteúdo; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
+
+Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. O progresso é monotônico, não apaga texto ao voltar e não captura a roda do mouse. O controle “Ler sem animação” revela todo o texto.

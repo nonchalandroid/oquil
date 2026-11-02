@@ -11,7 +11,7 @@ function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Q
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
     <div className="hero-media"><img src="assets/quase-indo-original.png" alt="Capa oficial do single Quase Indo" width="3000" height="3000" fetchPriority="high" decoding="async" /></div>
-    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span><strong>5521</strong></p><h1 id="release-title">Quase <span>Indo</span></h1><p className="hero-sub">o Quil / Dark R&amp;B<br />Ouça o single Quase Indo.</p><img className="signature" src="assets/o-quil-assinatura-clara.png" alt="Assinatura de o Quil" width="1805" height="810" /><HeroStreaming /><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
+    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span><strong>5521</strong></p><h1 id="release-title">Quase <span>Indo</span></h1><p className="hero-sub">o Quil<br />Ouça o single Quase Indo.</p><img className="signature" src="assets/o-quil-assinatura-clara.png" alt="Assinatura de o Quil" width="1805" height="810" /><HeroStreaming /><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
   </section>;
 }
 

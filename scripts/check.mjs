@@ -44,3 +44,9 @@ assert.equal(originalCover.readUInt32BE(16), 3000);
 assert.equal(originalCover.readUInt32BE(20), 3000);
 assert.ok(html.includes('Ele mesmo grava, produz suas músicas'), 'Independência artística ausente');
 console.log('Arquivo sem imagens, texto independente e capa original 3000×3000 conferidos.');
+
+const catalog = html.split('id="catalogo"')[1]?.split('</section>')[0];
+assert.ok(catalog && !catalog.includes('<img'), 'Listas de música não devem conter capas');
+assert.ok(!/0[1-4](Spotify|YouTube|Apple|Amazon)/.test(html), 'Nome de plataforma com numeração colada');
+assert.equal((html.match(/Dark R(?:&amp;|&)B/g) || []).length, 1, 'Dark R&B deve aparecer apenas na bio');
+console.log('Catálogo sem capas, nomes de plataformas e gênero somente na bio conferidos.');

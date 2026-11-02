@@ -28,7 +28,12 @@
           "href": "https://www.youtube.com/@oquil/videos",
           "title": "Abrir Quase Indo · YouTube"
         }
-      ]
+      ],
+      "cover": {
+        "src": "assets/quase-indo-capa.webp",
+        "width": 900,
+        "height": 900
+      }
     },
     {
       "title": "Se Move",
@@ -58,7 +63,12 @@
           "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
           "title": "Abrir Se Move · YouTube"
         }
-      ]
+      ],
+      "cover": {
+        "src": "assets/se-move-capa.webp",
+        "width": 900,
+        "height": 900
+      }
     },
     {
       "title": "TAG",
@@ -88,7 +98,12 @@
           "href": "https://www.youtube.com/watch?v=t3yqTPVROfw",
           "title": "Abrir TAG · YouTube"
         }
-      ]
+      ],
+      "cover": {
+        "src": "assets/tag-capa.webp",
+        "width": 900,
+        "height": 900
+      }
     },
     {
       "title": "Consequência de Estar Acordado",
@@ -118,7 +133,12 @@
           "href": "https://www.youtube.com/@oquil/videos",
           "title": "Abrir Consequência de Estar Acordado · YouTube"
         }
-      ]
+      ],
+      "cover": {
+        "src": "assets/consequencia-capa.webp",
+        "width": 900,
+        "height": 900
+      }
     }
   ],
   "archive": [

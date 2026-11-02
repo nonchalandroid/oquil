@@ -46,10 +46,16 @@ assert.ok(html.includes('Ele mesmo grava, produz suas músicas'), 'Independênci
 console.log('Arquivo sem imagens, texto independente e capa original 3000×3000 conferidos.');
 
 const catalog = html.split('id="catalogo"')[1]?.split('</section>')[0];
-assert.ok(catalog && !catalog.includes('<img'), 'Listas de música não devem conter capas');
+assert.ok(catalog, 'Catálogo ausente');
+const { releases } = JSON.parse(await readFile(path.join(root, '../src/content.json'), 'utf8'));
+assert.equal((catalog.match(/class="release-cover"/g) || []).length, releases.length, 'Cada single deve ter uma capa');
+for (const release of releases) {
+  assert.ok(release.cover?.src, `Single sem capa: ${release.title}`);
+  await stat(path.join(root, release.cover.src));
+}
 assert.ok(!/0[1-4](Spotify|YouTube|Apple|Amazon)/.test(html), 'Nome de plataforma com numeração colada');
 assert.equal((html.match(/Dark R(?:&amp;|&)B/g) || []).length, 1, 'Dark R&B deve aparecer apenas na bio');
-console.log('Catálogo sem capas, nomes de plataformas e gênero somente na bio conferidos.');
+console.log('Capas dos singles, nomes de plataformas e gênero somente na bio conferidos.');
 
 let spotifyEntities = 0;
 for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {

@@ -33,7 +33,7 @@ export default function App() {
   return <div className="site-shell">
     <div id="top" className="top-anchor" aria-hidden="true" />
     <BrandSymbols /><a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
-    <header className="nav"><Wordmark /><nav className="nav-links" aria-label="Navegação principal"><a href="#sobre">This Is o Quil</a><a href="#catalogo">Catálogo</a><a href="#press">Press</a></nav><span className="nav-index">RJ · 2026</span><div className="reading-progress" aria-hidden="true" /></header>
+    <header className="nav"><Wordmark /><nav className="nav-links" aria-label="Navegação principal"><a href="#sobre">This Is o Quil</a><a href="#catalogo">Últimos lançamentos</a><a href="#press">Press</a></nav><span className="nav-index">RJ · 2026</span><div className="reading-progress" aria-hidden="true" /></header>
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
       <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato.webp" alt="" width="1600" height="899" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><a className="button" href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Acompanhar no Instagram<Icon /></a></div></section>
     </main>

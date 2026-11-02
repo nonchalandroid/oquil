@@ -59,3 +59,9 @@ O relatório de 02/11/2026 mostrou cache de 4 horas e scripts injetados pela Clo
 O relatório enviado em 02/11/2026 não exige remover animações. A escrita foi migrada para quadros compostos por `transform`; a auditoria local final não listou animações não compostas e manteve CLS 0. A economia estimada restante de imagens caiu de cerca de 20 KiB para 5 KiB no teste local. Esses resultados locais não substituem nova medição no domínio publicado.
 
 O diagnóstico de JavaScript não usado inclui partes de React/React DOM que não são executadas no carregamento inicial, mas dão suporte à hidratação e às interações. Remover funções do bundle manualmente não é uma correção segura. Sua redução adicional exigiria reorganizar a arquitetura de hidratação; não foi removida funcionalidade para silenciar o diagnóstico. Cache e scripts injetados pela Cloudflare continuam dependendo das configurações de hospedagem descritas acima.
+
+### Digitação da biografia
+
+A bio usa fontes nativas do sistema (`-apple-system`, BlinkMacSystemFont e equivalentes), sem download adicional. A escrita continua lentamente por tempo enquanto está visível. Ao subir, um alvo proporcional à distância rolada faz o texto apagar letra por letra; ao descer, a escrita retoma do prefixo existente. Ao voltar acima da bio, o texto é apagado por completo.
+
+`src/storyTyping.js` sorteia até três pequenos erros, distribuídos pelo texto. Cada erro troca uma letra intermediária por outra, pausa, apaga apenas a letra errada e digita a correta. Uma nova sequência é sorteada depois do apagamento completo. “Ler sem animação” e a preferência por movimento reduzido apresentam imediatamente a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.

@@ -138,12 +138,12 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 
 /* Biografia como uma mensagem, com uma linha em branco entre os trechos. */
 .narrative-copy{max-width:55ch}
-.hero-latest,.narrative-copy p{font-family:var(--heading);font-weight:400}
-.narrative-copy p{font-size:13px;line-height:1.95;letter-spacing:.025em;white-space:pre-wrap;margin-bottom:0}
+.hero-latest{font-family:var(--heading);font-weight:400}
+.narrative-copy p{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:400;font-size:15px;line-height:1.85;letter-spacing:-.01em;white-space:pre-wrap;margin-bottom:0}
 .story-read{display:block;margin-top:20px;padding:6px 0;border:0;border-bottom:1px solid var(--line);background:none;color:var(--muted);font:inherit;font-size:11px;cursor:pointer}
 .story-read:hover{color:var(--paper)}
 .story-read:focus-visible{outline:2px solid var(--mist);outline-offset:5px}
-@media(max-width:600px){.narrative-copy p{font-size:12px}}
+@media(max-width:600px){.narrative-copy p{font-size:14px}}
 
 /* No touch, o brilho usa opacidade sem redesenhar o gradiente a cada frame. */
 @media(hover:none){.album-object:before{animation:story-sparkle 2.8s ease-in-out infinite}}

@@ -29,7 +29,7 @@ export default function Catalog() {
       <header className="catalog-head" data-enter=""><div><p className="section-kicker">02 / Música</p><h2 className="section-title" id="catalogo-titulo">Lançamentos</h2></div></header>
       <div className="release-list">{releases.map(release => <article className="release" key={release.title} data-enter=""><ReleaseDisclosure release={release} /></article>)}</div>
       <div className="archive"><header data-enter=""><p className="section-kicker">Arquivo</p><h3>linha do tempo</h3></header>
-        <ol className="archive-timeline" aria-label="Cronologia dos lançamentos">{archive.map(release => <li className="archive-row" key={release.title} data-enter=""><time className="archive-year" dateTime={release.year}>{release.year}</time><div><h4>{release.title}</h4><nav aria-label={`Ouvir ${release.title}`}><PlatformLinks links={release.links} /></nav></div></li>)}</ol>
+        <ol className="archive-timeline" aria-label="Cronologia dos lançamentos">{archive.map(release => <li className="archive-row" key={release.title} data-enter=""><time className="archive-year" dateTime={release.year}>{release.year}</time><div><h4>{release.title}</h4></div></li>)}</ol>
       </div>
     </div>
   </section>;

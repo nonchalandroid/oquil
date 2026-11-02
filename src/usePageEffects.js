@@ -6,6 +6,7 @@ export default function usePageEffects() {
     let frame = 0;
     let observer;
     const animations = new Set();
+    const revealed = new WeakSet();
     const updateProgress = () => {
       frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -18,27 +19,32 @@ export default function usePageEffects() {
       animations.clear();
       if (motion.matches || !('IntersectionObserver' in window)) return;
       observer = new IntersectionObserver(entries => {
-        let timelineOrder = 0;
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           observer.unobserve(entry.target);
-          if (!entry.target.animate) return;
+          if (revealed.has(entry.target)) return;
+          revealed.add(entry.target);
           const timeline = entry.target.matches('.archive-row');
-          if (timeline && entry.target.contains(document.activeElement)) return;
-          const animation = entry.target.animate([
-            { transform: `translateY(${timeline ? 28 : 14}px)`, opacity: timeline ? 0 : .85 },
-            { transform: 'translateY(0)', opacity: 1 }
-          ], {
-            duration: timeline ? 650 : 550,
-            delay: timeline ? Math.min(timelineOrder++, 4) * 80 : 0,
-            easing: 'cubic-bezier(.2,.7,.2,1)',
-            fill: 'backwards'
+          if (entry.target.contains(document.activeElement)) return;
+          // Observe the stable row; animate only its text so the rail and dots never move.
+          const targets = timeline ? [...entry.target.children] : [entry.target];
+          targets.forEach(target => {
+            if (!target.animate) return;
+            const animation = target.animate([
+              { transform: 'translateY(12px)', opacity: .25 },
+              { transform: 'translateY(0)', opacity: 1 }
+            ], {
+              duration: timeline ? 460 : 550,
+              easing: 'cubic-bezier(.2,.7,.2,1)'
+            });
+            animations.add(animation);
+            animation.onfinish = () => animations.delete(animation);
           });
-          animations.add(animation);
-          animation.onfinish = () => animations.delete(animation);
         });
       }, { threshold: .08 });
-      document.querySelectorAll('[data-enter]').forEach(el => observer.observe(el));
+      document.querySelectorAll('[data-enter]').forEach(el => {
+        if (!revealed.has(el)) observer.observe(el);
+      });
     };
     const escape = event => {
       if (event.key !== 'Escape') return;

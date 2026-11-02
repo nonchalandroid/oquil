@@ -1,24 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-const biography = 'o Quil começou na música usando seu nome de batismo, fillipe queiroz. do rio de janeiro, veio do rap e da produção musical.\n\nmais tarde, passou a assinar como o Quil. independente, ele mesmo grava, produz suas músicas e cuida de cada etapa do trabalho.\n\nhoje, o dark r&b faz parte dessa história. músicas sobre conflitos e seguir em frente, entre atmosferas noturnas, espaço e emoção.';
-
-// Pequenos enganos são escritos, apagados e corrigidos antes de continuar.
-const mistakes = new Map([
-  [biography.indexOf('música'), 'muscia'],
-  [biography.indexOf('independente'), 'indepedente'],
-  [biography.indexOf('atmosferas'), 'atmoferas']
-]);
-const steps = [];
-for (let i = 0; i < biography.length; i++) {
-  const typo = mistakes.get(i);
-  if (typo) {
-    for (let n = 1; n <= typo.length; n++) steps.push({ text: biography.slice(0, i) + typo.slice(0, n), delay: 110 });
-    steps.push({ text: biography.slice(0, i) + typo, delay: 650 });
-    for (let n = typo.length - 1; n >= 0; n--) steps.push({ text: biography.slice(0, i) + typo.slice(0, n), delay: 65 });
-  }
-  const char = biography[i];
-  steps.push({ text: biography.slice(0, i + 1), delay: char === '\n' ? 550 : /[.,]/.test(char) ? 420 : 85 + (i % 5) * 16 });
-}
+import { biography, createTypingSteps } from './storyTyping.js';
 
 export default function Story() {
   const article = useRef(null);
@@ -29,36 +10,82 @@ export default function Story() {
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let timer;
+    let steps = createTypingSteps();
     let index = 0;
+    let shown = '';
+    let target = biography.length;
+    let direction = 'forward';
+    let recovering = false;
+    let previousY = window.scrollY;
     let visible = false;
     let disposed = false;
+    const enabled = () => !disposed && !motion.matches && !readAll;
+    const publish = value => { shown = value; setText(value); };
     const advance = () => {
       timer = undefined;
-      if (disposed || !visible || motion.matches || readAll || index >= steps.length) return;
-      const step = steps[index++];
-      setText(step.text);
-      timer = window.setTimeout(advance, step.delay);
+      if (!enabled()) return;
+      if (direction === 'backward') {
+        if (shown.length <= target) return;
+        publish(shown.slice(0, -1));
+        if (!shown.length) { steps = createTypingSteps(); index = 0; }
+        timer = window.setTimeout(advance, 32);
+      } else if (visible && index < steps.length) {
+        // Um erro ainda visível é apagado antes de retomar o prefixo correto.
+        if (recovering) {
+          publish(shown.slice(0, -1));
+          index = shown ? steps.findIndex(step => step.text === shown) + 1 : 0;
+          recovering = !biography.startsWith(shown);
+          timer = window.setTimeout(advance, 80);
+          return;
+        }
+        const step = steps[index++];
+        publish(step.text);
+        timer = window.setTimeout(advance, step.delay);
+      }
+    };
+    const schedule = (delay = 100) => {
+      if (enabled() && timer === undefined) timer = window.setTimeout(advance, delay);
+    };
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - previousY;
+      previousY = y;
+      if (!enabled() || Math.abs(delta) < 1) return;
+      const rect = article.current.getBoundingClientRect();
+      if (delta < 0 && rect.bottom > 0) {
+        if (direction !== 'backward') target = shown.length;
+        direction = 'backward';
+        target = Math.max(0, target + delta * biography.length / Math.max(window.innerHeight * .85, rect.height));
+        if (rect.top >= window.innerHeight * .9) target = 0;
+        schedule(0);
+      } else if (delta > 0 && direction !== 'forward') {
+        direction = 'forward';
+        recovering = !biography.startsWith(shown);
+        index = shown ? steps.findIndex(step => step.text === shown) + 1 : 0;
+        schedule();
+      }
     };
     const configure = () => {
       clearTimeout(timer);
       timer = undefined;
-      const animate = !motion.matches && !readAll;
-      setTyping(animate);
-      setText(animate ? (index ? steps[index - 1].text : '') : biography);
-      if (animate && visible) timer = window.setTimeout(advance, 400);
+      setTyping(enabled());
+      setText(enabled() ? shown : biography);
+      if (enabled() && visible) schedule(400);
     };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (!visible) { clearTimeout(timer); timer = undefined; }
-      else if (timer === undefined) timer = window.setTimeout(advance, 400);
+      if (!visible && direction === 'forward') { clearTimeout(timer); timer = undefined; }
+      else schedule(400);
     }, { threshold: .15 });
     configure();
     observer.observe(article.current);
+    window.addEventListener('scroll', onScroll, { passive: true });
     motion.addEventListener('change', configure);
     return () => {
       disposed = true;
       clearTimeout(timer);
       observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
       motion.removeEventListener('change', configure);
     };
   }, [readAll]);

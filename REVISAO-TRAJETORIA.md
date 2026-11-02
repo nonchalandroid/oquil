@@ -80,3 +80,13 @@ As duas capas restantes foram fornecidas posteriormente no arquivo capaz 2.zip e
 ## Capas restantes recebidas em capaz 2.zip
 
 Lost Tracks, Vol. 0 (747×740) e Sombras do Subconsciente (812×787) agora usam WebP local derivado das capturas enviadas. Sem ampliação artificial, recriação ou retoque; a qualidade fica limitada às capturas fornecidas. Todas as capas exibidas no HTML agora são locais, sem dependência do CDN Spotify.
+
+## Revisão após feedback de janela lado a lado
+
+- Removidos “Ouvir agora” da navegação e YouTube/YouTube Music da abertura. Permanecem Spotify e catálogo como ações da abertura.
+- Foto e conteúdo da abertura agora compartilham um grid. Até 900 px, a foto ocupa uma linha inteira acima do texto; em larguras maiores acompanha a altura da coluna de conteúdo. Sem miniatura posicionada no rodapé da abertura nem sobreposição com a navegação.
+- “This Is o Quil” passa a uma linha do tempo em coluna única, sem repetir o retrato e a capa já exibidos em outras seções.
+- Conteúdo visível sem JavaScript, sem depender do IntersectionObserver para mostrar seções. Capas sem escurecimento adicional ou fallback cobrindo a imagem.
+- URL do CSS versionada para evitar reutilização da versão anterior em cache.
+- A main remota já continha os oito arquivos locais de capas. A leitura do domínio de produção foi bloqueada pela rede; não foi possível determinar se o print corresponde a cache, deploy anterior ou outro problema da publicação.
+- Validação local com redimensionamento contínuo de 1440 a 320 px, incluindo 940 px para janela dividida, com e sem JavaScript: imagens decodificadas, ausência de transbordamento horizontal, mídia contida e conteúdo abaixo da navegação.

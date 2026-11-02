@@ -8,7 +8,7 @@
         {
           "label": "Spotify",
           "href": "https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr",
-          "title": "Abrir Quase Indo · Spotify"
+          "title": "Ouvir Quase Indo no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -39,8 +39,8 @@
       "links": [
         {
           "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20Se%20Move",
-          "title": "Buscar Se Move · Spotify"
+          "href": "https://open.spotify.com/album/5h1TJlWJJiajDwDebn3fLA",
+          "title": "Ouvir Se Move no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -71,8 +71,8 @@
       "links": [
         {
           "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20TAG",
-          "title": "Buscar TAG · Spotify"
+          "href": "https://open.spotify.com/track/2FV7s1HcALYkcikGgd37MZ",
+          "title": "Ouvir TAG no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -104,7 +104,7 @@
         {
           "label": "Spotify",
           "href": "https://open.spotify.com/track/4GU92DC38pEk1iXG4ciypV",
-          "title": "Abrir Consequência de Estar Acordado · Spotify"
+          "title": "Ouvir Consequência de Estar Acordado no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -138,7 +138,7 @@
         {
           "label": "Spotify",
           "href": "https://open.spotify.com/search/o%20Quil%20Sinergia",
-          "title": "Buscar Sinergia de o Quil no Spotify"
+          "title": "Buscar Sinergia no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -160,7 +160,7 @@
         {
           "label": "Spotify",
           "href": "https://open.spotify.com/search/o%20Quil%20Por%20Via%20das%20D%C3%BAvidas",
-          "title": "Buscar Por Via das Dúvidas de o Quil no Spotify"
+          "title": "Buscar Por Via das Dúvidas no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -291,8 +291,8 @@
       "links": [
         {
           "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20N%C3%A3o%20Importa",
-          "title": "Buscar Não Importa de o Quil no Spotify"
+          "href": "https://open.spotify.com/intl-pt/track/4lnOFJ5Lj8gJBlDoJugAA7",
+          "title": "Ouvir Não Importa no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -313,8 +313,8 @@
       "links": [
         {
           "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20Sombras%20do%20Subconsciente",
-          "title": "Buscar Sombras do Subconsciente de o Quil no Spotify"
+          "href": "https://open.spotify.com/intl-pt/album/4ZOv17UHwKVNILm0FGoau9",
+          "title": "Ouvir Sombras do Subconsciente no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -414,5 +414,6 @@
       "label": "Abrir o Quil no TIDAL",
       "href": "https://tidal.com/artist/20087923"
     }
-  ]
+  ],
+  "spotifyArtistUrl": "https://open.spotify.com/intl-pt/artist/6ESKYkpnw4NtJZKGhnnPi0"
 }

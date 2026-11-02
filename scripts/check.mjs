@@ -50,3 +50,17 @@ assert.ok(catalog && !catalog.includes('<img'), 'Listas de música não devem co
 assert.ok(!/0[1-4](Spotify|YouTube|Apple|Amazon)/.test(html), 'Nome de plataforma com numeração colada');
 assert.equal((html.match(/Dark R(?:&amp;|&)B/g) || []).length, 1, 'Dark R&B deve aparecer apenas na bio');
 console.log('Catálogo sem capas, nomes de plataformas e gênero somente na bio conferidos.');
+
+let spotifyEntities = 0;
+for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
+  if (!href.startsWith('https://open.spotify.com/')) continue;
+  const url = new URL(href);
+  const entity = url.pathname.match(/^\/(?:intl-[a-z]{2}\/)?(track|album|artist)\/([^/]+)\/?$/);
+  if (entity) {
+    assert.match(entity[2], /^[A-Za-z0-9]{22}$/, `ID Spotify incompleto: ${href}`);
+    spotifyEntities++;
+  } else {
+    assert.ok(url.pathname.startsWith('/search/'), `Destino Spotify não previsto: ${href}`);
+  }
+}
+console.log(`${spotifyEntities} links diretos de entidades Spotify com IDs completos conferidos.`);

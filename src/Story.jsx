@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const paragraphs = [
   'Fillipe Queiroz começou na música usando o próprio nome. Foi assim que seus primeiros trabalhos chegaram ao público, entre o rap e a produção musical.',
   'Mais tarde, passou a assinar como o Quil. O artista e produtor do Rio de Janeiro apresenta hoje seu trabalho com esse nome, construindo uma trajetória que atravessa o rap e o R&B.',
+  'o Quil é um artista independente. Ele mesmo grava, produz suas músicas e cuida de cada etapa do próprio trabalho.',
   'Na fase atual, o Dark R&B ganha espaço nessa história. Atmosferas noturnas, ambiência densa e batidas desaceleradas dão forma à música de o Quil.'
 ];
 

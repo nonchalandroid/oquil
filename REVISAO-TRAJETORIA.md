@@ -5,7 +5,7 @@
 - Página inteira em React, com componentes de narrativa, catálogo, plataformas, imprensa e navegação. HTML pré-renderizado para SEO e leitura sem JavaScript.
 - Hero com a capa oficial de Quase Indo e fonte original Unbounded, hospedada localmente. Acordeões nativos por plataforma; Spotify abre com o link direto. As demais opções indicam busca ou canal quando não há endereço da faixa confirmado.
 - “This Is o Quil” apresenta texto corrido sobre Fillipe Queiroz e o artista o Quil. Sem álbuns repetidos. A rolagem destaca o parágrafo em leitura.
-- Faixa estreita com ícones locais de Spotify, Apple Music, Amazon Music, YouTube Music e YouTube, as plataformas cujos links já constam do projeto. Não foram acrescentadas plataformas sem informações fornecidas.
+- Faixa estreita em movimento horizontal com Spotify, Apple Music, Amazon Music, YouTube Music, Deezer e TIDAL. Sem YouTube no banner. Os perfis Deezer e TIDAL foram fornecidos pelo usuário; movimento pausável e desativado com a preferência de movimento reduzido.
 - Subtítulos em Unbounded, peso 400; título principal preservado em peso 600. Um único CSS de origem substitui as regras inline e as sobreposições antigas.
 - Efeitos de entrada e progresso de leitura sem capturar a rolagem. Preferência por movimento reduzido respeitada; conteúdo visível sem JavaScript.
 - Todas as oito capas são locais e vieram dos ZIPs do usuário. Capturas de Sombras do Subconsciente e Lost Tracks, Vol. 0 preservadas na resolução enviada, sem recriar ou ampliar artificialmente.
@@ -28,3 +28,15 @@ A validação local não comprova publicação, indexação ou disponibilidade d
 ## Favicon e paleta
 
 O teste vermelho foi descartado; a paleta anterior foi restaurada. O favicon tipográfico genérico foi substituído por uma adaptação simplificada do Q da assinatura, em menta clara sobre fundo escuro. Arquivos PNG de 16 a 1024 px, ICO (16/24/32/48/64/128/256), Apple Touch e ícones maskable 192/512 incluídos. Manifesto, metadados e cópia para dist configurados. Dimensões, recursos HTTP e leitura do manifesto no Chromium validados; o favicon não depende de React.
+
+## Revisão de catálogo, independência e qualidade da capa
+
+“Mais caminhos para ouvir” agora é uma lista cronológica de nove itens, sem imagens e sem o aviso sobre buscas. A seção de singles mantém suas capas.
+
+A narrativa afirma que o Quil é independente, grava e produz suas músicas e cuida de cada etapa do trabalho, conforme confirmação do artista. O trecho da fase atual foi preservado.
+
+O hero usa assets/quase-indo-original.png, uma cópia byte a byte do PNG de 3000×3000 recebido no primeiro ZIP, sem recompressão ou filtros. A versão reduzida de 900 px permanece somente nas miniaturas do catálogo. O arquivo original tem cerca de 6 MB, priorizando a fidelidade solicitada na abertura.
+
+Perfis recebidos: https://www.deezer.com/br/artist/10648821 e https://tidal.com/artist/20087923. O banner tem pausa por controle, hover e teclado, com clones fora da ordem de tabulação e da árvore de acessibilidade. Respeita movimento reduzido, com rolagem horizontal manual nessa preferência.
+
+Validação no Chromium com densidade 2×: PNG de 3000 px, hash idêntico ao arquivo fornecido, ausência de filtro, lista sem imagens/aviso, seis plataformas, URLs dos novos perfis, movimento e pausa, leitura sem JavaScript e larguras de 320 a 1440 px. Sem erros de hidratação ou transbordamento horizontal.

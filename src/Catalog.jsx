@@ -18,8 +18,8 @@ export default function Catalog() {
           <details className="release-platforms" name="catalog-platforms"><summary>Plataformas<Icon name="plus" className="stream-toggle" /></summary><nav className="release-links" aria-label={`Ouvir ${release.title}`}><PlatformLinks links={release.links} /></nav></details>
         </article>)}
       </div>
-      <div className="archive"><header data-enter=""><p className="section-kicker">Arquivo</p><h3>Mais caminhos para ouvir</h3><p className="archive-note">Alguns links abrem buscas ou o canal do artista quando o endereço individual da faixa não está confirmado.</p></header>
-        {archive.map(release => <article className="archive-row" key={release.title} data-enter=""><span className="archive-year">{release.year}</span>{release.cover ? <img className="archive-cover" src={release.cover} alt={`Capa de ${release.title}`} loading="lazy" decoding="async" width="90" height="90" /> : <span className="archive-cover-placeholder" aria-hidden="true" />}<div><h4>{release.title}</h4>{release.subtitle && <p>{release.subtitle}</p>}<nav aria-label={`Ouvir ${release.title}`}><PlatformLinks links={release.links} /></nav></div></article>)}
+      <div className="archive"><header data-enter=""><p className="section-kicker">Arquivo</p><h3>Mais caminhos para ouvir</h3></header>
+        <ol className="archive-timeline" aria-label="Cronologia dos lançamentos">{archive.map(release => <li className="archive-row" key={release.title} data-enter=""><time className="archive-year" dateTime={release.year}>{release.year}</time><div><h4>{release.title}</h4>{release.subtitle && <p>{release.subtitle}</p>}<nav aria-label={`Ouvir ${release.title}`}><PlatformLinks links={release.links} /></nav></div></li>)}</ol>
       </div>
     </div>
   </section>;

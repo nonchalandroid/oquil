@@ -34,3 +34,13 @@ await stat(path.join(root, 'apple-touch-icon.png'));
 await stat(path.join(root, 'browserconfig.xml'));
 assert.ok(!html.includes('__ICON_HASH__'), 'Versão do favicon não gerada');
 console.log('Manifesto, dimensões dos ícones, ICO e Apple Touch conferidos.');
+
+const archive = html.split('class="archive"')[1]?.split('</section>')[0];
+assert.ok(archive, 'Arquivo de lançamentos ausente');
+assert.ok(!archive.includes('<img'), 'O arquivo cronológico não deve conter imagens');
+assert.ok(!html.includes('Alguns links abrem buscas'), 'Aviso removido voltou à página');
+const originalCover = await readFile(path.join(root, 'assets/quase-indo-original.png'));
+assert.equal(originalCover.readUInt32BE(16), 3000);
+assert.equal(originalCover.readUInt32BE(20), 3000);
+assert.ok(html.includes('Ele mesmo grava, produz suas músicas'), 'Independência artística ausente');
+console.log('Arquivo sem imagens, texto independente e capa original 3000×3000 conferidos.');

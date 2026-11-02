@@ -23,3 +23,11 @@ for (const file of ['index.html', 'assets', 'CNAME', 'robots.txt', 'sitemap.xml'
   await cp(path.join(root, file), path.join(dist, file), { recursive: true });
 }
 console.log('Página React pré-renderizada. Arquivos públicos: dist/.');
+
+// Invalida também os ícones referenciados por manifestos e atalhos instalados.
+const iconVersion = hash(await readFile(path.join(root, 'favicon.ico')));
+const manifest = JSON.parse(await readFile(path.join(root, 'site.webmanifest'), 'utf8'));
+manifest.icons = manifest.icons.map(icon => ({ ...icon, src: `${icon.src}?v=${iconVersion}` }));
+await writeFile(path.join(dist, 'site.webmanifest'), JSON.stringify(manifest, null, 2) + '\n');
+const browserConfig = await readFile(path.join(root, 'browserconfig.xml'), 'utf8');
+await writeFile(path.join(dist, 'browserconfig.xml'), browserConfig.replace(/src="([^"]+)"/g, (_, src) => `src="${src}?v=${iconVersion}"`));

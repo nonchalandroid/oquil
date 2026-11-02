@@ -22,7 +22,13 @@ console.log(`${local.size} arquivos locais, IDs, âncoras, URLs HTTPS e conteúd
 const manifest = JSON.parse(await readFile(path.join(root, 'site.webmanifest'), 'utf8'));
 assert.equal(manifest.short_name, 'o Quil');
 for (const icon of manifest.icons) {
-  const png = await readFile(path.join(root, icon.src));
+  const iconPath = icon.src.split('?')[0];
+  if (icon.type === 'image/svg+xml') {
+    const svg = await readFile(path.join(root, iconPath), 'utf8');
+    assert.ok(svg.includes('<path') && !svg.includes('<image'), 'Favicon SVG deve ser vetorial');
+    continue;
+  }
+  const png = await readFile(path.join(root, iconPath));
   const [width, height] = icon.sizes.split('x').map(Number);
   assert.equal(png.readUInt32BE(16), width, `Largura do ícone: ${icon.src}`);
   assert.equal(png.readUInt32BE(20), height, `Altura do ícone: ${icon.src}`);

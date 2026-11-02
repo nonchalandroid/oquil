@@ -3,14 +3,11 @@ import { platforms, spotifyArtistUrl } from './content.json';
 import { BrandIcon, Icon } from './Icons.jsx';
 
 export function StreamingBanner() {
-  const items = platforms;
-  const group = duplicate => <div className="streaming-group" aria-hidden={duplicate || undefined}>
-    {items.map(platform => <a key={platform.id} href={platform.id === 'spotify' ? spotifyArtistUrl : platform.href} target="_blank" rel="noopener noreferrer" aria-label={platform.id === 'spotify' ? 'Abrir o perfil de o Quil no Spotify' : platform.label} title={platform.id === 'spotify' ? 'Abrir o perfil de o Quil no Spotify' : platform.label} tabIndex={duplicate ? -1 : undefined}><BrandIcon name={platform.id} /><span>{platform.name}</span></a>)}
-  </div>;
-  return <div className="streaming-banner">
-    <label className="streaming-pause"><input type="checkbox" aria-label="Pausar movimento das plataformas" /><Icon name="pause" className="pause-symbol" /><Icon name="play" className="play-symbol" /></label>
-    <nav className="streaming-window" aria-label="Plataformas de música"><div className="streaming-track">{group(false)}{group(true)}</div></nav>
-  </div>;
+  return <nav className="streaming-banner" aria-label="Plataformas de música" tabIndex={0} onFocus={event => {
+    if (event.target.tagName === 'A') event.target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+  }}>
+    {platforms.map(platform => <a key={platform.id} href={platform.id === 'spotify' ? spotifyArtistUrl : platform.href} target="_blank" rel="noopener noreferrer" aria-label={platform.id === 'spotify' ? 'Abrir o perfil de o Quil no Spotify' : platform.label} title={platform.id === 'spotify' ? 'Abrir o perfil de o Quil no Spotify' : platform.label}><BrandIcon name={platform.id} /><span>{platform.name}</span></a>)}
+  </nav>;
 }
 
 export function HeroStreaming() {

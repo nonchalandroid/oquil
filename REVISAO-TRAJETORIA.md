@@ -67,3 +67,16 @@ A revisão não foi publicada. A confirmação editorial permanece necessária p
 - SEO técnico: título, descrição, canonical, Open Graph, Twitter Card, dados estruturados Person/WebSite/WebPage/MusicRecording, sitemap.xml e referência no robots.txt.
 - Domínio canônico adotado: https://oquil.com.br/, conforme CNAME e brief. Nenhuma data histórica pendente foi adicionada aos dados estruturados.
 - SEO e compartilhamento foram conferidos localmente; indexação, resultados de busca, rastreamento e configuração do domínio em produção dependem da publicação. Sem garantia de posição em buscadores.
+
+## Capas fornecidas em capas.zip
+
+Integradas seis artes locais: Quase Indo, Se Move, TAG, Consequência de Estar Acordado, Lost Tracks e Platônico. Derivados WebP com até 900 px, mantendo a proporção e sem recriar ou retocar as artes. Os seis arquivos somam cerca de 593 KiB, em vez de aproximadamente 23 MiB dos originais. Os originais recebidos permanecem no anexo do ambiente.
+
+Se Move, TAG e Consequência de Estar Acordado deixam de depender do CDN Spotify. Lost Tracks também passa a usar arquivo local; Platônico ganha sua capa no arquivo de lançamentos. Quase Indo usa a versão final enviada. Corrigida a inicialização do estado de imagens já carregadas do cache para evitar que o fallback cubra uma imagem válida.
+
+As duas capas restantes foram fornecidas posteriormente no arquivo capaz 2.zip e integradas conforme o registro abaixo. MAPA-CAPAS-E-LINKS.json atualizado com todos os caminhos locais.
+
+
+## Capas restantes recebidas em capaz 2.zip
+
+Lost Tracks, Vol. 0 (747×740) e Sombras do Subconsciente (812×787) agora usam WebP local derivado das capturas enviadas. Sem ampliação artificial, recriação ou retoque; a qualidade fica limitada às capturas fornecidas. Todas as capas exibidas no HTML agora são locais, sem dependência do CDN Spotify.

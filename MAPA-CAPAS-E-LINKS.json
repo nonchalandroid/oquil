@@ -1,37 +1,40 @@
 {
   "Quase Indo": {
-    "cover": "mantida local; URL fornecida duplicada com Lost Tracks, Vol. 0",
+    "cover": "assets/quase-indo-capa.webp",
     "spotify": "https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr",
     "youtube": "https://www.youtube.com/@oquil/videos"
   },
   "Se Move": {
-    "cover": "https://i.scdn.co/image/ab67616d0000b27341e8c950d87fa8bd3f4ad3b4",
+    "cover": "assets/se-move-capa.webp",
     "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ"
   },
   "TAG": {
-    "cover": "https://i.scdn.co/image/ab67616d0000b273b4cb5e098a5bb8d15a5bb1fa",
+    "cover": "assets/tag-capa.webp",
     "youtube": "https://www.youtube.com/watch?v=t3yqTPVROfw"
   },
   "Consequência de Estar Acordado": {
-    "cover": "https://i.scdn.co/image/ab67616d0000b2739343dfbaad283e74287bbca8",
+    "cover": "assets/consequencia-capa.webp",
     "spotify": "https://open.spotify.com/track/4GU92DC38pEk1iXG4ciypV",
     "youtube": "https://www.youtube.com/@oquil/videos"
   },
   "Lost Tracks, Vol. 0": {
-    "cover": "https://i.scdn.co/image/ab67616d0000b273b3dfa4bfaadff876a3a40498",
+    "cover": "assets/lost-tracks-vol-0-capa.webp",
     "spotify": "https://open.spotify.com/intl-pt/album/3xSWh7XY82tHXBglXPjpTU",
     "youtube": "https://www.youtube.com/channel/UCeTA2gjyoT1KcqiyHSOZrrg"
   },
   "Lost Tracks": {
-    "cover": "https://i.scdn.co/image/ab67616d0000b273e91122ab900cdaef78abef91",
+    "cover": "assets/lost-tracks-capa.webp",
     "spotify": "https://open.spotify.com/intl-pt/album/3IOaChHUNRTl6r9zASHf8c",
     "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ"
   },
   "Sombras do Subconsciente": {
-    "cover": "https://i.scdn.co/image/ab67616d0000b2730ca78ab78bba998cf771d9d1",
+    "cover": "assets/sombras-do-subconsciente-capa.webp",
     "youtube": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ"
   },
   "Noites Online": {
     "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU"
+  },
+  "Platônico": {
+    "cover": "assets/platonico-capa.webp"
   }
 }

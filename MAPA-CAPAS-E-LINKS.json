@@ -35,7 +35,8 @@
     "spotify": "https://open.spotify.com/intl-pt/album/4ZOv17UHwKVNILm0FGoau9"
   },
   "Noites Online": {
-    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU"
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_n85pQlbsUavzGOGdAqivpQWPrizSyVrUU",
+    "spotify": "https://open.spotify.com/album/4nmcr7HFStKqzbghDyQRlA"
   },
   "Platônico": {
     "cover": "assets/platonico-capa.webp"
@@ -48,5 +49,8 @@
   },
   "Não Importa": {
     "spotify": "https://open.spotify.com/intl-pt/track/4lnOFJ5Lj8gJBlDoJugAA7"
+  },
+  "Motivos": {
+    "spotify": "https://open.spotify.com/intl-pt/track/37Aog4jjbURNfC4z8vg4B4"
   }
 }

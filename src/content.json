@@ -2,8 +2,6 @@
   "releases": [
     {
       "title": "Quase Indo",
-      "meta": "Single · Agosto 2026",
-      "latest": true,
       "links": [
         {
           "label": "Spotify",
@@ -34,8 +32,6 @@
     },
     {
       "title": "Se Move",
-      "meta": "Single · Julho 2026",
-      "latest": false,
       "links": [
         {
           "label": "Spotify",
@@ -66,8 +62,6 @@
     },
     {
       "title": "TAG",
-      "meta": "Single · Junho 2026",
-      "latest": false,
       "links": [
         {
           "label": "Spotify",
@@ -98,8 +92,6 @@
     },
     {
       "title": "Consequência de Estar Acordado",
-      "meta": "Single · Maio 2026",
-      "latest": false,
       "links": [
         {
           "label": "Spotify",
@@ -132,7 +124,6 @@
   "archive": [
     {
       "title": "Sinergia",
-      "subtitle": "",
       "year": "2014",
       "links": [
         {
@@ -154,7 +145,6 @@
     },
     {
       "title": "Por Via das Dúvidas",
-      "subtitle": "",
       "year": "2015",
       "links": [
         {
@@ -176,7 +166,6 @@
     },
     {
       "title": "Lost Tracks, Vol. 0",
-      "subtitle": "",
       "year": "2016",
       "links": [
         {
@@ -198,7 +187,6 @@
     },
     {
       "title": "Rehab Tape",
-      "subtitle": "",
       "year": "2018",
       "links": [
         {
@@ -220,7 +208,6 @@
     },
     {
       "title": "Lost Tracks",
-      "subtitle": "",
       "year": "2019",
       "links": [
         {
@@ -242,7 +229,6 @@
     },
     {
       "title": "Platônico",
-      "subtitle": "",
       "year": "2020",
       "links": [
         {
@@ -264,13 +250,12 @@
     },
     {
       "title": "Noites Online",
-      "subtitle": "EP · inclui a faixa “Motivos”",
       "year": "2021",
       "links": [
         {
           "label": "Spotify",
-          "href": "https://open.spotify.com/search/o%20Quil%20Noites%20Online",
-          "title": "Buscar Noites Online de o Quil no Spotify"
+          "href": "https://open.spotify.com/album/4nmcr7HFStKqzbghDyQRlA",
+          "title": "Ouvir Noites Online no Spotify"
         },
         {
           "label": "YouTube Music",
@@ -286,7 +271,6 @@
     },
     {
       "title": "Não Importa",
-      "subtitle": "",
       "year": "2022",
       "links": [
         {
@@ -308,7 +292,6 @@
     },
     {
       "title": "Sombras do Subconsciente",
-      "subtitle": "",
       "year": "2023",
       "links": [
         {

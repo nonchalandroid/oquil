@@ -64,3 +64,9 @@ for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
   }
 }
 console.log(`${spotifyEntities} links diretos de entidades Spotify com IDs completos conferidos.`);
+
+const { platforms } = JSON.parse(await readFile(path.join(root, '../src/content.json'), 'utf8'));
+for (const platform of platforms) {
+  assert.ok(platform.href, `Plataforma sem URL: ${platform.name}`);
+  assert.equal(new URL(platform.href).protocol, 'https:', `URL de plataforma inválida: ${platform.name}`);
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# Inserir Sitemap após definição do domínio oficial.

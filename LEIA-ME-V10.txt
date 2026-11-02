@@ -1,0 +1,22 @@
+o Quil — Site V10 | Direção Dark R&B
+
+Alterações:
+- Abertura com tratamento de cor Dark R&B: sombras navy/pretas, saturação reduzida,
+  contraste cinematográfico e luz controlada. A fotografia original foi mantida;
+  nenhum traço facial foi recriado ou retocado.
+- Removido “Bangu · Rio de Janeiro” do topo.
+- Inserido “5521” em negrito ao lado de “ÚLTIMO LANÇAMENTO”.
+- Identificação lateral atualizada para “O QUIL / DARK R&B”.
+- SEO e dados estruturados atualizados para posicionar Dark R&B como identidade musical principal.
+- Texto da seção inicial atualizado para explicitar Dark R&B.
+- Imprensa ampliada com:
+  1) matéria original do Noisey sobre o EP Sinergia (link legado encontrado dentro de uma matéria VICE);
+  2) reportagem VICE “Encontros e Desencontros...” (03.09.2015), que menciona NAS, Filipe Queiroz e Sinergia;
+  3) reportagem VICE “Por Via das Dúvidas...” (08.12.2015), que recorda Sinergia como EP de 2014.
+- Corrigido o título exibido da matéria “Por Via das Dúvidas” para coincidir com o título real da página VICE.
+
+Nota de pesquisa:
+Foram identificadas três referências relevantes da VICE/Noisey. A matéria original de Sinergia usa
+um endereço legado noisey.vice.com que o mecanismo de consulta não conseguiu abrir (cache miss),
+mas o link está publicado como hiperligação dentro da reportagem VICE de 08.12.2015.
+A reportagem de 03.09.2015 está acessível e cita diretamente o EP e o selo NAS.

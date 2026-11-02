@@ -1,0 +1,10 @@
+o Quil — Site V11 | Correção da discografia
+
+Correção solicitada pelo artista:
+- Removida uma entrada incorreta de lançamento que não faz parte da discografia.
+- A discografia contém somente:
+  1. Lost Tracks, Vol. 0
+  2. Lost Tracks
+- Nenhuma terceira edição de Lost Tracks foi mantida no site.
+- As demais seções, a identidade Dark R&B, a fotografia, o destaque “ÚLTIMO LANÇAMENTO / 5521”
+  e a tipografia aprovada foram preservados.

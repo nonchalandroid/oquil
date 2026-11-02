@@ -1,0 +1,20 @@
+o QUIL — REVISÃO EDITORIAL (COM FOTOS E ASSINATURA DO ARTISTA)
+
+Base visual: PRIMEIRO HTML enviado, com fontes Unbounded e Outfit.
+
+Alterações:
+- Foto original do artista na abertura e encerramento
+- Assinatura manuscrita real, recortada e aclarada SEM redesenhar os traços
+- Arte de Quase Indo enviada pelo artista nas seções de destaque
+- Botões geométricos discretos, sem bordas em forma de cápsula
+- Alinhamento dos links de streaming na mesma coluna dos títulos
+- Spotify incorporado centralizado na área da playlist
+- Spotify, YouTube Music e YouTube em quatro singles e em 11 referências de arquivo
+
+IMPORTANTE: os links de cada faixa abrem buscas, porque não foram verificadas URLs individuais.
+A discografia antiga precisa ser revista editorialmente pelo artista.
+Para publicar: envie index.html + diretório assets/ + robots.txt.
+Ainda é preciso configurar o domínio oficial, Google Search Console, canonical e metadados OG absolutos.
+
+V7 — Quase Indo identificado por “ÚLTIMO LANÇAMENTO” no topo da abertura.
+Efeito de filme/ruído, camada glitch, névoa e fotografia de fundo estáticos, sem tremedeira nem parallax.

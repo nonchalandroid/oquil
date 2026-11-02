@@ -1,0 +1,36 @@
+o Quil — Site V8 | Catálogo e capas oficiais
+
+Esta versão parte do site editorial V7 e incorpora os links do arquivo
+"catalogo_completo_o_quil imagems.md".
+
+Alterações:
+- Tipografia restaurada para Space Grotesk (display) e DM Sans (texto),
+  conforme o primeiro HTML do projeto.
+- Capas de Se Move, TAG, Consequência de Estar Acordado e Sombras do Subconsciente
+  atualizadas com as URLs de alta resolução fornecidas.
+- Capas de Lost Tracks, Vol. 0 e Lost Tracks adicionadas ao arquivo.
+- Spotify de Quase Indo direcionado à faixa:
+  https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr
+- Spotify de Consequência de Estar Acordado direcionado à faixa:
+  https://open.spotify.com/track/4GU92DC38pEk1iXG4ciypV
+- Links diretos de Spotify para os álbuns Lost Tracks, Vol. 0 e Lost Tracks.
+- Links conhecidos do YouTube substituídos pelos destinos informados no catálogo.
+- Player Spotify com largura e alinhamento centralizados dentro da coluna.
+- Miniaturas editoriais adicionadas no arquivo, sem criar capas fictícias.
+
+ATENÇÃO — capa de Quase Indo:
+No documento de capas recebido, a URL indicada para Quase Indo é exatamente
+a mesma URL indicada para Lost Tracks, Vol. 0. Como a capa local já existente
+no site contém o título QUASE INDO, ela foi mantida no destaque para evitar
+trocar a arte do single por uma imagem possivelmente atribuída por engano.
+É necessário confirmar se o link de alta resolução de Quase Indo foi copiado
+corretamente.
+
+As capas remotas são carregadas diretamente do CDN do Spotify (i.scdn.co).
+Se desejar independência de terceiros, será necessário fornecer os arquivos
+de imagem originais ou permitir um ambiente com acesso à internet para baixá-los.
+
+Observação sobre YouTube Music:
+O documento fornece links de YouTube/YouTube Music em níveis diferentes.
+Onde não há link individual de faixa, o site mantém uma busca/canal/playlist
+em vez de inventar um endereço de reprodução direta.

@@ -1,0 +1,10 @@
+o Quil — Site V9
+
+Correções solicitadas:
+1. Restaurada a fonte Unbounded no título grande “Quase Indo”, como na versão anterior que o usuário aprovou.
+   DM Sans e Space Grotesk permanecem na tipografia geral do restante do site.
+2. Removido “Motivos” como lançamento individual do arquivo.
+   “Motivos” agora aparece como faixa pertencente ao EP “Noites Online”.
+3. O EP Noites Online continua listado uma única vez, com sua playlist oficial no YouTube.
+
+A versão V9 parte do pacote V8 e mantém as capas, os links e a estrutura editorial já revisados.

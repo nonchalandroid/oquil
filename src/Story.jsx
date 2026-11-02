@@ -4,7 +4,7 @@ const paragraphs = [
   'Fillipe Queiroz começou na música usando o próprio nome. Foi assim que seus primeiros trabalhos chegaram ao público, entre o rap e a produção musical.',
   'Mais tarde, passou a assinar como o Quil. O artista e produtor do Rio de Janeiro apresenta hoje seu trabalho com esse nome, construindo uma trajetória que atravessa o rap e o R&B.',
   'o Quil é um artista independente. Ele mesmo grava, produz suas músicas e cuida de cada etapa do próprio trabalho.',
-  'Na fase atual, o Dark R&B ganha espaço nessa história. Atmosferas noturnas, ambiência densa e batidas desaceleradas dão forma à música de o Quil.'
+  'Na fase atual, o Dark R&B ganha espaço nessa história. Atmosferas noturnas, ambiência densa e batidas desaceleradas dão formas à música do Q.'
 ];
 
 export default function Story() {
@@ -24,8 +24,11 @@ export default function Story() {
     const tick = time => {
       frame = 0;
       if (time - lastTick >= 24) {
-        shown = shown.map((count, i) => Math.min(targets[i], count + Math.max(1, Math.ceil((targets[i] - count) * .16))));
-        setCounts([...shown]);
+        const active = shown.findIndex((count, i) => count < targets[i]);
+        if (active !== -1) {
+          shown[active] = Math.min(targets[active], shown[active] + Math.max(1, Math.ceil((targets[active] - shown[active]) * .16)));
+          setCounts([...shown]);
+        }
         lastTick = time;
       }
       if (shown.some((count, i) => count < targets[i])) frame = requestAnimationFrame(tick);
@@ -38,6 +41,10 @@ export default function Story() {
         const progress = Math.max(0, Math.min(1, (viewport * .88 - rect.top) / Math.min(rect.height + viewport * .2, viewport * .65)));
         targets[i] = Math.max(targets[i], Math.round(progress * paragraphs[i].length));
       });
+      // Termina o parágrafo anterior antes de iniciar a próxima digitação.
+      for (let i = targets.length - 2; i >= 0; i--) {
+        if (targets[i + 1] > 0) targets[i] = paragraphs[i].length;
+      }
       if (!frame && shown.some((count, i) => count < targets[i])) frame = requestAnimationFrame(tick);
     };
     const configure = () => {

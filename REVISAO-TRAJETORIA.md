@@ -50,3 +50,15 @@ Removidas capas também da lista de singles. As duas listas agora apresentam nom
 A biografia digita caracteres conforme avança a rolagem, sem apagar o texto ao voltar. O conteúdo completo preserva o layout e fica acessível aos leitores de tela; a camada animada é decorativa. Há controle de leitura sem animação. Sem JavaScript ou com movimento reduzido, o texto aparece completo.
 
 Testes no Chromium confirmaram progresso dos caracteres ao descer, persistência ao subir, opção de texto completo, acordeões, controles visíveis, listas sem imagens, tipografia e responsividade entre 320 e 1440 px. Sem erros de hidratação ou JavaScript.
+
+## Prévia do hero com objeto de capa
+
+A abertura usa a capa como objeto clicável em um details fechado inicialmente. Tamanho de referência: 264 px no desktop e 220 px no celular, mantendo o PNG original de 3000×3000 sem corte, inclinação ou filtro. A animação desloca apenas a arte em até 8 px, sem mover a área de clique; pausa em hover, foco e ao abrir, e é desativada com movimento reduzido.
+
+No celular, o título vem antes da capa para não ser deslocado pela expansão. Ao abrir, a árvore fica no fluxo da página e apresenta seis plataformas com seus logotipos. Os cartões são acordeões exclusivos, com Spotify aberto na primeira visita. Escape fecha primeiro o detalhe mais interno e devolve foco ao respectivo summary. O fluxo nativo funciona sem JavaScript. Conectores são decorativos e não interceptam cliques.
+
+Retirado o min-height de uma tela inteira da abertura e reduzido o padding inicial da biografia para aproximar as seções. A tipografia Unbounded e a paleta foram preservadas.
+
+Testes em oito larguras de 320 a 1440 px, com animação normal, movimento reduzido e JavaScript desativado: capa quadrada, sem transbordamento, original em alta resolução, abertura/fechamento, exclusividade dos nós, teclado e Escape. Build e verificações estáticas passaram. Esta é uma prévia em branch própria, sem publicação na main.
+
+Platônico passou a usar o link direto fornecido: https://open.spotify.com/intl-pt/track/4sV1wMarlXQLniRastfWvf. O parâmetro de compartilhamento foi removido, sem alterar o ID.

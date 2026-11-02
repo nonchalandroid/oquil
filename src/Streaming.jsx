@@ -52,7 +52,6 @@ export function HeroStreaming() {
   return <div className="hero-streaming release-object">
     <button className="album-trigger" type="button" aria-label="Abrir plataformas de Quase Indo" aria-haspopup="dialog" aria-controls="hero-platform-window" onClick={open}>
       <span className="album-object"><span className="album-art"><img src="assets/quase-indo-original.png" alt="Capa oficial do single Quase Indo" width="3000" height="3000" fetchPriority="high" decoding="async" /></span></span>
-      <span className="object-cue">Abrir plataformas<Icon name="play" /></span>
     </button>
     <dialog className="music-window" id="hero-platform-window" ref={dialog} aria-labelledby="music-window-title" onClose={unlock} onClick={closeOutside}>
       <div className="music-window-hero">

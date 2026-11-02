@@ -1,5 +1,6 @@
 import React from 'react';
 import Story from './Story.jsx';
+import Signature from './Signature.jsx';
 import Catalog from './Catalog.jsx';
 import { HeroStreaming, StreamingBanner } from './Streaming.jsx';
 import { BrandSymbols, Icon } from './Icons.jsx';
@@ -11,7 +12,7 @@ function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Q
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
     <img className="hero-backdrop" src="assets/o-quil-retrato.webp" alt="" width="1600" height="899" decoding="async" />
-    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span></p><h1 id="release-title">Quase <span>Indo</span></h1><img className="signature" src="assets/o-quil-assinatura-clara.png" alt="Assinatura de o Quil" width="1805" height="810" /><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
+    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span></p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
     <div className="hero-media"><HeroStreaming /></div>
   </section>;
 }

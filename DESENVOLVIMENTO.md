@@ -41,9 +41,9 @@ Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade.
 
 O build incorpora o CSS no HTML para remover uma requisição bloqueante. O arquivo `assets/site.css` também é gerado para inspeção. Ao incorporar, o build ajusta os caminhos das fontes para `assets/`. DM Sans é local, da distribuição `@fontsource-variable/dm-sans@5.3.0` (SIL OFL em `assets/dm-sans-OFL.txt`). Unbounded usa uma versão WOFF2 reduzida para Latin-1 e pontuação geral, preservando os pesos variáveis e a licença original.
 
-As capas de lista usam `assets/thumbs/` (160×160), a capa da abertura usa `quase-indo-600.webp` (600×600), a assinatura usa WebP sem perdas com largura de 360 px e o retrato usa `o-quil-retrato-optimized.webp`. Os originais continuam disponíveis. Essas versões são arquivos versionados: não é necessário instalar ferramentas de imagem ou fontes para executar `npm ci`, build ou publicação. Ao substituir uma capa, atualize também sua miniatura.
+As capas de lista usam `assets/thumbs/` (160×160), a capa da abertura usa `srcset` com versões de 400/600/800 px, a assinatura estática usa WebP de 180 px e o retrato usa `o-quil-retrato-optimized.webp`. Os originais continuam disponíveis. Essas versões são arquivos versionados: não é necessário instalar ferramentas de imagem ou fontes para executar `npm ci`, build ou publicação. Ao substituir uma capa, atualize também sua miniatura.
 
-A assinatura continua entrando depois do título e da capa, com traços mais rápidos. Em dispositivos touch, a moldura usa variação de opacidade para evitar repintar seu gradiente continuamente.
+A assinatura continua entrando depois do título e da capa. A escrita usa uma faixa WebP transparente de 32 quadros (240×108 por quadro), animada por `transform` com `steps`, preservando os traços originais sem animar `stroke-dashoffset`. A duração é 1.302 ms, após uma espera de 1.300 ms. A versão estática garante acessibilidade e movimento reduzido. O gerador opcional `node scripts/generate-signature.cjs` requer Sharp e recompõe a sequência, a assinatura estática e as capas responsivas; os comprimentos dos traços estão em `scripts/signature-path-lengths.json`. Em dispositivos touch, a moldura usa variação de opacidade para evitar repintar seu gradiente continuamente.
 
 ### Ajustes na Cloudflare (fora do código)
 
@@ -53,3 +53,9 @@ O relatório de 02/11/2026 mostrou cache de 4 horas e scripts injetados pela Clo
 - Se a medição de visitas não for necessária, desativar a injeção do Web Analytics/Browser Insights no painel para remover `beacon.min.js`, seus polyfills e chamadas RUM. Não existe alteração no bundle local que remova um script injetado pela CDN.
 - A ofuscação de e-mail também injeta `email-decode.min.js`. Sua desativação é uma escolha de configuração da hospedagem.
 - Após publicar, medir novamente no PageSpeed mobile. O servidor Python de desenvolvimento não fornece compressão ou cache de produção; avisos locais desses cabeçalhos não comprovam problemas na CDN.
+
+### Avisos restantes após a nota 100 em produção
+
+O relatório enviado em 02/11/2026 não exige remover animações. A escrita foi migrada para quadros compostos por `transform`; a auditoria local final não listou animações não compostas e manteve CLS 0. A economia estimada restante de imagens caiu de cerca de 20 KiB para 5 KiB no teste local. Esses resultados locais não substituem nova medição no domínio publicado.
+
+O diagnóstico de JavaScript não usado inclui partes de React/React DOM que não são executadas no carregamento inicial, mas dão suporte à hidratação e às interações. Remover funções do bundle manualmente não é uma correção segura. Sua redução adicional exigiria reorganizar a arquitetura de hidratação; não foi removida funcionalidade para silenciar o diagnóstico. Cache e scripts injetados pela Cloudflare continuam dependendo das configurações de hospedagem descritas acima.

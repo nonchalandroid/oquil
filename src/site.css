@@ -13,7 +13,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--mist);outline-offs
 .hero{position:relative;isolation:isolate;overflow:clip;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;min-height:0;padding:104px 0 24px;background:#03060d}
 .hero-media{grid-column:1;grid-row:1;overflow:clip;display:flex;align-items:center;justify-content:center;padding:16px clamp(22px,4vw,60px);min-width:0}.hero-media .album-art img{width:100%;height:auto;aspect-ratio:1;object-fit:contain}
 .hero-copy{grid-column:2;grid-row:1;padding:24px clamp(28px,5vw,88px);min-width:0;width:100%;max-width:800px}.hero-latest{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:24px;font-size:10px;letter-spacing:.22em;text-transform:uppercase}.hero-latest:before{content:'';width:30px;height:1px;background:var(--mist)}
-.hero h1{font:600 clamp(52px,6.8vw,112px)/1.08 var(--heading);letter-spacing:-.085em;text-transform:uppercase;margin-bottom:26px}.hero h1 span{display:block;padding-left:.15em;color:transparent;-webkit-text-stroke:1px var(--paper)}.signature{width:120px;margin-bottom:24px}
+.hero h1{font:600 clamp(52px,6.8vw,112px)/1.08 var(--heading);letter-spacing:-.085em;text-transform:uppercase;margin-bottom:26px}.hero h1 span{display:block;padding-left:.15em;color:transparent;-webkit-text-stroke:1px var(--paper)}.signature-writing{width:120px;margin-bottom:24px}.signature{display:block;width:100%;height:auto;overflow:visible}.signature-stroke{stroke-dasharray:1;animation:signature-write var(--stroke-duration) var(--stroke-delay) linear both}
 .hero-streaming{width:100%;max-width:580px;margin-inline:auto}.hero-streaming h2{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 details summary{list-style:none;cursor:pointer}details summary::-webkit-details-marker{display:none}details summary::marker{content:''}
 .platform-name{display:flex;align-items:center;gap:12px}.stream-toggle{color:var(--mist);transition:transform .2s}details[open]>summary .stream-toggle{transform:rotate(45deg)}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:46px;padding:12px 16px;border:1px solid var(--mist);color:var(--mist);font-size:12px;line-height:1.6}.button:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}.button{background:var(--mist);color:var(--ink)}
@@ -62,24 +62,23 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 .typing-caret{display:inline-block;height:.95em;border-right:2px solid var(--mist);margin-left:3px;vertical-align:-.05em}
 @media(max-width:600px){.release-platforms summary{gap:12px}.release-title{font-size:15px}.release-action{padding:10px 12px;gap:10px}.release-links{grid-template-columns:1fr}}
 /* Capa de lançamento: tamanho estável e acesso à janela de escuta. */
-.album-trigger{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%;padding:16px 0 8px;outline-offset:6px}
-.album-object{position:relative;isolation:isolate;display:block;width:min(264px,65vw);aspect-ratio:1}
-.album-art{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1;box-shadow:0 20px 44px rgba(0,0,0,.45);animation:album-float 6s ease-in-out infinite}
-.album-trigger:hover .album-art,.album-trigger:focus-visible .album-art,.release-object:has(dialog[open]) .album-art{animation-play-state:paused}
-.object-cue{display:inline-flex;align-items:center;gap:18px;min-height:44px;padding:10px 16px;border:1px solid rgba(131,217,203,.45);border-radius:5px;font-size:11px;color:var(--paper);background:linear-gradient(145deg,rgba(131,217,203,.1),rgba(13,25,25,.65));box-shadow:0 6px 18px rgba(0,0,0,.25);transition:background .2s,border-color .2s}
-.album-trigger:hover .object-cue{background:rgba(131,217,203,.2);border-color:var(--mist)}
+.album-trigger{display:flex;flex-direction:column;align-items:center;width:100%;padding:16px 0;outline-offset:6px}
+.album-object{position:relative;isolation:isolate;display:block;width:min(264px,65vw);aspect-ratio:1;animation:album-float 6s ease-in-out infinite}
+.album-art{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1;box-shadow:0 20px 44px rgba(0,0,0,.45)}
+.album-trigger:hover .album-object,.album-trigger:focus-visible .album-object,.release-object:has(dialog[open]) .album-object{animation-play-state:paused}
 @keyframes album-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media(max-width:1100px) and (min-width:901px){.hero-media{padding-inline:24px}}
-@media(max-width:900px){.hero-copy{grid-column:1;grid-row:1}.hero-media{grid-column:1;grid-row:2}.album-object{width:240px}.hero-copy{text-align:center}.hero-copy .signature{margin-inline:auto}.hero-latest{justify-content:center}.hero h1 span{display:inline;padding-left:0}}
+@media(max-width:900px){.hero-copy{grid-column:1;grid-row:1}.hero-media{grid-column:1;grid-row:2}.album-object{width:240px}.hero-copy{text-align:center}.hero-copy .signature-writing{margin-inline:auto}.hero-latest{justify-content:center}.hero h1 span{display:inline;padding-left:0}}
 @media(max-width:600px){.album-object{width:min(220px,62vw)}.hero h1 span{display:block}.intro{padding-top:36px}}
-@media(prefers-reduced-motion:reduce){.album-art{animation:none}}
+@media(prefers-reduced-motion:reduce){.album-object{animation:none}}
 
-/* Luz apenas nas laterais: gradientes suaves, sem halo no topo ou recorte de blur. */
-.album-object:before,.album-object:after{content:'';position:absolute;z-index:0;top:16%;bottom:16%;width:80px;pointer-events:none;background:radial-gradient(ellipse,rgba(131,217,203,.3),rgba(44,141,131,.1) 35%,transparent 70%);animation:album-side-glow 6s ease-in-out infinite}
-.album-object:before{left:-44px}.album-object:after{right:-44px;animation-delay:-3s}
-.album-trigger:hover .album-object:before,.album-trigger:hover .album-object:after,.album-trigger:focus-visible .album-object:before,.album-trigger:focus-visible .album-object:after,.release-object:has(dialog[open]) .album-object:before,.release-object:has(dialog[open]) .album-object:after{animation-play-state:paused}
-@keyframes album-side-glow{0%,100%{opacity:.55}50%{opacity:1}}
-@media(prefers-reduced-motion:reduce){.album-object:before,.album-object:after{animation:none}}
+/* Contorno de Stories: a luz gira; a capa permanece inteira e legível. */
+@property --story-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+.album-object:before{content:'';position:absolute;z-index:0;inset:-9px;padding:3px;border-radius:12px;pointer-events:none;background:conic-gradient(from var(--story-angle),#83d9cb,#397b76 18%,#e8eee9 26%,#c6a4e8 40%,#83d9cb 58%,#244b48 76%,#e8eee9 84%,#83d9cb);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:story-orbit 5s linear infinite,story-sparkle 2.8s ease-in-out infinite}
+@keyframes story-orbit{to{--story-angle:360deg}}
+@keyframes story-sparkle{0%,100%{opacity:.7}50%{opacity:1}}
+.album-trigger:focus-visible .album-object:before,.release-object:has(dialog[open]) .album-object:before{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.album-object:before{animation:none}}
 .footer-signature{display:inline-flex;align-items:center;min-height:44px;flex:none}
 .footer-signature img{width:100px;height:auto}
 
@@ -110,3 +109,11 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 .music-window-links a>span{flex:1;min-width:0}.music-window-links strong{display:block;font-size:12px;font-weight:500}.music-window-links small{display:block;font-size:10px;line-height:1.5;color:var(--muted)}
 .music-window-links a>.icon{width:14px;height:14px}
 @media(max-width:600px){.music-window-hero{min-height:156px;padding:28px 18px 18px}.music-window-cover{width:76px;height:76px}.music-window-release{gap:14px}.music-window-links{grid-template-columns:1fr;gap:8px;padding:4px 16px 16px}.music-window-links a{min-height:56px;padding:8px 12px}.music-window-links strong{font-size:13px}}
+
+/* A máscara acompanha os traços da imagem original, como uma caneta. */
+@keyframes signature-write{0%{opacity:0;stroke-dashoffset:1}1%{opacity:1}100%{opacity:1;stroke-dashoffset:0}}
+.hero h1{animation:title-arrive 1200ms 4000ms cubic-bezier(.4,0,.2,1) both}
+.hero-media{animation:single-arrive 1400ms 5450ms cubic-bezier(.4,0,.2,1) both}
+@keyframes title-arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes single-arrive{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.signature-stroke,.hero h1,.hero-media{animation:none}}

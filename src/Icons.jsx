@@ -14,6 +14,6 @@ export function BrandIcon({ name }) {
 }
 
 export function Icon({ name = 'external', className = '' }) {
-  const paths = { play: 'M8 5 19 12 8 19Z', external: 'M7 17 17 7M7 7h10v10', plus: 'M12 5v14M5 12h14', down: 'M12 4v16m-6-6 6 6 6-6', up: 'M12 20V4m-6 6 6-6 6 6' };
+  const paths = { external: 'M7 17 17 7M7 7h10v10', plus: 'M12 5v14M5 12h14', down: 'M12 4v16m-6-6 6 6 6-6', up: 'M12 20V4m-6 6 6-6 6 6' };
   return <svg className={`icon ${className}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d={paths[name]} /></svg>;
 }

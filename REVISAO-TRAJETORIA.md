@@ -24,3 +24,7 @@ GitHub Pages agora executa instalação com lockfile, build React e verificaçõ
 As verificações estáticas cobrem arquivos locais, IDs, âncoras e estrutura SEO. No Chromium são conferidos imagens, tipografia, ícones, acordeões, hidratação, rolagem e responsividade entre 320 e 1440 px. Incluem JavaScript desativado, bundle bloqueado e movimento reduzido.
 
 A validação local não comprova publicação, indexação ou disponibilidade dos serviços externos.
+
+## Favicon e paleta
+
+O teste vermelho foi descartado; a paleta anterior foi restaurada. O favicon tipográfico genérico foi substituído por uma adaptação simplificada do Q da assinatura, em menta clara sobre fundo escuro. Arquivos PNG de 16 a 1024 px, ICO (16/24/32/48/64/128/256), Apple Touch e ícones maskable 192/512 incluídos. Manifesto, metadados e cópia para dist configurados. Dimensões, recursos HTTP e leitura do manifesto no Chromium validados; o favicon não depende de React.

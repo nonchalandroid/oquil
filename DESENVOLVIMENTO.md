@@ -28,3 +28,9 @@ O workflow `.github/workflows/static.yml` instala com `npm ci`, executa build e 
 `npm run check` confere arquivos locais, IDs únicos, destinos de âncoras, formato HTTPS dos links externos, h1, narrativa pré-renderizada e JSON estruturado. A verificação não afirma disponibilidade ou conteúdo de serviços externos.
 
 O conteúdo é legível sem JavaScript. Acordeões usam details/summary nativos e funcionam por teclado sem hidratação. Não há ocultação de conteúdo condicionada à rolagem nem interceptação das âncoras. `#top` aponta a um marcador dedicado no início do documento.
+
+## Favicon
+
+O Q foi adaptado da assinatura do artista para manter legibilidade em tamanho pequeno. O master está em `src/brand/q-assinatura-master.png`. Para regenerar os ícones, execute `python3 scripts/generate-icons.py` com Pillow instalado e depois `npm run build`. Não é uma dependência da aplicação ou da publicação: os ícones finais ficam versionados.
+
+São gerados PNGs de 16 a 1024 px, ICO com sete resoluções, Apple Touch e variantes maskable com margem de segurança. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. As URLs de ícone têm versão por conteúdo; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.

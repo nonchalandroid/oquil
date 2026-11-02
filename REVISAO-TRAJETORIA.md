@@ -98,3 +98,13 @@ Lost Tracks, Vol. 0 (747×740) e Sombras do Subconsciente (812×787) agora usam 
 - Cinco acordeões nativos details/summary, um por plataforma: Spotify, Apple Music, Amazon Music, YouTube Music e YouTube. Grupo exclusivo, utilizável por teclado e sem JavaScript. Spotify começa aberto, com CTA direto.
 - Spotify usa o endereço da faixa já fornecido; Apple Music, Amazon Music e YouTube Music usam buscas explicitamente identificadas; YouTube abre o canal. Esses destinos não foram apresentados como URLs individuais confirmadas de streaming.
 - Testado carregamento real da fonte local e da capa, expansão/recolhimento por teclado, exclusividade dos acordeões e ajuste do título em nove larguras entre 320 e 1440 px, com e sem JavaScript e requisições externas bloqueadas. Sem erros de JavaScript.
+
+## Narrativa em React após revisão editorial
+
+A apresentação cronológica com títulos de lançamentos foi substituída por texto corrido. A seção “This Is o Quil” passa a contar o início como Fillipe Queiroz, a adoção do nome o Quil e o som atual, sem duplicar álbuns, capas ou a lista do catálogo. Este formato substitui as versões de linha do tempo documentadas acima.
+
+Implementação em src/Story.jsx com destaque discreto do parágrafo em leitura. O texto é pré-renderizado no HTML para SEO e leitura sem JavaScript; React hidrata somente essa seção. Sem bloqueio de rolagem, carrossel ou ocultação do conteúdo. Preferência por movimento reduzido respeitada, com limpeza de observadores ao desmontar o componente. As pendências históricas anteriores não foram transformadas em fatos.
+
+Dependências fixadas em package-lock.json. `npm run build` gera assets/story.js e o trecho estático de index.html; instruções em DESENVOLVIMENTO.md. Publicação continua compatível com GitHub Pages e com o bundle de produção versionado no repositório, sem depender de CDN React.
+
+Validação no Chromium: três parágrafos, ausência de álbuns e imagens na seção, destaque ao rolar cada parágrafo, leitura com movimento reduzido, JavaScript desativado e bundle bloqueado, nenhuma falha de hidratação, ajuste de 320 a 1440 px. Build executado com sucesso; bundle de aproximadamente 61 kB em gzip.

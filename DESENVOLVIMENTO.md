@@ -31,9 +31,9 @@ O conteúdo é legível sem JavaScript. Acordeões usam details/summary nativos 
 
 ## Favicon
 
-O Q foi adaptado da assinatura do artista para manter legibilidade em tamanho pequeno. O master está em `src/brand/q-assinatura-master.png`. Para regenerar os ícones, execute `python3 scripts/generate-icons.py` com Pillow instalado e depois `npm run build`. Não é uma dependência da aplicação ou da publicação: os ícones finais ficam versionados.
+O Q mantém a referência manuscrita, com curvas Bézier e terminais arredondados. O master vetorial está em `src/brand/q-icon.svg`; `assets/favicon.svg` é sua cópia pública, sem imagem raster embutida. Para regenerar os ícones, execute `python3 scripts/generate-icons.py` com Pillow e CairoSVG instalados e depois `npm run build`. Não é uma dependência da aplicação ou da publicação: os ícones finais ficam versionados.
 
-São gerados PNGs de 16 a 1024 px, ICO com sete resoluções, Apple Touch e variantes maskable com margem de segurança. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. As URLs de ícone têm versão por conteúdo; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
+São gerados PNGs de 16 a 1024 px com cantos arredondados, ICO com sete resoluções, Apple Touch opacos de 120/152/167/180 px e variantes Android maskable com fundo completo e símbolo dentro do círculo seguro de 80% do diâmetro. iOS e Android aplicam suas próprias máscaras aos atalhos. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. O HTML dá preferência ao SVG nos navegadores compatíveis e mantém ICO/PNG como alternativas. As URLs de ícone têm versão por conteúdo, inclusive dentro de `dist/site.webmanifest` e `dist/browserconfig.xml`; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
 
 Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. Ao descer, a digitação avança; ao subir, apaga em ordem inversa. Apenas um parágrafo fica parcialmente digitado por vez, sem interceptar a roda do mouse. O controle “Ler sem animação” revela todo o texto.
 

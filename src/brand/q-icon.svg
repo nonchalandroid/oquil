@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <title>o Quil</title>
+  <rect width="256" height="256" rx="64" fill="#05090a"/>
+  <g stroke="#dff5ee" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M164 58C135 45 99 75 81 110C62 148 65 178 84 187C104 197 136 175 157 146C180 115 188 81 175 65C172 62 168 59 164 58Z"/>
+    <path d="M125 145C143 158 159 180 181 198"/>
+  </g>
+</svg>

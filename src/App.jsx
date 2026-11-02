@@ -10,7 +10,7 @@ function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Q
 
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
-    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span><strong>5521</strong></p><h1 id="release-title">Quase <span>Indo</span></h1><p className="hero-sub">o Quil<br />Clique na capa para escolher onde ouvir.</p><img className="signature" src="assets/o-quil-assinatura-clara.png" alt="Assinatura de o Quil" width="1805" height="810" /><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
+    <div className="hero-copy"><p className="hero-latest"><span>Último lançamento</span><strong>5521</strong></p><h1 id="release-title">Quase <span>Indo</span></h1><img className="signature" src="assets/o-quil-assinatura-clara.png" alt="Assinatura de o Quil" width="1805" height="810" /><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
     <div className="hero-media"><HeroStreaming /></div>
   </section>;
 }

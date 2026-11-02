@@ -44,24 +44,15 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 .streaming-banner:focus-visible{outline:2px solid var(--mist);outline-offset:4px}
 .streaming-banner a:focus-visible{outline-offset:-4px}
 @media(max-width:600px){.streaming-banner{margin-top:40px;gap:12px}.streaming-banner a{flex-basis:164px}.archive-row{padding-left:14px}}
-/* Controles de ouvir: superfícies de vidro e áreas de clique explícitas. */
+/* Lançamentos: cada faixa abre uma janela de escuta, sem expandir a página. */
 .release{padding:20px 0;border-bottom:1px solid var(--line)}
-.release-platforms summary{display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:20px;min-height:64px;padding:10px 0;list-style:none}
+.release-trigger{display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:20px;width:100%;min-height:84px;padding:10px 0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}
+.release-trigger:focus-visible{outline:2px solid var(--mist);outline-offset:5px;border-radius:6px}
 .release-cover{display:block;width:72px;height:72px;object-fit:contain}
 .release-title{font:400 clamp(16px,1.8vw,23px)/1.5 var(--heading);letter-spacing:-.035em}
 .release-action{display:inline-flex;align-items:center;justify-content:center;gap:18px;padding:12px 18px;min-height:46px;border:1px solid rgba(131,217,203,.5);border-radius:5px;background:linear-gradient(145deg,rgba(131,217,203,.12),rgba(13,25,25,.6));box-shadow:inset 0 1px rgba(232,238,233,.08),0 6px 20px rgba(0,0,0,.22);color:var(--paper);font:500 12px/1.6 var(--body);backdrop-filter:blur(8px);transition:background .2s,border-color .2s,box-shadow .2s,transform .2s}
-.release-platforms summary:hover .release-action,.release-platforms[open] .release-action{background:rgba(131,217,203,.2);border-color:var(--mist);box-shadow:0 6px 24px rgba(0,0,0,.3),0 0 18px rgba(131,217,203,.06)}
-.release-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px 0 20px}
-.release-links a{padding:12px 16px;border:1px solid rgba(131,217,203,.3);border-radius:5px;background:linear-gradient(145deg,rgba(232,238,233,.045),rgba(13,25,25,.6));color:var(--paper);box-shadow:0 4px 14px rgba(0,0,0,.16);transition:transform .2s,background .2s,border-color .2s}
-.release-links a:hover{transform:translateY(-2px);background:rgba(131,217,203,.12);border-color:var(--mist)}
-
-.button{border-radius:5px;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .2s,box-shadow .2s,background .2s}
-.button:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.35)}
-/* O texto completo preserva espaço e acessibilidade; só a camada visual digita. */
-.narrative-copy[data-typing] .story-full{opacity:0}
-.story-typed{position:absolute;inset:0;pointer-events:none;color:var(--paper)}
-.typing-caret{display:inline-block;height:.95em;border-right:2px solid var(--mist);margin-left:3px;vertical-align:-.05em}
-@media(max-width:600px){.release-platforms summary{gap:12px}.release-title{font-size:15px}.release-action{padding:10px 12px;gap:10px}.release-links{grid-template-columns:1fr}}
+.release-trigger:hover .release-action,.release-trigger:focus-visible .release-action{background:rgba(131,217,203,.2);border-color:var(--mist);box-shadow:0 6px 24px rgba(0,0,0,.3),0 0 18px rgba(131,217,203,.06)}
+@media(max-width:600px){.release-trigger{grid-template-columns:52px minmax(0,1fr) auto;gap:12px}.release-cover{width:52px;height:52px}.release-title{font-size:15px}.release-action{padding:10px 12px;gap:10px}}
 /* Capa de lançamento: tamanho estável e acesso à janela de escuta. */
 .album-trigger{display:flex;flex-direction:column;align-items:center;width:100%;padding:16px 0;outline-offset:6px}
 .album-object{position:relative;isolation:isolate;display:block;width:min(264px,65vw);aspect-ratio:1;animation:album-float 6s ease-in-out infinite}
@@ -84,15 +75,15 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 .footer-signature img{width:100px;height:auto}
 
 /* Retrato estático: atmosfera na abertura sem movimento durante a rolagem. */
-.hero-backdrop{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:.24;pointer-events:none}
+.hero-backdrop{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:.17;pointer-events:none}
 .hero:after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(3,6,13,.12),rgba(3,6,13,.32) 65%,#03060d);pointer-events:none}
-@media(max-width:900px){.hero-copy .text-link{display:none}.hero-backdrop{object-position:42% top;opacity:.22}}
+@media(max-width:900px){.hero-copy .text-link{display:none}.hero-backdrop{object-position:42% top;opacity:.15}}
 
 /* Janela de escuta na top layer: não altera a altura da página. */
 .album-trigger{border:0;background:none;color:inherit;font:inherit;cursor:pointer}
 .album-trigger:focus-visible{outline:2px solid var(--mist)}
 .music-window{width:min(560px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 32px);padding:0;border:1px solid rgba(131,217,203,.3);border-radius:14px;background:#091211;color:var(--paper);box-shadow:0 32px 100px rgba(0,0,0,.65);overflow-y:auto;overscroll-behavior:contain}
-.music-window::backdrop{background:rgba(2,6,8,.86)}
+.music-window::backdrop{background:rgba(2,6,8,.72);backdrop-filter:blur(2px)}
 .music-window-hero{position:relative;isolation:isolate;overflow:hidden;min-height:180px;display:flex;align-items:end;padding:32px 28px 24px;background:#06110f}
 .music-window-backdrop{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
 .music-window-hero:after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(5,9,10,.12),#091211)}
@@ -122,4 +113,14 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 /* Aproxima o carrossel dos singles sem retirar o respiro entre seções. */
 .intro{padding-bottom:32px}.catalog{padding-top:40px}
 .streaming-banner{margin-top:36px}
-@media(max-width:600px){.intro{padding-bottom:24px}.catalog{padding-top:32px}.streaming-banner{margin-top:28px}.release-platforms summary{grid-template-columns:52px minmax(0,1fr) auto;gap:12px}.release-cover{width:52px;height:52px}}
+@media(max-width:600px){.intro{padding-bottom:24px}.catalog{padding-top:32px}.streaming-banner{margin-top:28px}.release-trigger{grid-template-columns:52px minmax(0,1fr) auto;gap:12px}.release-cover{width:52px;height:52px}}
+
+/* Entrada escalonada das plataformas na janela de escuta. */
+.release-dialog[open] .music-window-links a{animation:platform-arrive 380ms cubic-bezier(.2,.7,.2,1) both}
+.release-dialog[open] .music-window-links a:nth-child(1){animation-delay:40ms}
+.release-dialog[open] .music-window-links a:nth-child(2){animation-delay:80ms}
+.release-dialog[open] .music-window-links a:nth-child(3){animation-delay:120ms}
+.release-dialog[open] .music-window-links a:nth-child(4){animation-delay:160ms}
+.release-dialog[open] .music-window-links a:nth-child(5){animation-delay:200ms}
+@keyframes platform-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.release-dialog[open] .music-window-links a{animation:none}}

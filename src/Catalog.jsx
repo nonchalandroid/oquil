@@ -18,7 +18,7 @@ function ReleaseDisclosure({ release }) {
     }
   };
   return <details className="release-platforms" name="catalog-platforms" onToggle={onToggle}>
-    <summary><span className="release-title">{release.title}</span><span className="release-action">Ouvir<Icon name="plus" className="stream-toggle" /></span></summary>
+    <summary><img className="release-cover" src={release.cover.src} alt={`Capa de ${release.title}`} width={release.cover.width} height={release.cover.height} loading="lazy" decoding="async" /><span className="release-title">{release.title}</span><span className="release-action">Ouvir<Icon name="plus" className="stream-toggle" /></span></summary>
     <nav className="release-links" ref={panel} aria-label={`Ouvir ${release.title}`}><PlatformLinks links={release.links} /></nav>
   </details>;
 }
@@ -26,7 +26,7 @@ function ReleaseDisclosure({ release }) {
 export default function Catalog() {
   return <section className="section catalog" id="catalogo" aria-labelledby="catalogo-titulo">
     <div className="section-inner">
-      <header className="catalog-head" data-enter=""><div><p className="section-kicker">02 / Música</p><h2 className="section-title" id="catalogo-titulo">Lançamentos</h2></div></header>
+      <header className="catalog-head" data-enter=""><div><p className="section-kicker">02 / Música</p><h2 className="section-title" id="catalogo-titulo">Últimos lançamentos</h2></div></header>
       <div className="release-list">{releases.map(release => <article className="release" key={release.title} data-enter=""><ReleaseDisclosure release={release} /></article>)}</div>
       <div className="archive"><header data-enter=""><p className="section-kicker">Arquivo</p><h3>linha do tempo</h3></header>
         <ol className="archive-timeline" aria-label="Cronologia dos lançamentos">{archive.map(release => <li className="archive-row" key={release.title} data-enter=""><time className="archive-year" dateTime={release.year}>{release.year}</time><div><h4>{release.title}</h4></div></li>)}</ol>

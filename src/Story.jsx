@@ -9,12 +9,10 @@ const paragraphs = [
 
 export default function Story() {
   const article = useRef(null);
-  const [disabled, setDisabled] = useState(false);
   const [typing, setTyping] = useState(false);
   const [counts, setCounts] = useState(() => paragraphs.map(text => text.length));
 
   useEffect(() => {
-    if (disabled) { setTyping(false); return; }
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     let disposed = false;
@@ -74,10 +72,9 @@ export default function Story() {
       window.removeEventListener('resize', update);
       motion.removeEventListener('change', configure);
     };
-  }, [disabled]);
+  }, []);
 
   return <article className="narrative-copy" aria-label="A história de o Quil" ref={article} data-typing={typing || undefined}>
-    {typing && <button className="story-complete" type="button" onClick={() => setDisabled(true)}>Ler sem animação</button>}
     {paragraphs.map((text, index) => <p key={index} data-paragraph={index} className={index === 0 ? 'narrative-lead' : undefined}>
       <span className="story-full">{text}</span>
       {typing && <span className="story-typed" aria-hidden="true">{text.slice(0, counts[index])}{counts[index] > 0 && counts[index] < text.length && <span className="typing-caret" />}</span>}

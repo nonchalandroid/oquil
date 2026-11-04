@@ -65,3 +65,11 @@ O diagnóstico de JavaScript não usado inclui partes de React/React DOM que nã
 A bio usa fontes nativas do sistema (`-apple-system`, BlinkMacSystemFont e equivalentes), sem download adicional. A descida da página libera progressivamente o texto, digitado sem erros simulados a 18 ms por letra, com pausas curtas na pontuação. Ao subir, o texto apaga com backspace proporcional à distância rolada; ao descer novamente, retoma do prefixo existente.
 
 `src/storyTyping.js` mantém apenas passos do texto correto. “Ler sem animação” e a preferência por movimento reduzido apresentam imediatamente a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.
+
+### Estabilidade da rolagem mobile
+
+A barra de leitura atualiza somente seu próprio `transform`, em vez de uma variável CSS herdada do documento inteiro. A bio agrupa leituras de rolagem em `requestAnimationFrame`, ignora oscilações acumuladas menores que 3 px e mantém a altura de referência quando a barra do navegador touch recolhe ou expande. O controle de leitura reserva espaço e não altera a posição das seções ao desaparecer. O fundo dos botões “Ouvir” no touch preserva o visual sem `backdrop-filter` durante a rolagem.
+
+A assinatura, a flutuação da capa, o brilho, as entradas das seções e a digitação/backspace foram preservados. Na simulação Chromium mobile, a mesma sequência de descida/subida reduziu o tempo de recálculo de estilos de aproximadamente 1,26 s para 0,15 s. A auditoria local registrou CLS 0 e nenhum aviso de animação não composta. Esse teste não substitui conferir um aparelho físico, especialmente Safari/iOS.
+
+Em 04/11/2026 foi removida do PRESS a matéria legada `noisey.vice.com/pt_br/blog/ouca-sinergia-primeiro-ep-do-carioca-fillipe-queiroz`, confirmada como quebrada pelo responsável pelo site. Os demais destinos foram preservados: o proxy do ambiente bloqueou as consultas externas e não permitiu confirmar sua disponibilidade.

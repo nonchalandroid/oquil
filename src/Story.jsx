@@ -10,6 +10,10 @@ export default function Story() {
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let timer;
+    let scrollFrame = 0;
+    let viewportHeight = window.innerHeight;
+    let viewportWidth = window.innerWidth;
+    const touch = window.matchMedia('(pointer: coarse)').matches;
     const steps = createTypingSteps();
     let index = 0;
     let shown = '';
@@ -39,28 +43,40 @@ export default function Story() {
     };
     const scrollTarget = () => {
       const rect = article.current.getBoundingClientRect();
-      const distance = Math.min(rect.height + window.innerHeight * .2, window.innerHeight * .65);
-      const progress = Math.max(0, Math.min(1, (window.innerHeight * .9 - rect.top) / distance));
+      const distance = Math.min(rect.height + viewportHeight * .2, viewportHeight * .65);
+      const progress = Math.max(0, Math.min(1, (viewportHeight * .9 - rect.top) / distance));
       return Math.round(progress * biography.length);
     };
-    const onScroll = () => {
-      const y = window.scrollY;
+    const updateScroll = () => {
+      scrollFrame = 0;
+      const y = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
       const delta = y - previousY;
+      if (!enabled() || Math.abs(delta) < 3) return;
       previousY = y;
-      if (!enabled() || Math.abs(delta) < 1) return;
       const rect = article.current.getBoundingClientRect();
       if (delta < 0 && rect.bottom > 0) {
         if (direction !== 'backward') target = shown.length;
         direction = 'backward';
-        target = Math.max(0, target + delta * biography.length / Math.max(window.innerHeight * .85, rect.height));
-        if (rect.top >= window.innerHeight * .9) target = 0;
+        target = Math.max(0, target + delta * biography.length / Math.max(viewportHeight * .85, rect.height));
+        if (rect.top >= viewportHeight * .9) target = 0;
         schedule(0);
       } else if (delta > 0) {
         if (direction !== 'forward') index = shown.length;
         direction = 'forward';
-        target = Math.max(shown.length, scrollTarget());
+        const distance = Math.min(rect.height + viewportHeight * .2, viewportHeight * .65);
+        const progress = Math.max(0, Math.min(1, (viewportHeight * .9 - rect.top) / distance));
+        target = Math.max(shown.length, Math.round(progress * biography.length));
         schedule(0);
       }
+    };
+    const onScroll = () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
+    };
+    const onResize = () => {
+      // A barra do navegador mobile muda de altura durante o gesto, não a cena.
+      if (!touch || window.innerWidth !== viewportWidth) viewportHeight = window.innerHeight;
+      viewportWidth = window.innerWidth;
+      previousY = Math.max(0, window.scrollY);
     };
     const configure = () => {
       clearTimeout(timer);
@@ -80,18 +96,21 @@ export default function Story() {
     configure();
     observer.observe(article.current);
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
     motion.addEventListener('change', configure);
     return () => {
       disposed = true;
       clearTimeout(timer);
+      cancelAnimationFrame(scrollFrame);
       observer.disconnect();
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
       motion.removeEventListener('change', configure);
     };
   }, [readAll]);
 
   return <article className="narrative-copy" aria-label="A história de o Quil" ref={article} data-typing={typing || undefined}>
     <p className="narrative-lead"><span className="story-full">{biography}</span>{typing && <span className="story-typed" aria-hidden="true">{text}{text !== biography && <span className="typing-caret" />}</span>}</p>
-    {typing && !readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>ler sem animação</button>}
+    <div className="story-controls">{typing && !readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>ler sem animação</button>}</div>
   </article>;
 }

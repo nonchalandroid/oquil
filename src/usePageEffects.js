@@ -5,12 +5,14 @@ export default function usePageEffects() {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     let observer;
+    const progress = document.querySelector('.reading-progress');
     const animations = new Set();
     const revealed = new WeakSet();
     const updateProgress = () => {
       frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      document.documentElement.style.setProperty('--page-progress', max > 0 ? window.scrollY / max : 0);
+      const value = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
+      if (progress) progress.style.transform = `scaleX(${value})`;
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateProgress); };
     const observe = () => {

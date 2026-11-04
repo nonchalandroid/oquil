@@ -26,7 +26,7 @@
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/@oquil/videos",
-          "title": "Abrir Quase Indo · YouTube"
+          "title": "Abrir canal no YouTube"
         }
       ],
       "cover": {
@@ -61,7 +61,7 @@
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/channel/UCnvlYls3uQp7umIl7jsS1xQ",
-          "title": "Abrir Se Move · YouTube"
+          "title": "Abrir canal no YouTube"
         }
       ],
       "cover": {
@@ -131,7 +131,7 @@
         {
           "label": "YouTube",
           "href": "https://www.youtube.com/@oquil/videos",
-          "title": "Abrir Consequência de Estar Acordado · YouTube"
+          "title": "Abrir canal no YouTube"
         }
       ],
       "cover": {
@@ -144,35 +144,51 @@
   "archive": [
     {
       "title": "Sinergia",
-      "year": "2014"
+      "year": "2014",
+      "href": "https://open.spotify.com/search/o%20Quil%20Sinergia",
+      "linkTitle": "Buscar Sinergia no Spotify"
     },
     {
       "title": "Por Via das Dúvidas",
-      "year": "2015"
+      "year": "2015",
+      "href": "https://open.spotify.com/search/o%20Quil%20Por%20Via%20das%20D%C3%BAvidas",
+      "linkTitle": "Buscar Por Via das Dúvidas no Spotify"
     },
     {
       "title": "Lost Tracks, Vol. 0",
-      "year": "2016"
+      "year": "2016",
+      "href": "https://open.spotify.com/intl-pt/album/3xSWh7XY82tHXBglXPjpTU",
+      "linkTitle": "Ouvir Lost Tracks, Vol. 0 no Spotify"
     },
     {
       "title": "Lost Tracks",
-      "year": "2019"
+      "year": "2019",
+      "href": "https://open.spotify.com/intl-pt/album/3IOaChHUNRTl6r9zASHf8c",
+      "linkTitle": "Ouvir Lost Tracks no Spotify"
     },
     {
       "title": "Platônico",
-      "year": "2020"
+      "year": "2020",
+      "href": "https://open.spotify.com/intl-pt/track/4sV1wMarlXQLniRastfWvf",
+      "linkTitle": "Ouvir Platônico no Spotify"
     },
     {
       "title": "Noites Online",
-      "year": "2021"
+      "year": "2021",
+      "href": "https://open.spotify.com/album/4nmcr7HFStKqzbghDyQRlA",
+      "linkTitle": "Ouvir Noites Online no Spotify"
     },
     {
       "title": "Não Importa",
-      "year": "2022"
+      "year": "2022",
+      "href": "https://open.spotify.com/intl-pt/track/4lnOFJ5Lj8gJBlDoJugAA7",
+      "linkTitle": "Ouvir Não Importa no Spotify"
     },
     {
       "title": "Sombras do Subconsciente",
-      "year": "2023"
+      "year": "2023",
+      "href": "https://open.spotify.com/intl-pt/album/4ZOv17UHwKVNILm0FGoau9",
+      "linkTitle": "Ouvir Sombras do Subconsciente no Spotify"
     }
   ],
   "press": [

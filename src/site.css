@@ -159,3 +159,5 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 
 /* Centraliza o conjunto no desktop; margens automáticas cedem se houver overflow. */
 @media(min-width:901px){.streaming-banner a:first-child{margin-inline-start:auto}.streaming-banner a:last-child{margin-inline-end:auto}}
+
+.archive-row h4 a{display:inline-flex;align-items:center;gap:10px;min-height:44px}.archive-row h4 a:hover{color:var(--mist)}.archive-row h4 a .icon{width:14px;height:14px;opacity:.6}

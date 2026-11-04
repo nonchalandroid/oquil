@@ -93,3 +93,9 @@ for (const release of releases) {
 }
 assert.ok(html.includes('class="hero-backdrop" fetchPriority="high" loading="eager"') || html.includes('class="hero-backdrop" fetchpriority="high" loading="eager"'), 'Retrato LCP sem prioridade alta');
 console.log('CSS incorporado, fontes locais, miniaturas e prioridade do retrato LCP conferidos.');
+
+const { archive: archiveReleases } = JSON.parse(await readFile(path.join(root, '../src/content.json'), 'utf8'));
+for (const release of archiveReleases) {
+  assert.ok(release.href && archive.includes(`href="${release.href}"`), `Arquivo sem link: ${release.title}`);
+}
+console.log(`${archiveReleases.length} lançamentos da linha do tempo com links conferidos.`);

@@ -9,6 +9,10 @@ import usePageEffects from './usePageEffects.js';
 
 function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="o Quil" width="180" height="81" /></a>; }
 
+function LabelMark({ compact = false }) {
+  return <div className={`label-lockup${compact ? ' label-lockup-compact' : ''}`} role="img" aria-label="Brutt Gang Entertainment"><span className="label-logo-art" aria-hidden="true"><img src="assets/brutt-gang-logo.webp" alt="" width="1816" height="866" loading="lazy" decoding="async" /></span><span className="label-subline" aria-hidden="true">ENTERTAINMENT</span></div>;
+}
+
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
     <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-ai.webp" alt="" width="1673" height="940" decoding="async" />
@@ -20,8 +24,8 @@ function Hero() {
 
 function ArtistStory() {
   return <section className="section intro" aria-labelledby="sobre-titulo"><div className="section-inner" id="sobre">
-    <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2><div className="label-identity"><p>Artista do selo independente</p><div className="label-lockup"><img src="assets/brutt-gang-logo.webp" alt="Brutt Gang" width="1816" height="866" loading="lazy" decoding="async" /><span className="label-subline">ENTERTAINMENT</span></div></div></header><div id="artist-story"><Story /></div></div>
-    <StreamingBanner />
+    <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2></header><div id="artist-story"><Story /></div></div>
+    <div className="artist-streaming"><div className="label-identity"><p>Artista do selo independente</p><LabelMark /></div><StreamingBanner /></div>
   </div></section>;
 }
 
@@ -38,6 +42,6 @@ export default function App() {
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
       <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-ai.webp" alt="" width="1673" height="940" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><PlaylistStreaming /></div></section>
     </main>
-    <footer><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="Assinatura de o Quil" width="180" height="81" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@oquil" target="_blank" rel="noopener noreferrer">YouTube</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><span className="footer-label">Brutt Gang Entertainment</span><span>Rio de Janeiro · Brasil</span></div></footer>
+    <footer><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="Assinatura de o Quil" width="180" height="81" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@oquil" target="_blank" rel="noopener noreferrer">YouTube</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><LabelMark compact /><span>Rio de Janeiro · Brasil</span></div></footer>
   </div>;
 }

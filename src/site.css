@@ -162,32 +162,33 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 
 
 /* Redesign o Quil — retrato em primeiro plano e vermelho-sangue como assinatura. */
-:root{--ink:#080d0e;--paper:#ede9e3;--muted:#a7a09a;--mist:#83d9cb;--line:rgba(237,233,227,.16)}
-body{background:radial-gradient(ellipse at 85% 25%,rgba(176,0,32,.07),transparent 42%),var(--ink)}
-.wordmark span,.nav-links a:hover,.text-link:hover{color:#b00020}
+:root{--ink:#080d0e;--paper:#ede9e3;--muted:#a7a09a;--mist:#83d9cb;--petrol:#123b3b;--blood:#b00020;--impact:#e5092b;--wine:#65101d;--line:rgba(237,233,227,.16)}
+body{background:radial-gradient(ellipse at 85% 25%,var(--petrol),transparent 55%),var(--ink)}
+.wordmark span{color:var(--blood)}
 ::selection{background:#b00020;color:#fff}
-.reading-progress{background:#e5092b}
+.reading-progress{background:var(--blood)}
 .section-kicker,.press-date,.press-outlet,.archive-year{color:var(--muted)}
 .hero{display:flex;align-items:flex-end;min-height:100vh;min-height:100svh;padding:150px clamp(24px,8vw,124px) 12vh;background:#080d0e}
 .hero-backdrop{object-position:62% 38%;opacity:.68;filter:saturate(.72) contrast(1.08)}
 .hero:after{background:linear-gradient(90deg,rgba(4,7,8,.86) 0%,rgba(4,7,8,.52) 42%,rgba(4,7,8,.08) 100%),linear-gradient(0deg,rgba(4,7,8,.72),transparent 55%)}
 .hero-copy{position:relative;z-index:1;grid-column:auto;grid-row:auto;max-width:820px;padding:0;width:100%;text-align:left}
 .hero-eyebrow{margin-bottom:24px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,233,227,.72)}
-.hero-eyebrow span{padding:0 8px;color:#e5092b}
+.hero-eyebrow span{padding:0 8px;color:var(--blood)}
 .hero h1{font-size:clamp(64px,10vw,148px);line-height:.98;letter-spacing:-.095em;margin-bottom:22px;text-shadow:0 8px 40px rgba(0,0,0,.24)}
 .hero h1 span{display:block;padding-left:.06em;color:transparent;-webkit-text-stroke:1px var(--paper)}
 .signature-writing{width:clamp(100px,11vw,148px);margin:0 0 26px 5px;filter:brightness(1.08)}
 .hero-copy .text-link{margin-top:0;color:var(--paper);text-decoration:none;letter-spacing:.04em}
-.hero-copy .text-link .icon{color:#e5092b}
+.hero-copy .text-link .icon{color:var(--blood)}
 .hero-scroll{display:none}
 .spotify-corner{position:absolute;z-index:45;right:24px;bottom:22px;width:320px;padding:10px 10px 0;border:1px solid rgba(237,233,227,.14);border-radius:13px;background:rgba(8,13,14,.9);box-shadow:0 18px 60px rgba(0,0,0,.42);backdrop-filter:blur(14px)}
 .spotify-corner-label{display:flex;align-items:center;gap:7px;padding:0 3px 8px;font:500 8px/1.5 var(--heading);letter-spacing:.13em;color:rgba(237,233,227,.7)}
-.spotify-corner-label span{color:#e5092b}
+.spotify-corner-label span{color:var(--blood)}
 .spotify-corner-link{display:flex;align-items:center;min-height:44px;padding:4px 3px;color:var(--paper);font-size:11px;text-decoration:underline;text-underline-offset:3px}
-.spotify-corner-link:hover{color:#e5092b}
+.spotify-corner-link:hover{color:var(--paper);text-decoration-color:var(--blood)}
 .spotify-corner iframe{display:block;width:100%;height:152px;border:0;border-radius:9px}
-.button{background:#b00020;border-color:#b00020;color:#fff}
-.button:hover{background:#e5092b;border-color:#e5092b;color:#fff}
+.button{background:rgba(18,59,59,.18);border-color:var(--wine);color:var(--paper)}
+.button:hover,.button:focus-visible{background:var(--blood);border-color:var(--blood);color:var(--paper)}
+.button:active{background:var(--wine);border-color:var(--impact)}
 .album-object:before{background:conic-gradient(from var(--story-angle),#b00020,#65101d 22%,#ede9e3 34%,#e5092b 52%,#b00020 72%,#65101d 88%,#b00020)}
 @media(max-width:900px){
  .hero{justify-content:center;align-items:flex-end;padding:140px 28px 18vh;min-height:100svh}
@@ -217,3 +218,20 @@ body{background:radial-gradient(ellipse at 85% 25%,rgba(176,0,32,.07),transparen
  .spotify-corner{position:static;align-self:flex-end;flex:none;max-width:100%;width:320px;margin:0}
  .hero-copy .signature-writing{margin-inline:5px 0}
 }
+
+/* Vermelho como assinatura: contornos e gestos, sobre a base petróleo. */
+.nav-links a{position:relative}
+.nav-links a:after{content:'';position:absolute;bottom:5px;left:0;right:0;height:1px;background:var(--blood);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--paper)}
+.nav-links a:hover:after,.nav-links a:focus-visible:after{transform:scaleX(1)}
+a:focus-visible,button:focus-visible,summary:focus-visible,.streaming-banner:focus-visible,.story-read:focus-visible{outline:2px solid var(--impact);outline-offset:5px}
+.streaming-banner a:focus-visible{outline-offset:-4px}
+.text-link:hover,.text-link:focus-visible,.release-links a:hover,.press-item h3 a:hover,.footer-links a:hover,.footer-links a:focus-visible{color:var(--paper);text-decoration:underline;text-decoration-color:var(--blood);text-underline-offset:5px}
+.hero-copy .text-link:hover .icon,.hero-copy .text-link:focus-visible .icon{color:var(--impact)}
+.release-action{border-color:var(--wine);background:rgba(18,59,59,.18)}
+.release-cover{outline:1px solid rgba(101,16,29,.45);outline-offset:3px;transition:outline-color .2s}
+.release-platforms summary:hover .release-cover,.release-platforms summary:focus-visible .release-cover,.release-platforms[open] .release-cover{outline-color:var(--blood)}
+.release-platforms summary:hover .release-action,.release-platforms summary:focus-visible .release-action,.release-platforms[open] .release-action{background:rgba(176,0,32,.12);border-color:var(--blood);box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.release-platforms[open] .stream-toggle{color:var(--blood)}
+.streaming-banner a:hover,.streaming-banner a:focus-visible,.release-links a:hover,.release-links a:focus-visible{background:rgba(176,0,32,.08);border-color:var(--blood)}
+@media(prefers-reduced-motion:reduce){.nav-links a:after,.release-cover{transition:none}}

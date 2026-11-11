@@ -296,3 +296,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.streaming-banner:foc
 
 .narrative-copy:not([data-reveal]) .story-read{display:none}
 @media(prefers-reduced-motion:reduce){.narrative-copy[data-reveal] .story-full{opacity:1}.narrative-copy[data-reveal] .story-reveal,.narrative-copy[data-reveal] .story-read{display:none}}
+
+/* Foto final: luz central contida, bordas fechadas e texto com contraste. */
+.closing-image{filter:saturate(.58) contrast(1.04);opacity:.48;object-position:50% 38%}
+.closing:after{content:'';position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(8,13,14,.08) 12%,rgba(8,13,14,.5) 62%,rgba(8,13,14,.94) 100%),linear-gradient(180deg,var(--ink),rgba(8,13,14,.18) 30%,rgba(8,13,14,.3) 70%,var(--ink))}
+.closing-content{position:relative;z-index:1}

@@ -329,5 +329,5 @@ footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transpar
 
 .label-lockup{width:220px;max-width:100%}
 .label-identity .label-lockup img{width:100%}
-.label-subline{display:block;width:86%;margin:0 auto;color:var(--paper);font:300 10px/1.5 var(--body);letter-spacing:.38em;text-align:center;white-space:nowrap}
-@media(max-width:760px){.label-lockup{width:200px}.label-subline{font-size:9px}}
+.label-subline{display:block;width:86%;margin:0 auto;color:var(--paper);font:300 11px/1.5 var(--body);letter-spacing:.48em;text-align:center;white-space:nowrap}
+@media(max-width:760px){.label-lockup{width:200px}.label-subline{font-size:10px}}

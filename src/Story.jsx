@@ -1,97 +1,70 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { biography, createTypingSteps } from './storyTyping.js';
+import { biography } from './storyTyping.js';
+
+// Keep whitespace and paragraph breaks intact so the visual layer never reflows.
+const phrases = biography.match(/(?:\S+\s*){1,5}/g) || [biography];
 
 export default function Story() {
   const article = useRef(null);
-  const [typing, setTyping] = useState(false);
-  const [text, setText] = useState(biography);
   const [readAll, setReadAll] = useState(false);
 
   useEffect(() => {
+    const element = article.current;
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let timer;
-    const steps = createTypingSteps();
-    let index = 0;
-    let shown = '';
-    let target = biography.length;
-    let direction = 'forward';
-    let previousY = window.scrollY;
-    let visible = false;
-    let disposed = false;
-    const enabled = () => !disposed && !motion.matches && !readAll;
-    const publish = value => { shown = value; setText(value); };
-    const advance = () => {
-      timer = undefined;
-      if (!enabled()) return;
-      if (direction === 'backward') {
-        if (shown.length <= target) return;
-        publish(shown.slice(0, -1));
-        if (!shown.length) index = 0;
-        timer = window.setTimeout(advance, 32);
-      } else if (visible && index < Math.min(steps.length, target)) {
-        const step = steps[index++];
-        publish(step.text);
-        timer = window.setTimeout(advance, step.delay);
-      }
+    const parts = [...element.querySelectorAll('.story-phrase')];
+    let frame = 0;
+    let visible = true;
+    const enabled = () => !motion.matches && !readAll;
+    const update = () => {
+      frame = 0;
+      if (!enabled() || !visible) return;
+      const viewport = window.innerHeight;
+      const end = Math.max(170, viewport * .38);
+      const start = Math.max(end + 80, viewport * .84);
+      // Read every position first, then update only opacity. No character timers.
+      const progress = parts.map(part => {
+        const rect = part.getBoundingClientRect();
+        return Math.max(0, Math.min(1, (start - (rect.top + rect.height / 2)) / (start - end)));
+      });
+      parts.forEach((part, index) => {
+        part.style.opacity = .12 + progress[index] * .88;
+      });
     };
-    const schedule = (delay = 100) => {
-      if (enabled() && timer === undefined) timer = window.setTimeout(advance, delay);
-    };
-    const scrollTarget = () => {
-      const rect = article.current.getBoundingClientRect();
-      const distance = Math.min(rect.height + window.innerHeight * .2, window.innerHeight * .65);
-      const progress = Math.max(0, Math.min(1, (window.innerHeight * .9 - rect.top) / distance));
-      return Math.round(progress * biography.length);
-    };
-    const onScroll = () => {
-      const y = window.scrollY;
-      const delta = y - previousY;
-      previousY = y;
-      if (!enabled() || Math.abs(delta) < 1) return;
-      const rect = article.current.getBoundingClientRect();
-      if (delta < 0 && rect.bottom > 0) {
-        if (direction !== 'backward') target = shown.length;
-        direction = 'backward';
-        target = Math.max(0, target + delta * biography.length / Math.max(window.innerHeight * .85, rect.height));
-        if (rect.top >= window.innerHeight * .9) target = 0;
-        schedule(0);
-      } else if (delta > 0) {
-        if (direction !== 'forward') index = shown.length;
-        direction = 'forward';
-        target = Math.max(shown.length, scrollTarget());
-        schedule(0);
-      }
+    const schedule = () => {
+      if (enabled() && visible && !frame) frame = requestAnimationFrame(update);
     };
     const configure = () => {
-      clearTimeout(timer);
-      timer = undefined;
-      setTyping(enabled());
-      setText(enabled() ? shown : biography);
-      if (enabled() && visible) { target = scrollTarget(); schedule(120); }
-    };
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      if (!visible && direction === 'forward') { clearTimeout(timer); timer = undefined; }
+      element.toggleAttribute('data-reveal', enabled());
+      if (enabled()) schedule();
       else {
-        if (direction === 'forward') target = scrollTarget();
-        schedule(120);
+        cancelAnimationFrame(frame);
+        frame = 0;
       }
-    }, { threshold: .15 });
+    };
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) schedule();
+    }, { rootMargin: '100px' }) : null;
+    observer?.observe(element);
     configure();
-    observer.observe(article.current);
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
     motion.addEventListener('change', configure);
+    const resize = 'ResizeObserver' in window ? new ResizeObserver(schedule) : null;
+    resize?.observe(element);
     return () => {
-      disposed = true;
-      clearTimeout(timer);
-      observer.disconnect();
-      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      resize?.disconnect();
+      element.removeAttribute('data-reveal');
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
       motion.removeEventListener('change', configure);
     };
   }, [readAll]);
 
-  return <article className="narrative-copy" aria-label="A história de o Quil" ref={article} data-typing={typing || undefined}>
-    <p className="narrative-lead"><span className="story-full">{biography}</span>{typing && <span className="story-typed" aria-hidden="true">{text}{text !== biography && <span className="typing-caret" />}</span>}</p>
-    {typing && !readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>ler sem animação</button>}
+  return <article className="narrative-copy" aria-label="A história de o Quil" ref={article}>
+    <p className="narrative-lead"><span className="story-full">{biography}</span><span className="story-reveal" aria-hidden="true">{phrases.map((phrase, index) => <span className="story-phrase" key={index}>{phrase}</span>)}</span></p>
+    {!readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>Ler texto completo</button>}
   </article>;
 }

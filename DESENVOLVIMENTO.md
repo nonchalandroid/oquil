@@ -35,7 +35,7 @@ O Q mantém a referência manuscrita, com curvas Bézier e terminais arredondado
 
 São gerados PNGs de 16 a 1024 px com cantos arredondados, ICO com sete resoluções, Apple Touch opacos de 120/152/167/180 px e variantes Android maskable com fundo completo e símbolo dentro do círculo seguro de 80% do diâmetro. iOS e Android aplicam suas próprias máscaras aos atalhos. `site.webmanifest` e `browserconfig.xml` acompanham a publicação. O HTML dá preferência ao SVG nos navegadores compatíveis e mantém ICO/PNG como alternativas. As URLs de ícone têm versão por conteúdo, inclusive dentro de `dist/site.webmanifest` e `dist/browserconfig.xml`; caches de abas, favoritos e itens já salvos podem ser renovados em momentos diferentes por cada navegador.
 
-Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. A camada visual de digitação é ativada só com JavaScript e sem preferência por movimento reduzido. Ao descer, a digitação avança; ao subir, apaga em ordem inversa. Apenas um parágrafo fica parcialmente digitado por vez, sem interceptar a roda do mouse. O controle “Ler sem animação” revela todo o texto.
+Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade. Uma camada visual com trechos de até cinco palavras ganha opacidade conforme sua posição na tela durante a rolagem. Não há digitação, cursor ou temporizadores por letra; o layout fica estável. “Ler texto completo” desativa o efeito. Sem JavaScript ou com movimento reduzido, o texto aparece integralmente.
 
 ## Desempenho mobile
 
@@ -60,8 +60,8 @@ O relatório enviado em 02/11/2026 não exige remover animações. A escrita foi
 
 O diagnóstico de JavaScript não usado inclui partes de React/React DOM que não são executadas no carregamento inicial, mas dão suporte à hidratação e às interações. Remover funções do bundle manualmente não é uma correção segura. Sua redução adicional exigiria reorganizar a arquitetura de hidratação; não foi removida funcionalidade para silenciar o diagnóstico. Cache e scripts injetados pela Cloudflare continuam dependendo das configurações de hospedagem descritas acima.
 
-### Digitação da biografia
+### Revelação da biografia por rolagem
 
-A bio usa fontes nativas do sistema (`-apple-system`, BlinkMacSystemFont e equivalentes), sem download adicional. A descida da página libera progressivamente o texto, digitado sem erros simulados a 18 ms por letra, com pausas curtas na pontuação. Ao subir, o texto apaga com backspace proporcional à distância rolada; ao descer novamente, retoma do prefixo existente.
+A biografia usa o estilo editorial Georgia já definido no site. `src/storyTyping.js` guarda o texto integral; não gera passos de digitação. `src/Story.jsx` divide a camada visual em trechos de até cinco palavras, preservando espaços e parágrafos. A opacidade de cada trecho acompanha sua posição entre 84% e 38% da altura da janela, com limites para telas baixas. Leituras de geometria e atualizações de opacidade são agrupadas em requestAnimationFrame; não há atualização de estado por letra nem alterações no layout do texto.
 
-`src/storyTyping.js` mantém apenas passos do texto correto. “Ler sem animação” e a preferência por movimento reduzido apresentam imediatamente a bio completa; o HTML pré-renderizado e leitores de tela mantêm o texto final correto.
+“Ler texto completo”, movimento reduzido e ausência de JavaScript apresentam imediatamente toda a biografia. Leitores de tela recebem sempre uma única versão completa do conteúdo; a camada visual é aria-hidden.

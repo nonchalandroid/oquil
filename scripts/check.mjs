@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { biography } from '../src/storyTyping.js';
 const root = path.resolve(import.meta.dirname, '../dist');
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
@@ -15,7 +16,10 @@ for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
   assert.equal(new URL(href).protocol, 'https:', `Link externo inválido: ${href}`);
 }
 assert.equal((html.match(/<h1\b/g) || []).length, 1, 'A página deve ter um h1');
-assert.ok(html.includes('o Quil começou na música usando seu nome de batismo'), 'Narrativa ausente no HTML pré-renderizado');
+const story = html.match(/<span class="story-full">([\s\S]*?)<\/span>/)?.[1];
+assert.ok(story, 'Biografia ausente no HTML pré-renderizado');
+const decodedStory = story.replace(/&(?:amp|lt|gt|quot|#x27);/g, entity => ({ '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#x27;': "'" })[entity]);
+assert.equal(decodedStory, biography, 'Biografia publicada diverge da fonte React');
 for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(json);
 console.log(`${local.size} arquivos locais, IDs, âncoras, URLs HTTPS e conteúdo SEO conferidos.`);
 
@@ -48,7 +52,7 @@ assert.ok(!html.includes('Alguns links abrem buscas'), 'Aviso removido voltou à
 const originalCover = await readFile(path.join(root, 'assets/quase-indo-original.png'));
 assert.equal(originalCover.readUInt32BE(16), 3000);
 assert.equal(originalCover.readUInt32BE(20), 3000);
-assert.ok(html.includes('ele mesmo grava, produz suas músicas'), 'Independência artística ausente');
+assert.ok(html.includes('compondo, produzindo, gravando, mixando'), 'Independência artística ausente');
 console.log('Arquivo sem imagens, texto independente e capa original 3000×3000 conferidos.');
 
 const catalog = html.split('id="catalogo"')[1]?.split('</section>')[0];
@@ -60,8 +64,8 @@ for (const release of releases) {
   await stat(path.join(root, release.cover.src));
 }
 assert.ok(!/0[1-4](Spotify|YouTube|Apple|Amazon)/.test(html), 'Nome de plataforma com numeração colada');
-assert.equal((html.match(/dark r(?:&amp;|&)b/g) || []).length, 1, 'Dark R&B deve aparecer apenas na bio');
-console.log('Capas dos singles, nomes de plataformas e gênero somente na bio conferidos.');
+assert.ok(html.includes('voltei em 2026'), 'Retorno em 2026 ausente na biografia');
+console.log('Capas dos singles, nomes de plataformas e biografia atualizada conferidos.');
 
 let spotifyEntities = 0;
 for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
@@ -93,3 +97,8 @@ for (const release of releases) {
 }
 assert.ok(html.includes('class="hero-backdrop" fetchPriority="high" loading="eager"') || html.includes('class="hero-backdrop" fetchpriority="high" loading="eager"'), 'Retrato LCP sem prioridade alta');
 console.log('CSS incorporado, fontes locais, miniaturas e prioridade do retrato LCP conferidos.');
+
+// URLs estáveis ajudam a manter uma única referência de favicon para rastreadores.
+assert.ok(html.includes('href="/favicon.ico"'), 'Favicon ICO sem URL estável');
+assert.ok(html.includes('href="/assets/icons/icon-192.png"'), 'Favicon PNG 192 sem URL estável');
+console.log('Biografia sincronizada com a fonte e URLs estáveis do favicon conferidas.');

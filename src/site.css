@@ -286,3 +286,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.streaming-banner:foc
 @media(prefers-reduced-motion:reduce){.button,.nav-links a,.release-action,.release-cover,.archive-row:after{transition:none}.button:hover{transform:none}}
 @media(prefers-contrast:more){.nav,.button,.release-action,.release-links a,.streaming-banner a{background:#080d0e;border-color:var(--gold)}.nav-links a{color:var(--paper)}}
 @media(forced-colors:active){.archive-row:after{background:CanvasText}.button,.release-action,.nav-links{border:1px solid ButtonText}}
+
+/* Estilo editorial da biografia atualizado na main, preservado na fonte do build. */
+.narrative-copy{max-width:62ch}
+.narrative-copy .narrative-lead{font-family:Georgia,"Times New Roman",serif;font-size:clamp(21px,2.15vw,29px);font-weight:400;line-height:1.64;letter-spacing:-.018em;white-space:pre-wrap;text-wrap:pretty}
+@media(max-width:600px){.narrative-copy .narrative-lead{font-size:clamp(19px,5.1vw,23px);line-height:1.68}}

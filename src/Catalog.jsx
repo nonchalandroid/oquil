@@ -28,8 +28,8 @@ export default function Catalog() {
     <div className="section-inner" id="catalogo">
       <header className="catalog-head" data-enter=""><div><p className="section-kicker">02 / Música</p><h2 className="section-title" id="catalogo-titulo">Últimos lançamentos</h2></div></header>
       <div className="release-list">{releases.map(release => <article className="release" key={release.title} data-enter=""><ReleaseDisclosure release={release} /></article>)}</div>
-      <div className="archive"><header data-enter=""><p className="section-kicker">Arquivo</p><h3>linha do tempo</h3></header>
-        <ol className="archive-timeline" aria-label="Cronologia dos lançamentos">{archive.map(release => <li className="archive-row" key={release.title} data-enter=""><time className="archive-year" dateTime={release.year}>{release.year}</time><div><h4>{release.title}</h4></div></li>)}</ol>
+      <div className="archive" id="trajetoria"><header className="archive-heading" data-enter=""><p className="section-kicker">Arquivo / {archive[0]?.year} — {archive.at(-1)?.year}</p><h3>linha do tempo</h3><p className="archive-caption">Cada lançamento, um capítulo.<br />Os caminhos que trouxeram o Quil até aqui.</p><span className="archive-count">{archive.length.toString().padStart(2, '0')} lançamentos no arquivo</span></header>
+        <ol className="archive-timeline" aria-label="Cronologia dos lançamentos">{archive.map((release, index) => <li className="archive-row" key={release.title} data-enter=""><time className="archive-year" dateTime={release.year}>{release.year}</time><div><span className="archive-chapter">Capítulo {(index + 1).toString().padStart(2, '0')}</span><h4>{release.title}</h4></div></li>)}</ol>
       </div>
     </div>
   </section>;

@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { biography } from './storyTyping.js';
+import { press } from './content.json';
+import { Icon } from './Icons.jsx';
+
+const bruttArticle = press.find(item => item.outlet === 'Globo Esporte');
 
 // Keep whitespace and paragraph breaks intact so the visual layer never reflows.
 const phrases = biography.match(/(?:\S+\s*){1,5}/g) || [biography];
@@ -65,6 +69,7 @@ export default function Story() {
 
   return <article className="narrative-copy" aria-label="A história de o Quil" ref={article}>
     <p className="narrative-lead"><span className="story-full">{biography}</span><span className="story-reveal" aria-hidden="true">{phrases.map((phrase, index) => <span className="story-phrase" key={index}>{phrase}</span>)}</span></p>
+    {bruttArticle && <a className="text-link story-reference" href={bruttArticle.href} target="_blank" rel="noopener noreferrer">Sobre brutt — reportagem do Globo Esporte<Icon /></a>}
     {!readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>Ler texto completo</button>}
   </article>;
 }

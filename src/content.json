@@ -85,8 +85,8 @@
         },
         {
           "label": "YouTube Music",
-          "href": "https://music.youtube.com/search?q=o%20Quil%20TAG",
-          "title": "Buscar TAG · YouTube Music"
+          "href": "https://music.youtube.com/watch?v=t3yqTPVROfw",
+          "title": "Ouvir TAG no YouTube Music"
         },
         {
           "label": "Apple Music",
@@ -95,8 +95,8 @@
         },
         {
           "label": "Amazon Music",
-          "href": "https://music.amazon.com/search/o%20Quil%20TAG",
-          "title": "Buscar TAG · Amazon Music"
+          "href": "https://music.amazon.com.br/tracks/B0H4NDS5GV?marketplaceId=A2Q3Y263D00KWC&musicTerritory=BR",
+          "title": "Ouvir TAG no Amazon Music"
         },
         {
           "label": "YouTube",

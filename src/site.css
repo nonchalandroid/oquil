@@ -326,6 +326,3 @@ footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transpar
 
 /* Apresentação institucional do selo, separada da assinatura do artista. */
 .footer-label{color:var(--gold);letter-spacing:.04em}
-
-.story-reference{max-width:100%;font-size:11px;line-height:1.7;align-items:flex-start;color:var(--gold)}
-.story-reference .icon{margin-top:2px}

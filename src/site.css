@@ -324,12 +324,6 @@ footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transpar
 .label-identity p{margin-top:12px;color:var(--muted);font-size:12px;line-height:1.85}
 @media(max-width:760px){.label-identity{margin-top:24px;padding-top:20px}.label-identity img{width:220px}}
 
-/* Marca tipográfica com a mesma Unbounded 600 do título original. */
-.brutt-wordmark{width:260px;max-width:100%;font:600 48px/1.03 var(--heading);letter-spacing:-.085em;color:var(--paper);padding:8px 4px 8px 0}
-.brutt-name{display:block}
-.brutt-fracture{display:grid;position:relative;padding-bottom:4px}
-.brutt-fracture>span{grid-area:1/1;display:block}
-.brutt-letter-a{display:inline-block;transform:skewX(-9deg)}
-.brutt-fracture>span:first-child{clip-path:polygon(0 0,100% 0,100% 28%,95% 34%,89% 33%,85% 42%,79% 38%,73% 49%,67% 44%,60% 55%,54% 51%,47% 62%,42% 57%,35% 68%,30% 64%,22% 74%,16% 70%,9% 80%,0 78%)}
-.brutt-fracture>span:last-child{transform:translate(2px,3px);clip-path:polygon(0 86%,9% 88%,16% 78%,22% 82%,30% 72%,35% 76%,42% 65%,47% 70%,54% 59%,60% 63%,67% 52%,73% 57%,79% 46%,85% 50%,89% 41%,95% 42%,100% 36%,100% 100%,0 100%)}
-@media(max-width:760px){.brutt-wordmark{width:230px;font-size:44px}}
+/* Apresentação institucional do selo, separada da assinatura do artista. */
+.label-identity strong{font-weight:500;color:var(--paper)}
+.footer-label{color:var(--gold);letter-spacing:.04em}

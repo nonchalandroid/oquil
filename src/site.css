@@ -319,13 +319,12 @@ footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transpar
 @media(max-width:760px){.nav{grid-template-columns:1fr;min-height:120px}.nav .wordmark{grid-column:1;grid-row:1}.nav-links{grid-column:1;grid-row:2}.closing{min-height:0;padding:64px 22px}.closing-playlist{padding:8px 8px 0;margin-top:24px}}
 
 /* Identidade do selo ao lado da história, sem substituir a assinatura do artista. */
-.label-identity{max-width:290px;margin-top:36px;padding-top:24px;border-top:1px solid var(--glass-edge)}
-.label-identity img{width:260px;max-width:100%;height:auto}
-.label-identity p{margin-top:12px;color:var(--muted);font-size:12px;line-height:1.85}
-@media(max-width:760px){.label-identity{margin-top:24px;padding-top:20px}.label-identity img{width:220px}}
+.label-identity{display:flex;flex-direction:column;align-items:flex-start;gap:8px;max-width:240px}
+.label-identity img{width:220px;max-width:100%;height:auto}
+.label-identity p{margin:0;color:var(--muted);font-size:12px;line-height:1.85}
+@media(max-width:760px){.label-identity img{width:200px}}
 
 /* Apresentação institucional do selo, separada da assinatura do artista. */
-.label-identity strong{font-weight:500;color:var(--paper)}
 .footer-label{color:var(--gold);letter-spacing:.04em}
 
 .story-reference{max-width:100%;font-size:11px;line-height:1.7;align-items:flex-start;color:var(--gold)}

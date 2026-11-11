@@ -13,6 +13,7 @@ function Hero() {
   return <section className="hero" aria-labelledby="release-title">
     <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-optimized.webp" alt="" width="1600" height="899" decoding="async" />
     <div className="hero-copy"><p className="hero-eyebrow">Artista independente <span>·</span> Rio de Janeiro</p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
+    <HeroStreaming />
     <a className="hero-scroll" href="#sobre" aria-label="Deslizar para a história de o Quil"><Icon name="down" /></a>
   </section>;
 }
@@ -37,7 +38,6 @@ export default function App() {
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
       <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-optimized.webp" alt="" width="1600" height="899" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><a className="button" href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Acompanhar no Instagram<Icon /></a></div></section>
     </main>
-    <HeroStreaming />
     <footer><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="Assinatura de o Quil" width="180" height="81" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@oquil" target="_blank" rel="noopener noreferrer">YouTube</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><span>Rio de Janeiro · Brasil</span></div></footer>
   </div>;
 }

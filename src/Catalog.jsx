@@ -3,7 +3,7 @@ import { releases, archive } from './content.json';
 import { BrandIcon, Icon } from './Icons.jsx';
 
 function PlatformLinks({ links }) {
-  const brand = label => ({ Spotify: 'spotify', 'YouTube Music': 'youtubemusic', 'Apple Music': 'applemusic', 'Amazon Music': 'amazonmusic', YouTube: 'youtube' })[label];
+  const brand = label => ({ Spotify: 'spotify', 'YouTube Music': 'youtubemusic', 'Apple Music': 'applemusic', 'Amazon Music': 'amazonmusic', YouTube: 'youtube', Deezer: 'deezer' })[label];
   return links.map(link => <a key={`${link.label}:${link.href}`} href={link.href} title={link.title || link.label} target="_blank" rel="noopener noreferrer"><span className="platform-name">{brand(link.label) && <BrandIcon name={brand(link.label)} />}{link.label}</span><Icon /></a>);
 }
 

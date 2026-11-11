@@ -20,7 +20,7 @@ function Hero() {
 
 function ArtistStory() {
   return <section className="section intro" aria-labelledby="sobre-titulo"><div className="section-inner" id="sobre">
-    <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2><p className="narrative-caption">o Quil.<br />Rio de Janeiro, Brasil.</p><aside className="label-identity" aria-label="Brutt Gang, selo independente"><img src="assets/brutt-gang-logo.webp" alt="Brutt Gang" width="1816" height="866" loading="lazy" decoding="async" /><p>Artista do selo independente<br /><strong>Brutt Gang.</strong></p></aside></header><div id="artist-story"><Story /></div></div>
+    <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2><div className="label-identity"><p>Artista do selo independente</p><img src="assets/brutt-gang-logo.webp" alt="Brutt Gang" width="1816" height="866" loading="lazy" decoding="async" /></div></header><div id="artist-story"><Story /></div></div>
     <StreamingBanner />
   </div></section>;
 }

@@ -7,12 +7,12 @@ import { BrandSymbols, Icon } from './Icons.jsx';
 import { press, spotifyArtistUrl } from './content.json';
 import usePageEffects from './usePageEffects.js';
 
-function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Quil, voltar ao início">O <span>QUIL</span></a>; }
+function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="o Quil" width="180" height="81" /><span className="wordmark-caption">Artista independente</span></a>; }
 
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
     <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-optimized.webp" alt="" width="1600" height="899" decoding="async" />
-    <div className="hero-copy"><p className="hero-eyebrow">Artista independente <span>·</span> Rio de Janeiro</p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div>
+    <div className="hero-copy"><p className="hero-eyebrow">Artista independente <span>·</span> Rio de Janeiro</p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><div className="hero-actions"><a className="button hero-listen" href="https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr" target="_blank" rel="noopener noreferrer">Ouvir Quase Indo<Icon /></a><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div></div>
     <HeroStreaming />
     <a className="hero-scroll" href="#sobre" aria-label="Deslizar para a história de o Quil"><Icon name="down" /></a>
   </section>;
@@ -34,7 +34,7 @@ export default function App() {
   return <div className="site-shell">
     <div id="top" className="top-anchor" aria-hidden="true" />
     <BrandSymbols /><a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
-    <header className="nav"><Wordmark /><nav className="nav-links" aria-label="Navegação principal"><a href="#sobre">This Is o Quil</a><a href="#catalogo">Últimos lançamentos</a><a href="#press">Press</a></nav><span className="nav-index">RJ · 2026</span><div className="reading-progress" aria-hidden="true" /></header>
+    <header className="nav"><Wordmark /><nav className="nav-links" aria-label="Navegação principal"><a href="#sobre"><span className="nav-number" aria-hidden="true">01</span>História</a><a href="#catalogo"><span className="nav-number" aria-hidden="true">02</span>Música</a><a href="#trajetoria"><span className="nav-number" aria-hidden="true">03</span>Trajetória</a><a href="#press"><span className="nav-number" aria-hidden="true">04</span>Imprensa</a></nav><a className="button nav-listen" href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Ouvir o Quil<Icon /></a><div className="reading-progress" aria-hidden="true" /></header>
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
       <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-optimized.webp" alt="" width="1600" height="899" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><a className="button" href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Acompanhar no Instagram<Icon /></a></div></section>
     </main>

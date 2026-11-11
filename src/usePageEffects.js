@@ -7,10 +7,33 @@ export default function usePageEffects() {
     let observer;
     const animations = new Set();
     const revealed = new WeakSet();
+    const navLinks = [...document.querySelectorAll('.nav-links a')];
+    const sections = navLinks.map(link => document.querySelector(link.getAttribute('href')));
+    const timeline = document.querySelector('.archive-timeline');
+    const rows = [...document.querySelectorAll('.archive-row')];
     const updateProgress = () => {
       frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      document.documentElement.style.setProperty('--page-progress', max > 0 ? window.scrollY / max : 0);
+      document.documentElement.style.setProperty('--page-progress', max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
+      const readingLine = Math.max(160, window.innerHeight * .32);
+      let current = -1;
+      sections.forEach((section, index) => {
+        if (section && section.getBoundingClientRect().top <= readingLine) current = index;
+      });
+      navLinks.forEach((link, index) => {
+        if (index === current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      if (timeline) {
+        const rect = timeline.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (readingLine - rect.top) / rect.height));
+        timeline.style.setProperty('--timeline-progress', progress);
+        let currentRow = -1;
+        rows.forEach((row, index) => {
+          if (row.getBoundingClientRect().top + 33 <= readingLine) currentRow = index;
+        });
+        rows.forEach((row, index) => row.toggleAttribute('data-current', index === currentRow));
+      }
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateProgress); };
     const observe = () => {
@@ -34,8 +57,8 @@ export default function usePageEffects() {
               { transform: 'translateY(12px)', opacity: .25 },
               { transform: 'translateY(0)', opacity: 1 }
             ], {
-              duration: timeline ? 460 : 550,
-              easing: 'cubic-bezier(.2,.7,.2,1)'
+              duration: timeline ? 560 : 700,
+              easing: 'cubic-bezier(.22,1,.36,1)'
             });
             animations.add(animation);
             animation.onfinish = () => animations.delete(animation);

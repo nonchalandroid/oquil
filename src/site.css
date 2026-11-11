@@ -361,3 +361,18 @@ footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transpar
 .label-lockup-compact{width:132px;flex:none}
 .label-lockup-compact .label-subline{font-size:8px;letter-spacing:.24em}
 @media(max-width:760px){.artist-streaming{margin-top:36px;padding-top:24px}.artist-streaming .label-identity{gap:16px;flex-wrap:wrap}.artist-streaming .label-identity p{font-size:11px}.artist-streaming .label-lockup{width:180px}.artist-streaming .streaming-banner{margin-top:18px}.label-lockup-compact{width:132px}}
+
+/* Rodapé com o mesmo contêiner das seções e centro geométrico compartilhado. */
+footer{padding-inline:clamp(22px,7vw,112px)}
+.footer-top,.footer-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px}
+.footer-top>:first-child,.footer-bottom>:first-child{justify-self:start;min-width:0}
+.footer-top>:nth-child(2),.footer-bottom>:nth-child(2){justify-self:center}
+.footer-top>:last-child,.footer-bottom>:last-child{justify-self:end}
+.footer-links{justify-content:center}
+@media(max-width:600px){
+ footer{padding:36px 22px}
+ .footer-top,.footer-bottom{grid-template-columns:minmax(0,1fr);gap:18px;text-align:center}
+ .footer-top>:first-child,.footer-top>:nth-child(2),.footer-top>:last-child,.footer-bottom>:first-child,.footer-bottom>:nth-child(2),.footer-bottom>:last-child{justify-self:center}
+ .footer-bottom{margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
+ .footer-bottom .label-lockup{grid-row:1}
+}

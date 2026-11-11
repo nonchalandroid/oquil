@@ -4,7 +4,7 @@ import Signature from './Signature.jsx';
 import Catalog from './Catalog.jsx';
 import { HeroStreaming, PlaylistStreaming, StreamingBanner } from './Streaming.jsx';
 import { BrandSymbols, Icon } from './Icons.jsx';
-import { press, spotifyArtistUrl } from './content.json';
+import { press } from './content.json';
 import usePageEffects from './usePageEffects.js';
 
 function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="o Quil" width="180" height="81" /></a>; }
@@ -42,6 +42,6 @@ export default function App() {
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
       <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-ai.webp" alt="" width="1673" height="940" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><PlaylistStreaming /></div></section>
     </main>
-    <footer><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="Assinatura de o Quil" width="180" height="81" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@oquil" target="_blank" rel="noopener noreferrer">YouTube</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><LabelMark compact /><span>Rio de Janeiro · Brasil</span></div></footer>
+    <footer><div className="section-inner footer-inner"><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="Assinatura de o Quil" width="180" height="81" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><LabelMark compact /><span>Rio de Janeiro · Brasil</span></div></div></footer>
   </div>;
 }

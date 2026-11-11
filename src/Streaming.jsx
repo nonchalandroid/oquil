@@ -22,5 +22,6 @@ export function HeroStreaming() {
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       referrerPolicy="strict-origin-when-cross-origin"
     />
+    <a className="spotify-corner-link" href="https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr" target="_blank" rel="noopener noreferrer">Abrir Quase Indo no Spotify</a>
   </aside>;
 }

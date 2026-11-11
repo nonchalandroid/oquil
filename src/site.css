@@ -376,3 +376,13 @@ footer{padding-inline:clamp(22px,7vw,112px)}
  .footer-bottom{margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
  .footer-bottom .label-lockup{grid-row:1}
 }
+
+/* No celular, as seis plataformas ficam visíveis em uma única fileira. */
+@media(max-width:760px){
+ .streaming-banner{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;padding:12px 0;overflow-x:visible;scroll-snap-type:none}
+ .streaming-banner a{min-width:0;min-height:48px;padding:10px 0;gap:0;scroll-snap-align:none;border-radius:12px}
+ .streaming-banner a>span{display:none}
+ .streaming-banner .brand-icon{width:23px;height:23px}
+}
+@media(max-width:359px){.streaming-banner{gap:2px}}
+@media(max-width:319px){.streaming-banner{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}}

@@ -25,7 +25,7 @@ function Hero() {
 function ArtistStory() {
   return <section className="section intro" aria-labelledby="sobre-titulo"><div className="section-inner" id="sobre">
     <div className="narrative-layout"><header className="narrative-heading"><p className="section-kicker">01 / História</p><h2 className="section-title" id="sobre-titulo">This Is <em>o Quil</em></h2></header><div id="artist-story"><Story /></div></div>
-    <div className="artist-streaming"><div className="label-identity"><p>Artista do selo independente</p><LabelMark /></div><StreamingBanner /></div>
+    <div className="artist-streaming"><div className="label-identity"><LabelMark /></div><StreamingBanner /></div>
   </div></section>;
 }
 

@@ -348,7 +348,7 @@ footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transpar
 
 /* O selo encerra a biografia e apresenta as plataformas de escuta. */
 .artist-streaming{margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
-.artist-streaming .label-identity{flex-direction:row;align-items:center;gap:24px;max-width:none}
+.artist-streaming .label-identity{justify-content:center;align-items:center;max-width:none}
 .artist-streaming .streaming-banner{margin-top:22px}
 .label-logo-art{display:block;width:100%}
 .label-logo-art img{width:100%;height:auto}

@@ -301,3 +301,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.streaming-banner:foc
 .closing-image{filter:saturate(.58) contrast(1.04);opacity:.48;object-position:50% 38%}
 .closing:after{content:'';position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(8,13,14,.08) 12%,rgba(8,13,14,.5) 62%,rgba(8,13,14,.94) 100%),linear-gradient(180deg,var(--ink),rgba(8,13,14,.18) 30%,rgba(8,13,14,.3) 70%,var(--ink))}
 .closing-content{position:relative;z-index:1}
+
+/* Mantém os reflexos da fotografia aprovada e estende sua luz às seções. */
+.hero-backdrop{filter:none}
+.closing-image{filter:none}
+.intro,.catalog,.press{background:radial-gradient(ellipse at 96% 16%,rgba(83,164,149,.12),transparent 52%),radial-gradient(ellipse at 6% 82%,rgba(112,156,141,.08),transparent 46%),radial-gradient(ellipse at 80% 65%,rgba(231,213,170,.035),transparent 35%),linear-gradient(180deg,var(--ink),#0b1c1c 48%,var(--ink))}
+footer{background:radial-gradient(ellipse at 85% 0,rgba(83,164,149,.07),transparent 65%),var(--ink)}

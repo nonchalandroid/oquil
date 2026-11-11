@@ -107,6 +107,11 @@
           "label": "YouTube",
           "href": "https://www.youtube.com/watch?v=LsSMCHgYPaI",
           "title": "Ouvir TAG no YouTube"
+        },
+        {
+          "label": "Deezer",
+          "href": "https://www.deezer.com/album/1001593491",
+          "title": "Ouvir TAG no Deezer"
         }
       ],
       "cover": {

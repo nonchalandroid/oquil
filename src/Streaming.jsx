@@ -25,3 +25,18 @@ export function HeroStreaming() {
     <a className="spotify-corner-link" href="https://open.spotify.com/track/6PpBHXZXrt4yVlvJ6bs1Vr" target="_blank" rel="noopener noreferrer">Abrir Quase Indo no Spotify</a>
   </aside>;
 }
+
+export function PlaylistStreaming() {
+  return <div className="closing-playlist">
+    <iframe
+      title="This Is o Quil — playlist no Spotify"
+      src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3VXrSJ?utm_source=generator&theme=0"
+      width="640"
+      height="352"
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      referrerPolicy="strict-origin-when-cross-origin"
+    />
+    <a className="spotify-corner-link" href="https://open.spotify.com/playlist/37i9dQZF1DZ06evO3VXrSJ" target="_blank" rel="noopener noreferrer">Abrir This Is o Quil no Spotify</a>
+  </div>;
+}

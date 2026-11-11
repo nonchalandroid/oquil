@@ -71,7 +71,7 @@ let spotifyEntities = 0;
 for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
   if (!href.startsWith('https://open.spotify.com/')) continue;
   const url = new URL(href);
-  const entity = url.pathname.match(/^\/(?:intl-[a-z]{2}\/)?(track|album|artist)\/([^/]+)\/?$/);
+  const entity = url.pathname.match(/^\/(?:intl-[a-z]{2}\/)?(track|album|artist|playlist)\/([^/]+)\/?$/);
   if (entity) {
     assert.match(entity[2], /^[A-Za-z0-9]{22}$/, `ID Spotify incompleto: ${href}`);
     spotifyEntities++;

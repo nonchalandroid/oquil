@@ -27,6 +27,11 @@
           "label": "YouTube",
           "href": "https://www.youtube.com/watch?v=pYWEiPTZvUc",
           "title": "Ouvir Quase Indo no YouTube"
+        },
+        {
+          "label": "Deezer",
+          "href": "https://www.deezer.com/album/1046315362",
+          "title": "Ouvir Quase Indo no Deezer"
         }
       ],
       "cover": {
@@ -105,7 +110,7 @@
         },
         {
           "label": "Deezer",
-          "href": "https://www.deezer.com/album/1046315362",
+          "href": "https://www.deezer.com/album/1001593491",
           "title": "Ouvir TAG no Deezer"
         }
       ],
@@ -140,8 +145,8 @@
         },
         {
           "label": "YouTube",
-          "href": "https://www.youtube.com/@oquil/videos",
-          "title": "Abrir Consequência de Estar Acordado · YouTube"
+          "href": "https://www.youtube.com/watch?v=mwRybdDKJc8",
+          "title": "Ouvir Consequência de Estar Acordado no YouTube"
         },
         {
           "label": "Deezer",

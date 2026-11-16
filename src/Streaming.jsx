@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { platforms, releases, spotifyArtistUrl } from './content.json';
 import { BrandIcon, Icon } from './Icons.jsx';
 
@@ -17,25 +17,13 @@ export function StreamingBanner() {
   </nav>;
 }
 
-function SpotifyEmbed({ path, title }) {
-  const [opened, setOpened] = useState(false);
-
-  return <div className="spotify-embed">{opened ? <iframe
-    title={title}
-    src={`https://open.spotify.com/embed/${path}?utm_source=generator&theme=0`}
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    referrerPolicy="strict-origin-when-cross-origin"
-    ref={frame => frame?.focus()}
-  /> : <button type="button" onClick={() => setOpened(true)}>Carregar player do Spotify</button>}</div>;
-}
-
 export function FeaturedRelease() {
   const dialog = useRef(null);
   const cover = 'assets/quase-indo-600.webp';
 
   return <div className="hero-media release-object">
     <button className="album-trigger" type="button" aria-haspopup="dialog" aria-controls="featured-platforms" onClick={() => dialog.current.showModal()}>
-      <span className="album-object"><span className="album-art"><img src={cover} width="600" height="600" alt="Capa de Quase Indo" decoding="async" /></span></span>
+      <span className="album-object"><span className="album-ring" aria-hidden="true" /><span className="album-art"><img src={cover} width="600" height="600" alt="Capa de Quase Indo" decoding="async" /></span></span>
       <span className="album-listen">Ouvir em sua plataforma<Icon name="plus" /></span>
     </button>
     <dialog id="featured-platforms" ref={dialog} className="music-window" aria-labelledby="featured-title" onClick={event => {
@@ -56,7 +44,13 @@ export function FeaturedRelease() {
 
 export function PlaylistStreaming() {
   return <div className="closing-playlist">
-    <SpotifyEmbed path="playlist/37i9dQZF1DZ06evO3VXrSJ" title="This Is o Quil — playlist no Spotify" />
+    <iframe className="spotify-embed"
+      title="This Is o Quil — playlist no Spotify"
+      src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3VXrSJ?utm_source=generator&theme=0"
+      width="640" height="352" loading="eager"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      referrerPolicy="strict-origin-when-cross-origin"
+    />
     <a className="spotify-corner-link" href="https://open.spotify.com/playlist/37i9dQZF1DZ06evO3VXrSJ" target="_blank" rel="noopener noreferrer">Abrir This Is o Quil no Spotify</a>
   </div>;
 }

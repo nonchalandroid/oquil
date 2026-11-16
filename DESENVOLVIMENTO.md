@@ -25,7 +25,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 
 O workflow `.github/workflows/static.yml` instala com `npm ci`, executa build e verificações e publica somente `dist/`. Código-fonte e node_modules não entram no artefato publicado.
 
-`npm run check` confere arquivos locais, IDs únicos, destinos de âncoras, links HTTPS, h1, biografia pré-renderizada, title, description, canônica, Open Graph, schema, dimensões das imagens WebP e lazy loading das imagens de seção. O HTML inicial também é verificado para evitar iframes e scripts externos carregados de imediato.
+`npm run check` confere arquivos locais, IDs únicos, destinos de âncoras, links HTTPS, h1, biografia pré-renderizada, title, description, canônica, Open Graph, schema, dimensões das imagens WebP, lazy loading das imagens de seção e carregamento imediato da playlist. Os scripts de rastreamento configurados no site carregam após a primeira interação.
 
 O conteúdo é legível sem JavaScript. Acordeões usam details/summary nativos e funcionam por teclado sem hidratação. Não há ocultação de conteúdo condicionada à rolagem nem interceptação das âncoras. `#top` aponta a um marcador dedicado no início do documento.
 
@@ -41,7 +41,7 @@ Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade.
 
 O build incorpora o CSS no HTML para remover uma requisição bloqueante. O arquivo `assets/site.css` também é gerado para inspeção. Ao incorporar, o build ajusta os caminhos das fontes para `assets/`. DM Sans é local, da distribuição `@fontsource-variable/dm-sans@5.3.0` (SIL OFL em `assets/dm-sans-OFL.txt`). Unbounded usa uma versão WOFF2 reduzida para Latin-1 e pontuação geral, preservando os pesos variáveis e a licença original.
 
-As capas de lista usam `assets/thumbs/` (160×160). A abertura carrega o retrato WebP imediatamente e usa um recorte vertical de até 600 px de largura de tela. O retrato final, as capas e o selo usam lazy loading nativo. Os players do Spotify carregam quando acionados, com altura reservada para evitar deslocamentos. Ao substituir uma capa, atualize também sua miniatura.
+As capas de lista usam `assets/thumbs/` (160×160). A abertura carrega o retrato WebP imediatamente e usa um recorte vertical de até 600 px de largura de tela. O retrato final, as capas e o selo usam lazy loading nativo. A playlist do Spotify no encerramento carrega junto com a página, com altura reservada para evitar deslocamentos. Ao substituir uma capa, atualize também sua miniatura.
 
 ### Tags após interação
 

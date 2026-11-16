@@ -70,7 +70,7 @@ export default function usePageEffects() {
       });
     };
     const escape = event => {
-      if (event.key !== 'Escape') return;
+      if (event.key !== 'Escape' || document.querySelector('dialog[open]')) return;
       const open = [...document.querySelectorAll('details[open]')];
       const active = [...open].reverse().find(el => el.contains(document.activeElement)) || open.at(-1);
       if (active) { active.open = false; active.querySelector('summary')?.focus(); }

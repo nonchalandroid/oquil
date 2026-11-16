@@ -8,7 +8,18 @@ await mkdir(path.join(root, '.build'), { recursive: true });
 const common = { bundle: true, minify: true, define: { 'process.env.NODE_ENV': '"production"' }, absWorkingDir: root };
 await build({ ...common, entryPoints: ['src/server.jsx'], outfile: '.build/server.cjs', platform: 'node', format: 'cjs' });
 const { default: { html } } = await import(pathToFileURL(path.join(root, '.build/server.cjs')).href);
-const js = (await build({ ...common, entryPoints: ['src/client.jsx'], outfile: 'app.js', platform: 'browser', format: 'esm', target: ['es2020'], write: false, legalComments: 'eof' })).outputFiles[0].contents;
+const trackingId = (name, pattern) => {
+  const id = process.env[name]?.trim() || '';
+  if (id && !pattern.test(id)) throw new Error(`ID inválido em ${name}`);
+  return id;
+};
+const trackingIds = {
+  ga4: trackingId('OQUIL_GA4_ID', /^G-[A-Z0-9]+$/),
+  googleAds: trackingId('OQUIL_GOOGLE_ADS_ID', /^AW-\d+$/),
+  metaPixel: trackingId('OQUIL_META_PIXEL_ID', /^\d+$/),
+  clarity: trackingId('OQUIL_CLARITY_ID', /^[a-zA-Z0-9]+$/),
+};
+const js = (await build({ ...common, define: { ...common.define, __TRACKING_IDS__: JSON.stringify(trackingIds) }, entryPoints: ['src/client.jsx'], outfile: 'app.js', platform: 'browser', format: 'esm', target: ['es2020'], write: false, legalComments: 'eof' })).outputFiles[0].contents;
 const css = (await build({ absWorkingDir: root, entryPoints: ['src/site.css'], minify: true, outfile: 'site.css', write: false, legalComments: 'eof' })).outputFiles[0].contents;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex').slice(0, 12);
 await writeFile(path.join(root, 'assets/app.js'), js);

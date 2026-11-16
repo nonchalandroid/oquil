@@ -25,7 +25,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory dist
 
 O workflow `.github/workflows/static.yml` instala com `npm ci`, executa build e verificações e publica somente `dist/`. Código-fonte e node_modules não entram no artefato publicado.
 
-`npm run check` confere arquivos locais, IDs únicos, destinos de âncoras, formato HTTPS dos links externos, h1, narrativa pré-renderizada e JSON estruturado. A verificação não afirma disponibilidade ou conteúdo de serviços externos.
+`npm run check` confere arquivos locais, IDs únicos, destinos de âncoras, links HTTPS, h1, biografia pré-renderizada, title, description, canônica, Open Graph, schema, dimensões das imagens WebP e lazy loading das imagens de seção. O HTML inicial também é verificado para evitar iframes e scripts externos carregados de imediato.
 
 O conteúdo é legível sem JavaScript. Acordeões usam details/summary nativos e funcionam por teclado sem hidratação. Não há ocultação de conteúdo condicionada à rolagem nem interceptação das âncoras. `#top` aponta a um marcador dedicado no início do documento.
 
@@ -41,7 +41,20 @@ Na biografia, o texto completo permanece no HTML e na árvore de acessibilidade.
 
 O build incorpora o CSS no HTML para remover uma requisição bloqueante. O arquivo `assets/site.css` também é gerado para inspeção. Ao incorporar, o build ajusta os caminhos das fontes para `assets/`. DM Sans é local, da distribuição `@fontsource-variable/dm-sans@5.3.0` (SIL OFL em `assets/dm-sans-OFL.txt`). Unbounded usa uma versão WOFF2 reduzida para Latin-1 e pontuação geral, preservando os pesos variáveis e a licença original.
 
-As capas de lista usam `assets/thumbs/` (160×160), a capa da abertura usa `srcset` com versões de 400/600/800 px, a assinatura estática usa WebP de 180 px e o retrato usa `o-quil-retrato-optimized.webp`. Os originais continuam disponíveis. Essas versões são arquivos versionados: não é necessário instalar ferramentas de imagem ou fontes para executar `npm ci`, build ou publicação. Ao substituir uma capa, atualize também sua miniatura.
+As capas de lista usam `assets/thumbs/` (160×160). A abertura carrega o retrato WebP imediatamente e usa um recorte vertical de até 600 px de largura de tela. O retrato final, as capas e o selo usam lazy loading nativo. Os players do Spotify carregam quando acionados, com altura reservada para evitar deslocamentos. Ao substituir uma capa, atualize também sua miniatura.
+
+### Tags após interação
+
+Configure os IDs nas variáveis do repositório em **Settings → Secrets and variables → Actions → Variables**. O mesmo nome pode ser usado como variável de ambiente para testar um build local.
+
+| Serviço | Variável |
+| --- | --- |
+| Google Analytics 4 | `OQUIL_GA4_ID` |
+| Google Ads | `OQUIL_GOOGLE_ADS_ID` |
+| Meta Pixel | `OQUIL_META_PIXEL_ID` |
+| Microsoft Clarity | `OQUIL_CLARITY_ID` |
+
+Cada integração fica desativada enquanto sua variável estiver vazia. Com IDs configurados, os scripts são solicitados uma vez, após o primeiro clique, toque, teclado ou gesto com a roda do mouse. Google Ads e GA4 compartilham o Google tag. Meta envia `PageView` após a interação. Conversões específicas do Google Ads dependem da configuração de eventos da campanha.
 
 A assinatura continua entrando depois do título e da capa. A escrita usa uma faixa WebP transparente de 32 quadros (240×108 por quadro), animada por `transform` com `steps`, preservando os traços originais sem animar `stroke-dashoffset`. A duração é 1.302 ms, após uma espera de 1.300 ms. A versão estática garante acessibilidade e movimento reduzido. O gerador opcional `node scripts/generate-signature.cjs` requer Sharp e recompõe a sequência, a assinatura estática e as capas responsivas; os comprimentos dos traços estão em `scripts/signature-path-lengths.json`. Em dispositivos touch, a moldura usa variação de opacidade para evitar repintar seu gradiente continuamente.
 

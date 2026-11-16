@@ -37,6 +37,11 @@ jobs:
           node-version: "24"
           cache: npm
       - name: Build React site
+        env:
+          OQUIL_GA4_ID: ${{ vars.OQUIL_GA4_ID }}
+          OQUIL_GOOGLE_ADS_ID: ${{ vars.OQUIL_GOOGLE_ADS_ID }}
+          OQUIL_META_PIXEL_ID: ${{ vars.OQUIL_META_PIXEL_ID }}
+          OQUIL_CLARITY_ID: ${{ vars.OQUIL_CLARITY_ID }}
         run: |
           npm ci
           npm run build

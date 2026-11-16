@@ -2,7 +2,7 @@ import React from 'react';
 import Story from './Story.jsx';
 import Signature from './Signature.jsx';
 import Catalog from './Catalog.jsx';
-import { HeroStreaming, PlaylistStreaming, StreamingBanner } from './Streaming.jsx';
+import { FeaturedRelease, PlaylistStreaming, StreamingBanner } from './Streaming.jsx';
 import { BrandSymbols, Icon } from './Icons.jsx';
 import { press } from './content.json';
 import usePageEffects from './usePageEffects.js';
@@ -20,7 +20,7 @@ function Hero() {
       <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-abertura.webp" alt="" width="1673" height="940" decoding="async" />
     </picture>
     <div className="hero-copy"><p className="hero-eyebrow">Rio de Janeiro <span>·</span> Brasil</p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><div className="hero-actions"><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div></div>
-    <HeroStreaming />
+    <FeaturedRelease />
     <a className="hero-scroll" href="#sobre" aria-label="Deslizar para a história de o Quil"><Icon name="down" /></a>
   </section>;
 }

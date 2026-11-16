@@ -127,7 +127,12 @@ for (const [tag] of html.matchAll(/<img\b[^>]+>/g)) {
   }
 }
 assert.match(html, /class="footer-signature"[^>]*><img[^>]*loading="lazy"/);
-assert.ok(!/<iframe\b|<script[^>]+src="https?:\/\//i.test(html), 'Mídia ou rastreador externo carregados antes de interação');
+assert.ok(!/<script[^>]+src="https?:\/\//i.test(html), 'Rastreador externo carregado antes de interação');
+const embeds = [...html.matchAll(/<iframe\b[^>]*>/gi)].map(([tag]) => tag);
+assert.equal(embeds.length, 1, 'Apenas a playlist de encerramento deve ter um iframe');
+assert.match(html, /class="closing-playlist"><iframe\b/);
+assert.match(embeds[0], /\bsrc="https:\/\/open\.spotify\.com\/embed\/playlist\/37i9dQZF1DZ06evO3VXrSJ\?/);
+assert.match(embeds[0], /\bloading="eager"/);
 for (const [, file] of html.matchAll(/<source\b[^>]*\bsrcset="(assets\/[^"]+\.webp)"/gi)) await stat(path.join(root, file));
 console.log('CSS incorporado, fontes locais, miniaturas e prioridade do retrato LCP conferidos.');
 

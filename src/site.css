@@ -69,7 +69,8 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 .album-trigger{display:flex;flex-direction:column;align-items:center;width:100%;padding:16px 0;outline-offset:6px}
 .album-object{position:relative;isolation:isolate;display:block;width:min(264px,65vw);aspect-ratio:1;animation:album-float 6s ease-in-out infinite}
 .album-art{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1;box-shadow:0 20px 44px rgba(0,0,0,.45)}
-.album-trigger:hover .album-object,.album-trigger:focus-visible .album-object,.release-object:has(dialog[open]) .album-object{animation-play-state:paused}
+.album-trigger:focus-visible .album-object,.release-object:has(dialog[open]) .album-object{animation-play-state:paused}
+@media(hover:hover){.album-trigger:hover .album-object{animation-play-state:paused}}
 @keyframes album-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media(max-width:1100px) and (min-width:901px){.hero-media{padding-inline:24px}}
 @media(max-width:900px){.hero-copy{grid-column:1;grid-row:1}.hero-media{grid-column:1;grid-row:2}.album-object{width:240px}.hero-copy{text-align:center}.hero-copy .signature-writing{margin-inline:auto}.hero-latest{justify-content:center}.hero h1 span{display:inline;padding-left:0}}
@@ -77,12 +78,12 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 @media(prefers-reduced-motion:reduce){.album-object{animation:none}}
 
 /* Contorno de Stories: a luz gira; a capa permanece inteira e legível. */
-@property --story-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
-.album-object:before{content:'';position:absolute;z-index:0;inset:-9px;padding:3px;border-radius:12px;pointer-events:none;background:conic-gradient(from var(--story-angle),#83d9cb,#397b76 18%,#e8eee9 26%,#c6a4e8 40%,#83d9cb 58%,#244b48 76%,#e8eee9 84%,#83d9cb);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:story-orbit 5s linear infinite,story-sparkle 2.8s ease-in-out infinite}
-@keyframes story-orbit{to{--story-angle:360deg}}
+.album-ring{position:absolute;z-index:0;inset:-9px;padding:3px;border-radius:12px;overflow:hidden;pointer-events:none;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude}
+.album-ring:before{content:'';position:absolute;inset:-25%;background:conic-gradient(#123b3b,var(--gold) 34%,var(--paper) 52%,#123b3b 88%,var(--gold));animation:story-orbit 5s linear infinite,story-sparkle 2.8s ease-in-out infinite}
+@keyframes story-orbit{to{transform:rotate(1turn)}}
 @keyframes story-sparkle{0%,100%{opacity:.7}50%{opacity:1}}
-.album-trigger:focus-visible .album-object:before,.release-object:has(dialog[open]) .album-object:before{animation-play-state:paused}
-@media(prefers-reduced-motion:reduce){.album-object:before{animation:none}}
+.album-trigger:focus-visible .album-ring:before,.release-object:has(dialog[open]) .album-ring:before{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.album-ring:before{animation:none}}
 .footer-signature{display:inline-flex;align-items:center;min-height:44px;flex:none}
 .footer-signature img{width:100px;height:auto}
 
@@ -149,7 +150,6 @@ footer{padding:42px clamp(22px,5vw,76px);border-top:1px solid var(--line)}.foote
 @media(max-width:600px){.narrative-copy p{font-size:14px}}
 
 /* No touch, o brilho usa opacidade sem redesenhar o gradiente a cada frame. */
-@media(hover:none) and (prefers-reduced-motion:no-preference){.album-object:before{animation:story-sparkle 2.8s ease-in-out infinite}}
 
 /* A escrita preserva os traços, mas só move uma textura já rasterizada. */
 .signature{position:relative;overflow:hidden;aspect-ratio:20/9}
@@ -188,15 +188,10 @@ body{background:radial-gradient(ellipse at 85% 25%,var(--petrol),transparent 55%
 .album-listen .icon{stroke-width:2}
 .spotify-corner-link{display:flex;align-items:center;min-height:44px;padding:4px 3px;color:var(--paper);font-size:11px;text-decoration:underline;text-underline-offset:3px}
 .spotify-corner-link:hover{color:var(--paper);text-decoration-color:var(--gold)}
-.spotify-embed{width:100%;height:352px}
-.spotify-embed iframe,.spotify-embed button{display:block;width:100%;height:100%;border-radius:calc(var(--player-radius) - var(--player-padding))}
-.spotify-embed iframe{border:0}
-.spotify-embed button{border:1px solid rgba(var(--gold-rgb),.18);background:#152423;color:var(--paper);cursor:pointer}
-.spotify-embed button:hover,.spotify-embed button:focus-visible{border-color:rgba(var(--gold-rgb),.52);background:#1b302d}
+.spotify-embed{display:block;width:100%;height:352px;border:0;border-radius:calc(var(--player-radius) - var(--player-padding))}
 .button{background:rgba(18,59,59,.18);border-color:var(--glass-edge);color:var(--paper)}
 .button:hover,.button:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--paper)}
 .button:active{background:var(--glass-edge);border-color:var(--gold-light)}
-.album-object:before{background:conic-gradient(from var(--story-angle),#123b3b,var(--gold) 34%,var(--paper) 52%,#123b3b 88%,var(--gold))}
 @media(max-width:900px){
  .hero{justify-content:center;align-items:flex-end;padding:140px 28px 18vh;min-height:100svh}
  .hero-backdrop{object-position:58% top;opacity:.62}
@@ -278,7 +273,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.streaming-banner:foc
 }
 @media(max-width:1100px){.wordmark-caption{display:none}.nav{gap:16px}.nav-links a{padding-inline:12px}.hero{padding-top:160px}}
 @media(max-width:760px){
- html{scroll-padding-top:148px;overscroll-behavior-y:none}
+ html{scroll-padding-top:148px}
+ html,body{overscroll-behavior-y:none}
  .nav{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 18px 12px;min-height:124px;background:var(--ink);backdrop-filter:none;-webkit-backdrop-filter:none}
  .wordmark img{width:80px}.nav-listen{grid-column:2;grid-row:1;min-height:44px;padding:8px 16px;font-size:11px}
  .nav-links{grid-row:2;grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:3px;width:100%}

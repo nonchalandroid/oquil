@@ -3,35 +3,44 @@ import { useEffect } from 'react';
 export default function usePageEffects() {
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobile = window.matchMedia('(max-width: 760px), (hover: none) and (pointer: coarse)');
     let frame = 0;
     let observer;
     const animations = new Set();
     const revealed = new WeakSet();
+    const readingProgress = document.querySelector('.reading-progress');
     const navLinks = [...document.querySelectorAll('.nav-links a')];
     const sections = navLinks.map(link => document.querySelector(link.getAttribute('href')));
     const timeline = document.querySelector('.archive-timeline');
     const rows = [...document.querySelectorAll('.archive-row')];
     const updateProgress = () => {
       frame = 0;
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      document.documentElement.style.setProperty('--page-progress', max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
-      const readingLine = Math.max(160, window.innerHeight * .32);
+      const viewportHeight = document.documentElement.clientHeight;
+      const max = document.documentElement.scrollHeight - viewportHeight;
+      const pageProgress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      const readingLine = Math.max(160, viewportHeight * .32);
       let current = -1;
+      let currentRow = -1;
+      let timelineProgress = 0;
       sections.forEach((section, index) => {
         if (section && section.getBoundingClientRect().top <= readingLine) current = index;
       });
-      navLinks.forEach((link, index) => {
-        if (index === current) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
       if (timeline) {
         const rect = timeline.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (readingLine - rect.top) / rect.height));
-        timeline.style.setProperty('--timeline-progress', progress);
-        let currentRow = -1;
+        timelineProgress = Math.max(0, Math.min(1, (readingLine - rect.top) / rect.height));
         rows.forEach((row, index) => {
           if (row.getBoundingClientRect().top + 33 <= readingLine) currentRow = index;
         });
+      }
+      readingProgress?.style.setProperty('--page-progress', pageProgress);
+      navLinks.forEach((link, index) => {
+        const active = index === current;
+        if (active === link.hasAttribute('aria-current')) return;
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      if (timeline) {
+        timeline.style.setProperty('--timeline-progress', timelineProgress);
         rows.forEach((row, index) => row.toggleAttribute('data-current', index === currentRow));
       }
     };
@@ -40,7 +49,7 @@ export default function usePageEffects() {
       observer?.disconnect();
       animations.forEach(animation => animation.cancel());
       animations.clear();
-      if (motion.matches || !('IntersectionObserver' in window)) return;
+      if (motion.matches || mobile.matches || !('IntersectionObserver' in window)) return;
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -81,6 +90,7 @@ export default function usePageEffects() {
     window.addEventListener('resize', onScroll);
     document.addEventListener('keydown', escape);
     motion.addEventListener('change', observe);
+    mobile.addEventListener('change', observe);
     return () => {
       cancelAnimationFrame(frame);
       observer?.disconnect();
@@ -89,6 +99,7 @@ export default function usePageEffects() {
       window.removeEventListener('resize', onScroll);
       document.removeEventListener('keydown', escape);
       motion.removeEventListener('change', observe);
+      mobile.removeEventListener('change', observe);
     };
   }, []);
 }

@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { runInNewContext } from 'node:vm';
+import { transform } from 'esbuild';
 import { biography } from '../src/storyTyping.js';
 const root = path.resolve(import.meta.dirname, '../dist');
 const html = await readFile(path.join(root, 'index.html'), 'utf8');
@@ -20,7 +22,27 @@ const story = html.match(/<span class="story-full">([\s\S]*?)<\/span>/)?.[1];
 assert.ok(story, 'Biografia ausente no HTML pré-renderizado');
 const decodedStory = story.replace(/&(?:amp|lt|gt|quot|#x27);/g, entity => ({ '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#x27;': "'" })[entity]);
 assert.equal(decodedStory, biography, 'Biografia publicada diverge da fonte React');
-for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(json);
+const head = html.split('</head>')[0];
+const tags = [...head.matchAll(/<(?:meta|link)\s+([^>]+)>/g)].map(([, attributes]) =>
+  Object.fromEntries([...attributes.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, key, value]) => [key, value])));
+const metadata = name => tags.find(tag => tag.name === name || tag.property === name)?.content;
+assert.equal((head.match(/<title>[^<]+<\/title>/g) || []).length, 1, 'Título ausente ou duplicado');
+assert.ok(metadata('description'), 'Meta description ausente');
+const canonicals = tags.filter(tag => tag.rel === 'canonical');
+assert.equal(canonicals.length, 1, 'URL canônica ausente ou duplicada');
+const { href: canonical } = canonicals[0];
+assert.equal(canonical, 'https://oquil.com.br/');
+assert.equal(metadata('og:url'), canonical);
+for (const name of ['og:type', 'og:title', 'og:description', 'og:image', 'og:image:alt']) {
+  assert.ok(metadata(name), `Open Graph ausente: ${name}`);
+}
+const shareImage = new URL(metadata('og:image'), canonical);
+assert.equal(shareImage.origin, new URL(canonical).origin);
+await stat(path.join(root, shareImage.pathname));
+const schema = JSON.parse(head.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]);
+for (const type of ['Person', 'WebSite', 'WebPage', 'MusicRecording']) {
+  assert.ok(schema['@graph'].some(entity => entity['@type'] === type), `Schema ausente: ${type}`);
+}
 console.log(`${local.size} arquivos locais, IDs, âncoras, URLs HTTPS e conteúdo SEO conferidos.`);
 
 const manifest = JSON.parse(await readFile(path.join(root, 'site.webmanifest'), 'utf8'));
@@ -96,9 +118,48 @@ for (const release of releases) {
   await stat(path.join(root, release.cover.src.replace('assets/', 'assets/thumbs/')));
 }
 assert.ok(html.includes('class="hero-backdrop" fetchPriority="high" loading="eager"') || html.includes('class="hero-backdrop" fetchpriority="high" loading="eager"'), 'Retrato LCP sem prioridade alta');
+for (const [tag] of html.matchAll(/<img\b[^>]+>/g)) {
+  assert.match(tag, /\bsrc="assets\/[^"]+\.webp"/i, `Imagem fora do formato WebP: ${tag}`);
+  assert.match(tag, /\bwidth="[1-9]\d*"/, `Imagem sem largura: ${tag}`);
+  assert.match(tag, /\bheight="[1-9]\d*"/, `Imagem sem altura: ${tag}`);
+  if (/class="(?:release-cover|closing-image)"|brutt-gang-marca/.test(tag)) {
+    assert.match(tag, /\bloading="lazy"/, `Imagem de seção sem lazy loading: ${tag}`);
+  }
+}
+assert.match(html, /class="footer-signature"[^>]*><img[^>]*loading="lazy"/);
+assert.ok(!/<iframe\b|<script[^>]+src="https?:\/\//i.test(html), 'Mídia ou rastreador externo carregados antes de interação');
+for (const [, file] of html.matchAll(/<source\b[^>]*\bsrcset="(assets\/[^"]+\.webp)"/gi)) await stat(path.join(root, file));
 console.log('CSS incorporado, fontes locais, miniaturas e prioridade do retrato LCP conferidos.');
 
 // URLs estáveis ajudam a manter uma única referência de favicon para rastreadores.
 assert.ok(html.includes('href="/favicon.ico"'), 'Favicon ICO sem URL estável');
 assert.ok(html.includes('href="/assets/icons/icon-192.png"'), 'Favicon PNG 192 sem URL estável');
 console.log('Biografia sincronizada com a fonte e URLs estáveis do favicon conferidas.');
+
+const trackingSource = await readFile(path.join(root, '../src/tracking.js'), 'utf8');
+const trackingScript = await transform(trackingSource, {
+  format: 'cjs',
+  define: { __TRACKING_IDS__: JSON.stringify({ ga4: 'G-TEST', googleAds: 'AW-123', metaPixel: '123', clarity: 'test' }) },
+});
+const listeners = new Map();
+const requests = [];
+const window = {
+  dataLayer: [],
+  addEventListener: (type, listener) => listeners.set(type, listener),
+  removeEventListener: type => listeners.delete(type),
+};
+const document = { createElement: () => ({}), head: { append: script => requests.push(script.src) } };
+const module = { exports: {} };
+runInNewContext(trackingScript.code, { window, document, module });
+module.exports.deferTracking();
+listeners.get('click')({ type: 'click', isTrusted: false });
+assert.equal(requests.length, 0, 'Rastreadores carregados antes de uma interação real');
+listeners.get('wheel')({ type: 'wheel', isTrusted: true });
+assert.deepEqual(requests, [
+  'https://www.googletagmanager.com/gtag/js?id=G-TEST',
+  'https://connect.facebook.net/en_US/fbevents.js',
+  'https://www.clarity.ms/tag/test',
+]);
+assert.deepEqual(window.dataLayer.filter(args => args[0] === 'config').map(args => args[1]), ['G-TEST', 'AW-123']);
+assert.equal(listeners.size, 0, 'Eventos de interação devem ser removidos após o primeiro disparo');
+console.log('Carregamento único dos rastreadores após interação conferido.');

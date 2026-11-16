@@ -10,12 +10,15 @@ import usePageEffects from './usePageEffects.js';
 function Wordmark() { return <a className="wordmark" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="o Quil" width="180" height="81" /></a>; }
 
 function LabelMark({ compact = false }) {
-  return <div className={`label-lockup${compact ? ' label-lockup-compact' : ''}`} role="img" aria-label="Brutt Gang Entertainment"><span className="label-logo-art" aria-hidden="true"><img src="assets/brutt-gang-logo.webp" alt="" width="1816" height="866" loading="lazy" decoding="async" /></span><span className="label-subline" aria-hidden="true">ENTERTAINMENT</span></div>;
+  return <div className={`label-lockup${compact ? ' label-lockup-compact' : ''}`} role="img" aria-label="Brutt Gang Entertainment"><img src="assets/brutt-gang-marca.webp" alt="" width="440" height="210" loading="lazy" decoding="async" /><span className="label-subline" aria-hidden="true">ENTERTAINMENT</span></div>;
 }
 
 function Hero() {
   return <section className="hero" aria-labelledby="release-title">
-    <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-ai.webp" alt="" width="1673" height="940" decoding="async" />
+    <picture className="hero-picture">
+      <source media="(max-width: 600px)" srcSet="assets/o-quil-retrato-mobile.webp" width="700" height="940" />
+      <img className="hero-backdrop" fetchPriority="high" loading="eager" src="assets/o-quil-retrato-abertura.webp" alt="" width="1673" height="940" decoding="async" />
+    </picture>
     <div className="hero-copy"><p className="hero-eyebrow">Rio de Janeiro <span>·</span> Brasil</p><h1 id="release-title">Quase <span>Indo</span></h1><div className="signature-writing"><Signature /></div><div className="hero-actions"><a className="text-link" href="#catalogo">Explorar catálogo<Icon name="down" /></a></div></div>
     <HeroStreaming />
     <a className="hero-scroll" href="#sobre" aria-label="Deslizar para a história de o Quil"><Icon name="down" /></a>
@@ -40,7 +43,7 @@ export default function App() {
     <BrandSymbols /><a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
     <header className="nav"><Wordmark /><nav className="nav-links" aria-label="Navegação principal"><a href="#sobre"><span className="nav-number" aria-hidden="true">01</span>História</a><a href="#catalogo"><span className="nav-number" aria-hidden="true">02</span>Música</a><a href="#trajetoria"><span className="nav-number" aria-hidden="true">03</span>Trajetória</a><a href="#press"><span className="nav-number" aria-hidden="true">04</span>Imprensa</a></nav><div className="reading-progress" aria-hidden="true" /></header>
     <main id="conteudo" tabIndex="-1"><Hero /><ArtistStory /><Catalog /><Press />
-      <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-ai.webp" alt="" width="1673" height="940" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><PlaylistStreaming /></div></section>
+      <section className="closing" aria-labelledby="closing-title"><img className="closing-image" src="assets/o-quil-retrato-encerramento.webp" alt="" width="1200" height="674" loading="lazy" decoding="async" /><div className="closing-content" data-enter=""><p className="section-kicker">o Quil</p><h2 id="closing-title">Fica mais um<br /><em>pouco.</em></h2><PlaylistStreaming /></div></section>
     </main>
     <footer><div className="section-inner footer-inner"><div className="footer-top"><a className="footer-signature" href="#top" aria-label="o Quil, voltar ao início"><img src="assets/o-quil-assinatura-180.webp" alt="Assinatura de o Quil" width="180" height="81" loading="lazy" decoding="async" /></a><nav className="footer-links" aria-label="Redes e contato"><a href="https://www.instagram.com/o.quil/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="mailto:oquil@proton.me">Contato</a><a href="https://genius.com/artists/O-quil" target="_blank" rel="noopener noreferrer">Genius</a></nav><a className="text-link" href="#top">Voltar ao topo<Icon name="up" /></a></div><div className="footer-bottom"><span>© 2026 o Quil. Todos os direitos reservados.</span><LabelMark compact /><span>Rio de Janeiro · Brasil</span></div></div></footer>
   </div>;

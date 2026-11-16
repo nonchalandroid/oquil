@@ -66,6 +66,6 @@ export default function Story() {
 
   return <article className="narrative-copy" aria-label="A história de o Quil" ref={article}>
     <p className="narrative-lead"><span className="story-full">{biography}</span><span className="story-reveal" aria-hidden="true">{phrases.map((phrase, index) => <span className="story-phrase" key={index}>{phrase}</span>)}</span></p>
-    {!readAll && <button className="story-read" type="button" onClick={() => setReadAll(true)}>Ler texto completo</button>}
+    <button className="story-read" type="button" disabled={readAll} onClick={() => setReadAll(true)}>Ler texto completo</button>
   </article>;
 }
